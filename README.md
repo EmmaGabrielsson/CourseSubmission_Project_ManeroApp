@@ -1,4 +1,4 @@
-# CourseSubmission Project - ManeroApp  [![Tests]((https://github.com/EmmaGabrielsson/CourseSubmission_Project_ManeroApp.git/actions/workflows/tests.yml/badge.svg)](https://github.com/EmmaGabrielsson/CourseSubmission_Project_ManeroApp.git/actions/workflows/tests.yml)
+# CourseSubmission Project - ManeroApp  [![Tests](https://github.com/EmmaGabrielsson/CourseSubmission_Project_ManeroApp/actions/workflows/tests.yml/badge.svg)](https://github.com/EmmaGabrielsson/CourseSubmission_Project_ManeroApp/actions/workflows/tests.yml)
 
 ## Project Overview
 The CourseSubmission Project - Manero is a comprehensive e-commerce website developed by our project group. Below, you'll find details about the project and instructions to explore it.
