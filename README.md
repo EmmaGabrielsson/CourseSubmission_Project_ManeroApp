@@ -1,4 +1,4 @@
-# CourseSubmission Project - Manero
+# CourseSubmission Project - ManeroApp
 
 ## Project Overview
 The CourseSubmission Project - Manero is a comprehensive e-commerce website developed by our project group. Below, you'll find details about the project and instructions to explore it.
