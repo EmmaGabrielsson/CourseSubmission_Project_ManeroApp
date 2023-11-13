@@ -44,7 +44,7 @@ namespace Manero.Controllers
                     ExpiryYear = pm.ExpiryYear,
                     CVV = pm.CVV
                 }).ToList(),
-                UserName = user.UserName,
+                UserName = user.UserName!,
                 TotalPaymentMethods = paymentMethods.Count
             };
 

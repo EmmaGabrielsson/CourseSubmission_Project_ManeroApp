@@ -16,6 +16,7 @@ public class PaymentMethodViewModel
         set => _cardNumber = value?.Replace(" ", ""); // Remove spaces before setting
     }
     private string _cardNumber;
+
     [Required]
     [Range(1, 12, ErrorMessage = "Expiry Month must be between 1 and 12")]
     public int ExpiryMonth { get; set; }
