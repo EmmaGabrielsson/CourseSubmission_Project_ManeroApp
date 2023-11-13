@@ -28,6 +28,9 @@ jobs:
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
+      
+    - name: List Test Directory Contents
+      run: ls -R /home/runner/work/CourseSubmission_Project_ManeroApp/CourseSubmission_Project_ManeroApp/Manero.Tests/bin/Debug/net7.0/
 
     - name: Run Tests
       run: dotnet test --no-build --no-restore --verbosity normal 
