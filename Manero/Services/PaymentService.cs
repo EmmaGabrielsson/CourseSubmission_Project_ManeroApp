@@ -47,7 +47,7 @@ namespace Manero.Services
                 return userPaymentMethod.PaymentMethod;
             }
 
-            return null; // Handle the case where the payment method is not found for the given user.
+            return null!; // Handle the case where the payment method is not found for the given user.
         }
         public async Task DeletePaymentMethodAsync(Guid paymentMethodId, string userId)
         {
