@@ -1,0 +1,78 @@
+﻿@model AddressViewModel
+
+<section class="my-adress-section">
+    <h3>My address</h3>
+    <div>
+        @if(Model != null)
+        {
+            @foreach (var address in Model.Addresses)
+            {
+                <div class="my-address-container">
+                    @foreach (var addressId in Model.UserAddressIds!)
+                    {
+                        @if (addressId.AdressId == address.Id)
+                        {
+                        <div>
+                            <div>
+                                @if (addressId.Title != null && addressId.Title.ToLower() == "home")
+                                {
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                }else if (addressId.Title != null && addressId.Title.ToLower() == "work")
+                                {
+                                    <i class="fa-solid fa-briefcase"></i>
+                                }else if (addressId.Title != null && addressId.Title.ToLower() == "parents")
+                                {
+                                    <i class="fa-solid fa-people-group"></i>
+                                }else
+                                {
+                                    <i class="fa-solid fa-location-dot"></i>
+                                }
+                            </div>
+                            <div>  
+                                <h5>
+                                        @addressId.Title
+                                </h5>                            
+                                <p>@address.StreetName, @address.PostalCode @address.City</p>
+                            </div>
+                        </div>
+                        }
+                    }
+                    <div>
+                        <form class="remove-address-form" method="post" asp-action="address">
+                            <div asp-validation-summary="ModelOnly"></div>
+                            <input type="hidden" asp-for="RemoveUserAddressId" value="@address.Id" />
+                            <input type ="hidden" asp-for="UserId" value="@Model.UserId" />
+                            <button type="submit" title="remove address" class="edit-address-button"><i class="fa-solid fa-pen"></i><span>_</span></button>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="my-address-container no-address">
+                <p>You have no added addresses here.</p>
+            </div>
+        }
+        <a class="add-address-btn" asp-controller="account" asp-action="addaddress">
+            <span>+</span>
+            <p>Add a new address</p>
+        </a>
+    </div>
+</section>
+<script>
+
+    let forms = document.querySelectorAll(".remove-address-form");
+
+    forms.forEach(form => {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (confirm("Sure you want to remove address?")) {
+                form.submit();
+            }
+        });
+    });
+
+
+</script>

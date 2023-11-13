@@ -1,0 +1,174 @@
+﻿@inject Manero.Services.OrderService _orderService; 
+@{
+    var order = await _orderService.GetOrderIfExistAsync();
+}
+
+<div class="logout-popup">
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirm-logout-btn">SURE</button>
+            <button id="cancel-logout-btn">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<nav class="navigation-top">
+    <div class="main-menu">
+        <div class="hamburger-menu">
+            <a>
+                <i class="fa-solid fa-bars" id="hamburger"></i>
+            </a>
+        </div>
+
+        <div class="toggle-header">
+            <h5 class="main-header">M</h5>
+            
+        </div>
+        <div class="toggle-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Product">
+        </div>
+        <div class="icon-container">
+            <a asp-controller="Product" asp-action="Cart" class="bottom-icon-link">
+                <i class="fa-solid fa-bag-shopping"></i>
+                @if (order != null)
+                {
+                    <p class="cart-count">@order.TotalQuantity</p>                        
+                }
+            </a>
+        </div>
+
+    </div>
+    <div class="navigation-container">
+        <div class="navigation-item">
+            
+            <a class="manero-icon" asp-area="" asp-controller="Home" asp-action="Index">Manero</a>
+        </div>      
+        
+        <div class="navigation-item">
+
+            <a class="navigation-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+            <a class="navigation-link" asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>
+
+            <a class="navigation-link" asp-area="" asp-controller="Product" asp-action="Wishlist">Wishlist</a>
+
+            <a class="navigation-link" asp-area="" asp-controller="Product" asp-action="Categories">Categories</a>
+
+            <a class="navigation-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>                          
+            
+        </div>
+        <div class="navigation-item">
+            <form class="search-bar">
+                <fieldset>
+                    <input class="" type="search" placeholder="Search Product" aria-label="Search">
+                    <button class="" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </fieldset>
+                
+            </form>
+        </div>
+
+        @if (signInManager.IsSignedIn(User))
+        {
+            <div class="navigation-item">
+                <div>@User.Identity?.Name</div>
+                <a class="navigation-link" id="logout-button" asp-area=" " asp-controller="Logout" asp-action="Index">Logout</a>
+            </div>
+        }
+        else
+        {
+            <div class="navigation-item">
+                <a class="navigation-link" asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
+            </div>
+        }
+
+        <div class="navigation-item">
+            <div class="icon-container">
+                <a href="#" class="bottom-icon-link">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    @if (order != null)
+                    {
+                        <p class="cart-count">@order.TotalQuantity</p>
+                    }
+                </a>
+            </div>
+        </div>
+
+    </div>
+</nav>
+<div>
+    <aside>
+    <div class="overlay"></div>
+        <div class="side-container">
+            <div class="side-header">
+                <h4>Contact us</h4>
+            </div>
+            
+            <div class="side-item">
+                <div class="contact-items">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="contact-items">
+                    <p>27 Division St, New York, NY 10002, USA</p>
+                </div>                
+            </div>
+            <div class="side-item">
+                <div class="contact-items">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="contact-items">
+                    <p>manerosale@mail.com</p>
+                    <p>manerosupport@mail.com</p>
+                </div>
+            </div>
+            <div class="side-item">
+                <div class="contact-items">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <div class="contact-items">
+                    <p>
+                        +17 123456789
+                    </p>
+                    <p>
+                        +17 987654321
+                    </p>
+                </div>
+            </div>
+            <div class="order-box">
+                <p class="box-title">
+                    Track your order
+                </p>               
+                <form class="input-group">
+                    
+                    <fieldset class="order-fieldset">  
+                        <legend>order number</legend>
+                        <input type="text" id="myInput" placeholder="order number">
+                        <button class="trackorder-button" type="button" id="myButton" asp-area="" asp-controller="Account" asp-action="Order"><i class="fa-solid fa-arrow-right"></i></button>
+                        
+                    </fieldset>
+                </form>                                           
+            </div>
+        </div>
+    </aside>
+</div>
+<script>
+    const overlay = document.querySelector('.overlay');
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.querySelector('.side-container');
+    const body = document.body;
+
+    hamburger.addEventListener('click', () => {
+        if (sidebar.style.display === 'block') {
+            sidebar.style.display = 'none';
+            overlay.style.display = 'none';
+            hamburger.style.color = 'black';
+            body.classList.remove('overlay-open'); // Remove the class to enable scrolling
+        } else {
+            sidebar.style.display = 'block';
+            overlay.style.display = 'block';
+            hamburger.style.color = '#fff';
+            body.classList.add('overlay-open'); // Add the class to disable scrolling
+        }
+    });
+</script>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Manero.ViewModels.OrderViewModel>
+
+<section class="order-history">
+    <h1>Order history</h1>
+    @foreach (var order in Model)
+    {
+        <div class="order-box">
+            @if (order.Status == "Delivered")
+            {
+                <div style="background-color: #F5F8FD">
+                    <div class="order-status">
+                        <p class="order-id">#@order.Id</p>
+                        <p class="order-delivered">Delivered <i class="fa-solid fa-check"></i></p>
+                    </div>
+                    <div class="order-list">
+                        @foreach (var product in order.Products)
+                        {
+                            <div class="order-products">
+                                <p>@product.ProductArticleNumber</p>
+                                <p>@product.Quantity x $@product.ProductPrice.ToString("F2")</p>
+                            </div>
+                        }
+                        <div class="order-repeat-review">
+                            <a class="order-repeat" href=""><i class="fa-solid fa-repeat"></i> repeat order</a>
+                            <a class="order-review" href="">leave a review <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="order-status">
+                    <p class="order-id">#@order.Id</p>
+                    @switch (order.Status)
+                    {
+                        case "Shipping":
+                            <p class="order-shipping">Shipping <i class="fa-solid fa-truck"></i></p>
+                            break;
+                        case "Canceled":
+                            <p class="order-canceled">Canceled <i class="fa-solid fa-xmark"></i></p>
+                            break;
+                        default:
+                            <p class="order-default">@order.Status</p>
+                            break;
+                    }
+                </div>
+                <div class="order-info">
+                    <p class="order-time">@order.Created.ToString("MMM dd, yyyy hh:mm tt")</p>
+                    <p class="order-price">$@order.TotalPrice.ToString("F2")</p>
+                </div>
+            }
+        </div>
+    }
+</section>

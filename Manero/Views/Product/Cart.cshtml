@@ -1,0 +1,90 @@
+﻿@model Order
+@inject Manero.Services.ProductService _productService;
+
+<section class="cart-section">
+    @if (Model != null)
+    {
+        <div class="order-container">
+            <h2 class="cart-title">Order</h2>
+            @foreach (var row in Model.OrderRows)
+            {
+                var viewImage = await _productService.GetProductsFirstViewImageAsync(row.ProductArticleNumber);
+                <div class="cart-item-container">
+                    <div>
+                        <img class="cart-item-img" src="@viewImage.ImageUrl" alt="@viewImage.ImageName"/>
+                    </div>
+                    <div class="cart-item-content">
+                        <div>
+                            <p>@row.ProductVariant.Product.ProductName</p>
+                            <div class="product-price">
+                                @if (row.Discount != decimal.Zero)
+                                {
+                                    <span class="old-price fs-16"><s>$@(((decimal)row.ProductPrice!).ToString(row.ProductPrice % 1 == 0 ? "F0" : "F2"))</s></span>
+                                    <span class="new-price fs-20">$@(((decimal)row.Discount!).ToString(row.Discount % 1 == 0 ? "F0" : "F2"))</span>
+                                }
+                                else
+                                {
+                                    <span class="fs-20 price">$@(((decimal)row.ProductPrice!).ToString(row.ProductPrice % 1 == 0 ? "F0" : "F2"))</span>
+                                }
+                            </div>
+                            <p>Size: @row.ProductVariant.Size.SizeName</p>
+                            <p>Color: @row.ProductVariant.Color.ColorName</p>
+                        </div>
+                        <div class="product-quantity-cart-item">
+                            <button class="quantity-button" id="decrement">-</button>
+                            <input type="number" id="quantity" name="quantity" value="@row.Quantity">
+                            <button class="quantity-button" id="increment">+</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="cart-totalprice-container">
+                <div>Promocode </div>
+                <div class="cart-price-container">
+                    <span class="bold">Subtotal </span>
+                    <span class="bold"> $@(((decimal)Model.SubtotalPrice!).ToString(Model.SubtotalPrice % 1 == 0 ? "F0" : "F2"))</span>
+                </div>
+                <div class="cart-price-container">
+                    <span>Discount </span>
+                    @{
+                        var discount = Model.SubtotalPrice - Model.TotalPrice;
+                    }
+                    @if(discount != decimal.Zero)
+                    {
+                        <span>- $@(((decimal)@discount!).ToString(@discount % 1 == 0 ? "F0" : "F2"))</span>
+                    }else
+                    {
+                        <span>0</span>
+                    }
+                </div>
+                <div class="cart-price-container">
+                    <span>Delivery </span>
+                    @if (Model.DeliveryPrice == decimal.Zero)
+                    {
+                        <span>Free</span>
+                    }
+                    else
+                    {
+                        <span>$@(((decimal)Model.DeliveryPrice!).ToString(Model.DeliveryPrice % 1 == 0 ? "F0" : "F2"))</span>
+                    }
+                </div>
+                <div class="cart-totalprice cart-price-container">
+                    <span class="bold">Total </span>
+                    <span class="bold"> $@(((decimal)Model.TotalPrice!).ToString(Model.TotalPrice % 1 == 0 ? "F0" : "F2"))</span>
+                </div>
+            </div>
+            <div class="cart-btn-container">
+                <button class="proceed-to-checkout-btn">proceed to checkout</button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="no-order-container">
+            <h2 class="cart-title">Your cart is empty!</h2>
+            <p>Looks like you haven't made your order yet.</p>
+            <a class="cart-shop-now-btn" href="#">shop now</a>
+        </div>
+    }
+</section>

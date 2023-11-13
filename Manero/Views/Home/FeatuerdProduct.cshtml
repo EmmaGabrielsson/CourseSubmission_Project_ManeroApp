@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Featured Products";
+}
+<div class="filter-sidebar">
+    <partial name="~/Views/Partials/_ProductFilter.cshtml" />
+</div>
+<div class="sorting-container">
+    <div class="filter-element"><i class="fa-solid fa-filter"></i>Filters</div>
+    <h1>Featured Products</h1>
+    <div>Sorting by<i class="fa-solid fa-caret-down"></i></div>
+</div>
+<section class="products-section">
+    <div class="container">
+        <div class="product-items">
+            <partial name="~/Views/Partials/_FeaturedProducts.cshtml" />
+        </div>
+    </div>
+</section>

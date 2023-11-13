@@ -1,0 +1,27 @@
+﻿
+@if (Model != null)
+{
+    @foreach (var review in Model.Reviews)
+    {
+        <section class="product-review-section">
+            <div class="product-review">
+                <img class="profile-picture" src="@review.User.ProfileImageUrl" alt="Profile Picture">
+                <div class="review-center">
+                    <h5 class="review-author">@review.User.FirstName @review.User.LastName</h5>
+                    <p class="review-date">@review.Created.ToString("dd MMM yyyy")</p>
+                    <p class="review-comment">@review.Comment</p>
+                </div>
+                <span class="review-rating">
+                    @for (int i = 0; i < review.Rating; i++)
+                    {
+                        <i class="fa-solid fa-star"></i>
+                    }
+                    @for (int i = review.Rating; i < 5; i++)
+                    {
+                        <i class="fa-regular fa-star"></i>
+                    }
+                </span>
+            </div>
+        </section>
+    }
+}

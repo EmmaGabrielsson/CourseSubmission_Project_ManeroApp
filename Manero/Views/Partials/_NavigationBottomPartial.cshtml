@@ -1,0 +1,41 @@
+﻿<div class="bottom-navigation">
+    <a class="bottom-icon-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+    
+    <a href="#" class="bottom-icon-link search-icon">
+        <i class="fa-solid fa-magnifying-glass"></i> 
+    </a>
+    <a class="bottom-icon-link" asp-controller="Product" asp-action="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+    </a>
+    <a class="bottom-icon-link" asp-area="" asp-controller="Product" asp-action="Wishlist"><i class="fa-solid fa-heart"></i></a>
+
+    @if (signInManager.IsSignedIn(User))
+    {
+        <a class="bottom-icon-link" asp-area="" asp-controller="Account" asp-action="Profile">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    }
+    else
+    {
+        <a class="bottom-icon-link" asp-area="" asp-controller="Login" asp-action="Index">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    }
+
+</div>
+<script>
+    const searchBar = document.querySelector('.toggle-search')
+    const searchIcon = document.querySelector('.search-icon')
+    const mainHeader = document.querySelector('.toggle-header')
+        searchIcon.addEventListener('click', () => {
+        if (searchBar.style.display === 'none' || searchBar.style.display === '')  {
+            searchBar.style.display = 'block';
+            mainHeader.style.display = 'none';
+            
+        } else {
+            searchBar.style.display = 'none';
+            mainHeader.style.display = 'block';
+            
+        }
+    });
+</script>

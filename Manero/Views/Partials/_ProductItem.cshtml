@@ -1,0 +1,83 @@
+﻿@inject Manero.Services.ProductService _productService;
+
+@{
+    int rating = 0;
+    string stars = "";
+    string emptyStars = "";
+
+    if (Model.Reviews.Count > 0)
+    {
+        foreach (var rate in Model.Reviews)
+        {
+            rating += rate.Rating;
+        }
+        rating = rating / Model.Reviews.Count;
+
+        var starHtml = "<i class=\"fa-solid fa-star\"></i>";
+        var emptyStarHtml = "<i class=\"fa-regular fa-star\"></i>";
+
+        stars = string.Concat(Enumerable.Repeat(starHtml, rating));
+        emptyStars = string.Concat(Enumerable.Repeat(emptyStarHtml, 5 - rating));
+    }
+    else
+    {
+        // If there are no reviews, display 5 empty stars
+        var emptyStarHtml = "<i class=\"fa-regular fa-star\"></i>";
+        stars = string.Empty;
+        emptyStars = string.Concat(Enumerable.Repeat(emptyStarHtml, 5));
+    }
+
+    string id = Model.ArticleNumber;
+    var viewImage = await _productService.GetProductsFirstViewImageAsync(id);
+}
+
+
+<div class="product-item" id="@Model.ArticleNumber">
+    <a asp-controller="product" asp-action="details" asp-route-id="@Model.ArticleNumber" class="collection-item">
+        <img src="@viewImage.ImageUrl" alt="@Model.ProductName" />
+        <div class="star-review">
+            @if (Model.Reviews != null)
+            {
+                @Html.Raw(stars)@Html.Raw(emptyStars)
+                <span class="review-number">(@Model.Reviews.Count)</span>
+            }
+            else
+            {
+                @Html.Raw(emptyStars)
+                <span class="review-number">(0)</span>
+            }
+        </div>
+        <span class="product-name">@Model.ProductName</span>
+        <div class="product-price">
+            @if (Model.Discount != null)
+            {
+                <span class="old-price"><s>$@(((decimal)Model.Price!).ToString(Model.Price % 1 == 0 ? "F0" : "F2"))</s></span>
+                <span class="new-price">$@(((decimal)Model.Discount!).ToString(Model.Discount % 1 == 0 ? "F0" : "F2"))</span>
+            }
+            else
+            {
+                <span class="price">$@(((decimal)Model.Price!).ToString(Model.Price % 1 == 0 ? "F0" : "F2"))</span>
+            }
+        </div>
+    </a>
+    
+    @foreach (var tag in Model.Tags)
+    {
+        @if (tag.Tag.TagName == "sale")
+        {
+            <div class="sale">SALE</div>
+        }
+        else if (tag.Tag.TagName == "new")
+        {
+            <div class="new">NEW</div>
+        }
+        else if (tag.Tag.TagName == "top")
+        {
+            <div class="top">TOP</div>
+        }
+    }
+    <div class="product-icons">
+        <i class="heart-icon fa-regular fa-heart"></i>
+        <i class="cart-item fa-solid fa-bag-shopping"></i>
+    </div>
+</div>

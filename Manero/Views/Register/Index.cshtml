@@ -1,0 +1,66 @@
+﻿@model UserRegistrationViewModel
+
+<section class="register-form-container">
+    <div class="register-form-header">
+        <p>|</p>
+        <h1>Sign Up</h1> 
+    </div>
+    
+    <div>
+        <form method="post" class="register-form">
+
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        
+            <fieldset>
+                <legend>first name</legend>
+                @* <label class="" asp-for="FirstName"></label> *@
+                <input class="" asp-for="FirstName" />
+                <small class="text-danger"><span asp-validation-for="FirstName"></span></small>
+            </fieldset>
+
+            <fieldset>
+                <legend>last name</legend>
+                @* <label class="" asp-for="LastName"></label> *@
+                <input class="" asp-for="LastName" />
+                <small class="text-danger"><span asp-validation-for="LastName"></span></small>
+            </fieldset>
+        
+            <fieldset>
+                <legend>email</legend>
+                @* <label class="" asp-for="Email"></label> *@
+                <input class="" asp-for="Email" />
+                <small class="text-danger"><span asp-validation-for="Email"></span></small>
+            </fieldset>
+
+            <fieldset>
+                <legend>password</legend>
+                @* <label class="" asp-for="Password"></label> *@
+                <input type="password" class="" asp-for="Password" />
+                <!-- <i class="fa-regular fa-eye-slash"></i> -->
+                <small class="text-danger"><span asp-validation-for="Password"></span></small>
+            </fieldset>
+        
+            <fieldset>
+                <legend>confirm password</legend>
+                @* <label class="" asp-for="ConfirmPassword"></label> *@
+                <input class="" type="password" asp-for="ConfirmPassword" />
+                <!-- <i class="fa-regular fa-eye-slash"></i> -->
+                <small class="text-danger"><span asp-validation-for="ConfirmPassword"></span></small>
+            </fieldset>
+
+            <button class="register-form-btn">Sign Up</button>
+
+        </form>
+    </div>
+    
+    <div class="register-form-link">
+        <p>Already have an account? <span><a class="register-form-signin-link" href="#">Sign In</a></span></p>
+    </div>
+    
+    <div class="register-form-social-media">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+    </div>
+
+</section>

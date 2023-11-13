@@ -1,0 +1,45 @@
+﻿@model AddAddressViewModel
+
+<section class="my-adress-section">
+    <h3>Add a new address</h3>
+    <div>
+        <div id="address-map" ></div>
+        <form class="add-address-form" method="post" asp-action="addaddress" novalidate>
+            <div asp-validation-summary="ModelOnly"></div>
+            <div>
+                <label asp-for="Title"></label>
+                <input asp-for="Title" />
+            </div>
+            <div>
+                <span class="valid-span"></span>
+                <label asp-for="StreetName"></label>
+                <input asp-for="StreetName" />
+                <small><span asp-validation-for="StreetName"></span></small>
+            </div>
+            <div>
+                <span class="valid-span"></span>
+                <label asp-for="PostalCode"></label>
+                <input asp-for="PostalCode" />
+                <small><span asp-validation-for="PostalCode"></span></small>
+            </div>
+            <div>
+                <span class="valid-span"></span>
+                <label asp-for="City"></label>
+                <input asp-for="City" />
+                <small><span asp-validation-for="City"></span></small>
+            </div>
+            <div class="current-location-container">
+                <label for="update-map-checkbox">
+                    <input type="checkbox" id="update-map-checkbox" />
+                    Use current location
+                </label>
+            </div>
+
+            <button class="save-address-btn" type="submit">
+                save address
+            </button>
+        </form>
+    </div>
+</section>
+<script src="~/js/geolocationMap.js"></script>
+<script src="~/js/addressValidation.js"></script>

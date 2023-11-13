@@ -1,0 +1,144 @@
+﻿@model PaymentMethodsViewModel
+@using Manero.ViewModels
+<head>
+    <!-- Add the Slick Carousel styles -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the Slick Carousel theme styles (optional) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+</head>
+
+@functions {
+    public string FormatCreditCardNumber(string cardNumber)
+    {
+        // Add a space after every 4 characters
+        return string.Join(" ", Enumerable.Range(0, cardNumber.Length / 4)
+            .Select(i => cardNumber.Substring(i * 4, 4)));
+    }
+}
+
+<div class="payment-method-header">
+    <a href="javascript:history.back()" class="back-button"> &lt;</a>
+    <h2 class="centered-text">Payment Method</h2>
+    
+</div>
+<div class="payment-container">
+    <h4 class="margin-text">Cards</h4>
+    <a asp-action="Add" asp-controller="Payment" class="add-button link-lightgrey">
+        Add a new card <span class="plus-sign">+</span>
+    </a>
+</div>
+
+
+
+
+
+<div class="swiper-container">
+    <div class="payment-carousel">
+        @foreach (var paymentMethod in Model.PaymentMethods)
+        {
+            <a asp-action="CardDetails" asp-controller="Payment" asp-route-id="@paymentMethod.Id" class="payment-a">
+                <div class="credit-card">
+                    <div class="card-front">
+
+                        <div class="card-image">
+                            <img src="~/images/payment/card.png" alt="Credit Card" />
+                        </div>
+                        <ul class="card-details">
+                            <img src="~/images/payment/visaicon.png" alt="visa" class="visa-icon"/>
+                            <li class="card-number"><strong>@FormatCreditCardNumber(paymentMethod.CardNumber)</strong> </li>
+                            @* <li><strong>@paymentMethod.CVV</strong> </li> *@
+                            @* <li class="cardname">Name: <strong>@paymentMethod.CardHolderName</strong> </li>
+                            <li class="expiry">Exp.end: <strong>@paymentMethod.ExpiryMonth / @paymentMethod.ExpiryYear</strong> </li> *@
+                            <div class="split-columns">
+                                    <li class="cardname">Name: <strong>@paymentMethod.CardHolderName</strong></li>
+                                    <li class="expiry">Exp.end: <strong>@paymentMethod.ExpiryMonth / @paymentMethod.ExpiryYear</strong></li>
+                            </div>
+                        </ul>
+      
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+<p>Total Cards: @Model.TotalPaymentMethods</p>
+<div class="payment-options">
+    <div class="payment-option">
+        <div class="payment-option-text">
+            Apple Pay
+            
+            
+            
+        </div>
+        
+        <div class="payment-option-edit">
+            <a href="link-payoneer.html" class="no-underline">
+                <span class="plus-icon-option">+</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="payment-option">
+        <div class="payment-option-text">
+            PayPal
+            
+
+        </div>
+        
+        <div class="payment-option-edit">
+            <a href="link-payoneer.html" class="no-underline">
+                <span class="plus-icon-option">+</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="payment-option">
+        <div class="payment-option-text">
+            Payoneer
+            
+
+        </div>
+        
+        <div class="payment-option-edit">
+            <a href="link-payoneer.html" class="no-underline">
+                <span class="plus-icon-option">+</span>
+            </a>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
+<!-- Add jQuery (required by Slick Carousel) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Add Slick Carousel script -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.payment-carousel').slick({
+            slidesToShow: 3,  // Adjust the number of visible slides as needed
+            slidesToScroll: 1,
+            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+            nextArrow: '<button type="button" class="slick-next">Next</button>',
+            centerMode: true,
+            centerPadding: '-15px', // Adjust the centerPadding to control the gap
+            swipe: true, // Enable touch interactions
+            swipeToSlide: true, // Enable swipe for all devices
+            touchMove: true, // Enable touch events on navigation arrows
+            responsive: [
+                {
+                    
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1.01, // Adjust for smaller screens
+                        
+                    }
+                }
+            ]
+        });
+    });
+</script>

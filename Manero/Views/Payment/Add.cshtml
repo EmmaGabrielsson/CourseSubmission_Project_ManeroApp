@@ -1,0 +1,103 @@
+﻿@model PaymentMethodViewModel
+@using Manero.ViewModels
+
+
+
+<div class="payment-method-header">
+    <a href="javascript:history.back()" class="back-button"> &lt;</a>
+    <h2 class="centered-text">Add Card</h2>
+
+</div>
+<div class="payment-flex-container">
+    <div class="credit-card">
+        <div class="card-front">
+            <div class="card-image">
+                @* <img src="~/images/payment/creditcard.png" alt="Credit Card" /> *@
+                <img src="~/images/payment/card.png" alt="Credit Card" />
+                <img src="~/images/payment/visaicon.png" alt="Visa" class="visa-icon"/>
+            </div>
+            <ul class="card-details">
+                <li id="card-number-li"><strong>Card Number:</strong></li>
+                
+
+                <div class="split-columns">
+                    <li id="expiry-li"><strong>Expiry:</strong> 12/2024</li>
+                    <li id="name-li"><strong>Name:</strong> daniel olofsson</li>
+                </div>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<form asp-action="Add" asp-controller="Payment" method="post" class="add-card-form">
+    <div class="payment-form-group">
+        <label asp-for="CardHolderName" class="payment-label">Cardholder Name:</label>
+        <input asp-for="CardHolderName"  class="payment-input" />
+        <span asp-validation-for="CardHolderName" class="text-danger"></span>
+
+    </div>
+
+    <div class="payment-form-group">
+        <span id="CardNumber-validation-error" class="text-danger"></span>
+        <label asp-for="CardNumber" class="payment-label">Card Number:</label>
+        <input asp-for="CardNumber"  class="payment-input" />
+        <span asp-validation-for="CardNumber" class="text-danger"></span>
+    </div>
+
+    <div class="payment-form-group">
+        <label asp-for="ExpiryMonth" class="payment-label">Expiry Month:</label>
+        <input asp-for="ExpiryMonth"  class="payment-input" />
+        <span asp-validation-for="ExpiryMonth" class="text-danger"></span>
+    </div>
+    <div class="split-columns-add">
+        <div class="payment-form-group">
+            <label asp-for="ExpiryYear" class="payment-label">Expiry Year:</label>
+            <input asp-for="ExpiryYear" class="payment-input" />
+            <span asp-validation-for="ExpiryYear" class="text-danger"></span>
+        </div>
+
+        <div class="payment-form-group">
+            <label asp-for="CVV" class="payment-label">CVV:</label>
+            <input asp-for="CVV" type="password" class="payment-input" />
+            <span asp-validation-for="CVV" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="button-container-card">
+        <button type="submit" class="btn-add-card">Add Card</button>
+    </div>
+    
+
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#CardHolderName, #ExpiryMonth, #ExpiryYear, #CVV, #CardNumber').on('input', function () {
+            // Get the values from the input fields
+            var cardNumber = $('#CardNumber').val().replace(/\s/g, ''); // Remove spaces
+            var cardHolderName = $('#CardHolderName').val();
+            var expiryMonth = $('#ExpiryMonth').val();
+            var expiryYear = $('#ExpiryYear').val();
+            var cvv = $('#CVV').val();
+
+            // Client-side validation for CardNumber
+            var cardNumberIsValid = /^\d{16}$/.test(cardNumber);
+
+            if (cardNumberIsValid) {
+                $('#CardNumber').removeClass('input-error'); // Remove error class
+                $('#CardNumber-validation-error').text(''); // Clear any previous error message
+            } else {
+                $('#CardNumber').addClass('input-error'); // Apply error class for styling
+                $('#CardNumber-validation-error').text('Card number must be a 16-digit number');
+            }
+
+            // Update the card elements with the entered values
+            $('#card-number-li').html('<strong>Card Number:</strong> ' + cardNumber);
+            $('#name-li').html('<strong>Name:</strong> ' + cardHolderName);
+            $('#expiry-li').html('<strong>Expiry:</strong> ' + expiryMonth + '/' + expiryYear);
+            $('#cvv-li').html('<strong>CVV:</strong> ' + cvv);
+        });
+    });
+</script>

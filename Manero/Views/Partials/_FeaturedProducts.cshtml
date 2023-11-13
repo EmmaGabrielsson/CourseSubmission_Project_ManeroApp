@@ -1,0 +1,8 @@
+﻿@if (ViewBag.FeaturedProducts != null)
+{
+    @foreach (var item in ViewBag.FeaturedProducts)
+    {
+        <partial name="~/Views/Partials/_ProductItem.cshtml" model="item" />
+    }                
+}
+        

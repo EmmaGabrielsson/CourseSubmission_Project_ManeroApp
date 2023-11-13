@@ -1,0 +1,95 @@
+﻿
+@{
+    var pageName = ViewContext.ActionDescriptor.RouteValues.Values.FirstOrDefault();
+}
+@inject Manero.Repositories.ProductRepository _productRepo;
+@inject Manero.Repositories.ColorRepository _colorRepo;
+@inject Manero.Repositories.SizeRepository _sizeRepo;
+@inject Manero.Repositories.CategoryRepository _categoryRepo;
+@inject Manero.Repositories.TagRepository _tagRepo;
+
+@{
+    var colors = await _colorRepo.GetAllAsync();
+    var sizes = await _sizeRepo.GetAllAsync();
+    var categories = await _categoryRepo.GetAllAsync();
+    var tags = await _tagRepo.GetAllAsync();
+}
+
+<form asp-controller="Home" asp-route-source="@pageName" asp-action="@pageName" method="post" class="filter-form">
+    <div class="filter-heading">
+        <a class="filter-icon"><i class="fa-solid fa-chevron-left"></i></a>
+        <div class="filter-title">Filter</div>
+    </div>
+    <div class="filter-section container">
+        <div class="filter-group">
+            <label for="sizes" class="label-name">Size</label>
+            <div class="size-elements">
+                @foreach (var size in sizes)
+                {
+                    <label class="size-label checked-label">
+                        <input type="checkbox" name="Sizes" value="@size.Id" class="custom-checkbox hidden-checkbox" /> @size.SizeName.ToUpper()
+                    </label>
+                }
+            </div>
+            <button id="viewMoreSizeBtn" class="viewMoreBtn" type="button">View More</button>
+        </div>
+        <div class="filter-group color-grupp">
+            <label for="colors" class="label-name">Color</label>
+            <div class="color-elements">
+                @foreach (var color in colors)
+                {
+
+                    <label class="color-label color-element checked-label" style="background-color: @color.ColorCode;">
+                        <input type="checkbox" name="Colors" value="@color.Id" class="custom-checkbox hidden-checkbox" />
+                    </label>
+
+                }
+            </div>
+            <button id="viewMoreColorBtn" class="viewMoreBtn" type="button">View More</button>
+        </div>
+        <div class="filter-group">
+            <label for="colors" class="label-name">Price</label>
+            <div class="group">
+                <div class="progress"></div>
+                <div class="range-input">
+                    <input class="range-min" name="MinPrice" max="1000" type="range" value="0">
+                    <input class="range-max" name="MaxPrice" max="1000" type="range" value="1000">
+                </div>
+                <div class="range-text">
+                    <input type="text"  step="0.01" value="$ 0" class="min-input text-min" />
+                    <input type="text"  step="0.01" value="$ 1000" class="max-input text-max" />
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label for="tagIds" class="label-name">Tags</label>
+            <div class="tag-elements">
+                @foreach (var tag in tags)
+                {
+                    <div class="tag-element">
+                        <input type="checkbox" name="TagIds" value="@tag.Id" class="tag-checkbox" />
+                        <label class="tag-label" style="background-color:
+                @(tag == tags.First() ? "#69864D" : tag == tags.Skip(1).First() ? "#CFA93F" : tag == tags.Skip(2).First() ? "#864D7D" : "transparent")">@tag.TagName.ToUpper()</label>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label for="categoryIds" class="label-name">Categories</label>
+            <div class="category-elements">
+                @foreach (var category in categories)
+                {
+                    <div class="category-element">
+                        <label class="category-label checked-label"><input type="checkbox" name="CategoryIds" value="@category.Id" class="custom-checkbox hidden-checkbox" />@category.CategoryName.ToUpper()</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="submit" class="filter-btn">APPLY FILTERS</button>
+    </div>
+</form>

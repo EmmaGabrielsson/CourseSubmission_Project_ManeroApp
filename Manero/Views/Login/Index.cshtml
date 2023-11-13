@@ -1,0 +1,46 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = "_LayoutNoNav";
+}
+
+<div class="login-section">
+    <header>
+        <i class="fa-solid fa-angle-left" id="back-icon"></i>
+        <h1>Sign in</h1>
+    </header>
+    <h2>Welcome Back!</h2>
+    <p>Sign in to continue</p>
+
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-input">
+            <label asp-for="Email" class="form-label">EMAIL</label>
+            <input asp-for="Email" class="input" id="email" /><br /><br />
+            <small><span asp-validation-for="Email"></span></small>
+        </div>
+        <div class="form-input">
+            <label asp-for="Password" class="form-label">PASSWORD</label>
+            <input asp-for="Password" class="input" id="password" /><br /><br />
+            <small><span asp-validation-for="Password"></span></small>
+        </div>
+        <div class="user-actions">
+            <div class="remember-checkbox">
+                <input type="checkbox" asp-for="RememberMe" id="remember" />
+                <label id="remember-me" for="remember">Remember me</label><br />
+            </div>
+            <a asp-action="ForgotPassword" asp-controller="account" id="forgot-password">Forgot password?</a>
+        </div>
+
+        <button type="submit">SIGN IN</button>
+    </form>
+    <span class="register-link">Don't have an account?<a asp-action="" asp-controller="">Sign up.</a></span>
+
+    <div class="extern-logins">
+        <a href="facebook.com"><i class="facebook-icon fa-brands fa-facebook-f"></i></a>
+        <a href="twitter.com"><i class="x-twitter-icon fa-brands fa-x-twitter"></i></a>
+        <a href="google.com"><i class="google-plus-icon fab fa-google-plus-g"></i></a>
+    </div>
+</div>
+

@@ -1,0 +1,289 @@
+﻿@model Product
+
+@{
+    int rating = 0;
+    string stars = "";
+    string emptyStars = "";
+    int reviewCount = 0;
+    List<string> usedColors = new List<string>();
+    List<string> usedSizes = new List<string>();
+    var extraImage = new Guid("9e1ef4b4-2b99-49e5-b1f3-483e18c650f3");
+
+    if (Model.Reviews.Count() > 0)
+    {
+        foreach (var rate in Model.Reviews)
+        {
+            rating += rate.Rating;
+        }
+        rating = rating / Model.Reviews.Count();
+
+        var starHtml = "<i class=\"fa-solid fa-star\"></i>";
+        var emptyStarHtml = "<i class=\"fa-regular fa-star\"></i>";
+
+        stars = string.Concat(Enumerable.Repeat(starHtml, rating));
+        emptyStars = string.Concat(Enumerable.Repeat(emptyStarHtml, 5 - rating));
+    }
+    else
+    {
+        // If there are no reviews, display 5 empty stars
+        var emptyStarHtml = "<i class=\"fa-regular fa-star\"></i>";
+        stars = string.Empty;
+        emptyStars = string.Concat(Enumerable.Repeat(emptyStarHtml, 5));
+    }
+
+}
+
+@if (Model != null)
+{
+    <section class="product-details product-item" id="@Model.ArticleNumber">
+        <div class="image-slider">
+            <div class="slider-container">
+                @foreach (var img in Model.Images)
+                {
+                    if (img.Image.Id != extraImage)
+                    {
+                        <img class="img" src="@img.Image.ImageUrl" alt="@Model.ProductName">
+                    }
+                }
+
+                @foreach (var img in Model.Images)
+                {
+                    if (img.Image.Id == extraImage)
+                    {
+                        <img class="img" src="@img.Image.ImageUrl" alt="@Model.ProductName">
+                        break;
+                    }
+                }
+            </div>
+            <div class="slider-navigation">
+                <button title="previous" class="img-slider-btn" type="button" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="image-dots">
+                        @for (int i = 0; i < Model.Images.Count(); i++)
+                        {
+                            <span class="dot @(i == 0 ? "active" : "")"></span>
+                        }
+                    </div>
+                <button title="next" class="img-slider-btn" type="button" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            @if(Model.Categories != null)
+            {
+            <div class="category-container">
+                <h5>Category:</h5>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <a asp-action="products" asp-controller="category" asp-route-id="@category.CategoryId">@category.Category.CategoryName</a>
+                    }
+                </div>               
+            }
+            @if (Model.Tags != null)
+            {
+                <div class="tag-container">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        if (@tag.Tag.TagName == "new")
+                        {
+                            <div class="new-color">@tag.Tag.TagName</div>                            
+                        }
+                        if (@tag.Tag.TagName == "sale")
+                        {
+                            <div class="sale-color">@tag.Tag.TagName</div>
+                        }
+                        if (@tag.Tag.TagName == "top")
+                        {
+                            <div class="top-color">@tag.Tag.TagName</div>
+                        }
+                    }
+                </div>
+            }
+
+        </div>
+        <div class="details-content">
+            <div class="title-container">
+            <h2 class="fs-20 product-name bold">@Model.ProductName</h2>
+            <div class="product-icons">
+                <i class="heart-icon fa-regular fa-heart"></i>
+            </div>
+            </div>
+            <div class="star-review-detail star-review">
+            @if (Model.Reviews != null)
+            {
+                @Html.Raw(stars)
+
+                @Html.Raw(emptyStars)
+                <span class="review-number">(@Model.Reviews.Count)</span>
+            }
+            else
+            {
+                @Html.Raw(emptyStars)
+                <span class="review-number">(0)</span>
+            }
+        </div>
+
+            <div class="price-container">
+                <div class="product-price">
+                    @if (Model.Discount != decimal.Zero)
+                    {
+                    <span class="old-price fs-16"><s>$@(((decimal)Model.Price!).ToString(Model.Price % 1 == 0 ? "F0" : "F2"))</s></span>
+                    <span class="new-price fs-20">$@(((decimal)Model.Discount!).ToString(Model.Discount % 1 == 0 ? "F0" : "F2"))</span>
+                    }
+                    else
+                    {
+                    <span class="fs-20 price">$@(((decimal)Model.Price!).ToString(Model.Price % 1 == 0 ? "F0" : "F2"))</span>
+                    }
+                </div>
+                <div class="product-quantity">
+                    <button class="quantity-button" id="decrement">-</button>
+                    <input type="number" id="quantity" name="quantity" value="1">
+                    <button class="quantity-button" id="increment">+</button>
+                </div>
+
+            </div>
+            <div id="product-variant-info-container">
+                <div id="product-variant-info">
+                    <!-- Product variant information will be displayed here -->
+                </div>
+            </div>
+        <div>
+            <p class="fs-16 bold">Size</p>
+            @foreach (ProductVariantEntity variant in Model.ProductVariants)
+            {
+                    if (!usedSizes.Contains(variant.Size.SizeName))
+                    {                       
+                        usedSizes.Add(variant.Size.SizeName);
+                        <button class="variant-btn size-circle" data-color-id="@variant.ColorId" data-size-id="@variant.SizeId" data-variant-id="@variant.Id" data-stock-quantity="@variant.Quantity" type="button">
+                            <span >@variant.Size.SizeName</span>
+                        </button>
+                    }
+            }
+        </div>
+            <div class="color-container">
+            <p class="fs-16 bold">Color</p>
+            @foreach(var variant in Model.ProductVariants)
+            {
+                if (variant.Color.ColorCode != "#ffffff" && !usedColors.Contains(variant.Color.ColorCode))
+                {
+                    usedColors.Add(variant.Color.ColorCode);
+                        <button data-color-id="@variant.ColorId" data-size-id="@variant.SizeId" class="variant-btn" data-variant-id="@variant.Id" data-stock-quantity="@variant.Quantity" title="@variant.Color.ColorName" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <circle class="color-circle" cx="20" cy="20" r="16" fill="@variant.Color.ColorCode" />
+                        </svg>
+                        </button>
+                    }
+                    else if (variant.Color.ColorCode == "#ffffff" && !usedColors.Contains(variant.Color.ColorCode))
+                    {
+                        usedColors.Add("#ffffff");
+                        <button data-color-id="@variant.ColorId" data-size-id="@variant.SizeId" class="variant-btn" data-variant-id="@variant.Id" data-stock-quantity="@variant.Quantity" title="@variant.Color.ColorName" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                            <circle class ="color-circle" cx="20" cy="20" r="16" fill="#ffffff" stroke="black" stroke-width="1" />
+                        </svg>
+                    </button>
+                }
+            }
+        </div>
+        @if(Model.Description != null)
+        {
+            <div class="description-container fs-16">
+                <p class="bold">Description</p>
+                <p>@Model.Description</p>
+            </div>                
+        }
+            <form class="btn-container" metod="post" asp-action="details" novalidate>
+                <input type="hidden" id="selectedVariantId" asp-for="@Model.SelectedVariantId" value="" />
+                <input type="hidden" id="selectedVariantQuantity" asp-for="@Model.SelectedVariantQuantity" value="" />
+                <input type="hidden" asp-for="@Model.ArticleNumber" value="@Model.ArticleNumber" />
+                <input type="hidden" asp-for="@Model.ProductName" value="@Model.ProductName" />
+                <input type="hidden" asp-for="@Model.Description" value="@Model.Description" />
+                <input type="hidden" asp-for="@Model.Price" value="@Model.Price" />
+                <input type="hidden" asp-for="@Model.Discount" value="@Model.Discount" />
+                <input type="hidden" asp-for="@Model.StandardCurrency" value="@Model.StandardCurrency" />
+                <input type="hidden" asp-for="@Model.Reviews" value="@Model.Reviews" />
+                <input type="hidden" asp-for="@Model.Images" value="@Model.Images" />
+                <input type="hidden" asp-for="@Model.ProductVariants" value="@Model.ProductVariants" />
+                <button disabled title="You need to select a Size of product first" id="add-to-cart-detail-btn" onclick="checkConsentAndShowModal(event)" type="submit">
+                    +Add to Cart
+                </button>
+            </form>
+        @if(Model.Reviews != null)
+        {
+            <div class="review-container">
+                <div class="review-heading">
+                    <h3 class="bold">Reviews (@Model.Reviews.Count)</h3>
+                        @if(Model.Reviews.Count < 2)
+                        {
+                            
+                        } else
+                        {
+                            <a class="bold" asp-controller="product" asp-action="reviews" asp-route-id="@Model.ArticleNumber">view all ></a>                            
+                        }
+                </div>
+                    @foreach (var review in Model.Reviews)
+                    {
+                        if (reviewCount < 2) // Display only the first two reviews
+                        {
+                            <div class="review-container-detail">
+                                <img class="profile-img" src="@review.User.ProfileImageUrl" alt="@review.User.FirstName - profile image" />
+                                <div class="review-content">
+                                    <div class="reviewer-name-container">
+                                        <p class="bold">@review.User.FirstName @review.User.LastName</p>
+                                        <div class="star-review-detail">
+                                            @if (Model.Reviews != null)
+                                            {
+                                                @for (int i = 0; i < review.Rating; i++)
+                                                {
+                                                    <i class="fa-solid fa-star"></i>
+                                                }
+                                                @for (int i = review.Rating; i < 5; i++)
+                                                {
+                                                    <i class="fa-regular fa-star"></i>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <p class="review-date">@review.Created.ToString("dd MMM yyyy")</p>
+                                    <p class="review-comment">@review.Comment</p>
+                                </div>
+                            </div>
+                            reviewCount++;
+                        }
+                        else
+                        {
+                            break; 
+                        }
+                    }
+            </div>                
+        }
+        </div>
+    </section>
+    <div id="overlay-consent"></div>
+    <div class="overlay-consent" id="overlay-consent"></div>
+    <div class="modal-consent" id="confirmation-modal">
+        <p>This website uses essential cookies for a better shopping experience. Do you consent?</p>
+        <button class="bold" id="show-details-button" >Read Details here..</button>
+ 
+        <!-- Additional information div (initially hidden) -->
+        <div id="additional-info">
+            <h2>Why We Use Cookies for Temporary Order IDs</h2>
+            <p>Our website uses a specific type of cookie to enhance your shopping experience. This cookie stores a temporary order ID for you, allowing you to add products to your cart without the need to log in.</p>
+            <ul>
+                <li>
+                    <p class="bold">Convenience:</p> This cookie streamlines the shopping process. You can add items to your cart without logging in, making it easy to explore and select products.
+                </li>
+                <li>
+                    <p class ="bold">Personalization:</p> When you do log in or create an account, the items you've selected will be waiting in your cart, providing a tailored shopping experience.
+                </li>
+                <li>
+                    <p class="bold">Privacy:</p> The cookie is essential for the website's functionality and doesn't collect personal information or track your activity outside the current session.
+                </li>
+                <li>
+                    <p class="bold">Transparency:</p> Your consent is requested for using this essential cookie. It enables a more convenient and personalized shopping experience. You can change your consent at any time in your settings.
+                </li>
+            </ul>
+            <p>In summary, the temporary order ID cookie enhances your shopping experience by simplifying the process and providing a personalized touch. Your control and privacy are important to us, and we're committed to offering a seamless and secure shopping experience. Thank you for choosing our platform for your shopping needs.</p>
+        </div>
+        <div>
+            <button class="confirm-button" id="confirm-button">Accept</button>
+            <button class="reject-button" id="reject-button">Deny</button>
+        </div>
+    </div>
+    <script src="~/js/productDetails.js"></script>
+}

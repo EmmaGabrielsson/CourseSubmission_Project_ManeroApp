@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Manero</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Manero.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <partial name="/Views/Partials/_NavigationTopPartial.cshtml" />
+        
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    
+    <partial name="/Views/Partials/_NavigationBottomPartial.cshtml" />
+    <partial name="/Views/Partials/_FooterBigScreenPartial.cshtml" />
+
+    <script src="https://kit.fontawesome.com/82c9645b6d.js" crossorigin="anonymous"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/heartIcon.js"></script>
+    <script src="~/js/addToCart.js"></script>
+    <script src="~/js/logout.js"></script>
+    <script src="~/js/productFilter.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

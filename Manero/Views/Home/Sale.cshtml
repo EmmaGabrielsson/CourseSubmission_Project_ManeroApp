@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Sale";
+}
+<div class="filter-sidebar">
+    <partial name="~/Views/Partials/_ProductFilter.cshtml" />
+</div>
+<div class="sorting-container">
+    <div class="filter-element"><i class="fa-solid fa-filter"></i>Filters</div>
+        <h1>Sale</h1>
+    <div>Sorting by<i class="fa-solid fa-caret-down"></i></div>
+</div>
+<section class="products-section">
+    <div class="container">
+        <div class="product-items">
+            @if (ViewBag.SaleProducts != null)
+            {
+                @foreach (var item in ViewBag.SaleProducts)
+                {
+                    <partial name="~/Views/Partials/_ProductItem.cshtml" model="item" />
+                }
+            }
+        </div>
+    </div>
+</section>
