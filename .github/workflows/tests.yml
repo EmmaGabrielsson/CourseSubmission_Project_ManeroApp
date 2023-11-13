@@ -27,7 +27,7 @@ jobs:
       run: dotnet restore
 
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build --no-restore
       
     - name: List Test Directory Contents
       run: ls -R CourseSubmission_Project_ManeroApp/Manero.Tests/bin/Debug/net7.0/
