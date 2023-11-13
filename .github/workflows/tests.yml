@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: List Test Directory Contents
-      run: ls -R CourseSubmission_Project_ManeroApp/Manero.Tests
+      run: ls -R Manero.Tests
 
     - name: Run Tests
       run: dotnet test --no-build --no-restore --verbosity normal 
