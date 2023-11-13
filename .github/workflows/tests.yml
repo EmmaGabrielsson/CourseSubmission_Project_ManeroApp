@@ -26,7 +26,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build and Test
-      run: |
-        dotnet build --configuration Release
-        dotnet test Manero.Tests/Manero.Tests.csproj --no-build --no-restore --verbosity normal --logger "trx;LogFileName=minTestLogg.trx"
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: Run Tests
+      run: dotnet test Manero.Tests/Manero.Tests.csproj --no-build --no-restore --verbosity normal --logger "trx;LogFileName=minTestLogg.trx"
