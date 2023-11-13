@@ -13,7 +13,7 @@ public class PaymentMethodViewModel
     public string CardNumber
     {
         get => _cardNumber;
-        set => _cardNumber = value?.Replace(" ", ""); // Remove spaces before setting
+        set => _cardNumber = value?.Replace(" ", "")!; // Remove spaces before setting
     }
     private string _cardNumber;
 
