@@ -28,6 +28,7 @@ jobs:
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
-
+    - name: List Files in Repository
+      run: ls -R
     - name: Run Tests
       run: dotnet test Manero.Tests/Manero.Tests.csproj --no-build --no-restore --verbosity normal --logger "trx;LogFileName=minTestLogg.trx"
