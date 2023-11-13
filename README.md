@@ -43,7 +43,7 @@ The CourseSubmission Project - Manero is a comprehensive e-commerce website deve
     - Open Package Manager Console in Visual Studio.
     - Run the following command to apply migrations and update the database:
       ```
-      Update-Database
+      EntityFrameworkCore\Update-Database
       ```
 
 7. **Run the Project Locally:** Build and run the project in Visual Studio to start the application.
