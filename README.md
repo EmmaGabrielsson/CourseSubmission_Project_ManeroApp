@@ -21,7 +21,7 @@ The CourseSubmission Project - Manero is a comprehensive e-commerce website deve
 ### Steps to Test the Project
 1. **Clone the Repository:** Use the Git clone command to fetch the completed project from the repository.
     ```
-    git clone https://github.com/EmmaGabrielsson/CourseSubmission_Project_Manero.git
+    git clone https://github.com/EmmaGabrielsson/CourseSubmission_Project_ManeroApp.git
     ```
 3. **Using Visual Studio:** Open the project in Visual Studio for an integrated development environment (IDE) experience.
 
