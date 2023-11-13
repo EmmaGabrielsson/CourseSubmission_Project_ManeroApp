@@ -30,4 +30,4 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Run Tests
-      run: dotnet test --no-build --no-restore --verbosity normal --logger "trx;LogFileName=minTestLogg.trx"
+      run: dotnet test Manero.Tests/Manero.Tests.csproj --no-build --no-restore --verbosity normal --logger "trx;LogFileName=minTestLogg.trx"
