@@ -51,7 +51,8 @@ builder.Services.AddScoped<PaymentMethodRepository>();
 
 // Add Services
 builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<IPaymentService ,PaymentService>();
+builder.Services.AddScoped<IUserManagerProvider, UserService>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<AddressService>();
