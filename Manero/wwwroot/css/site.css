@@ -3319,10 +3319,22 @@ card-details li.card-number {
     width: 100%;
 }
 
+        .login-section form .incorrect-input ul li {
+            list-style: none;
+            margin-block: 15px;
+            color: red;
+        }
+
     .login-section form .form-input {
         display: flex;
         flex-direction: column;
         position: relative;
+    }
+
+    .login-section form .form-input small {
+        color: red;
+        margin-top: -30px;
+        margin-bottom: 20px;
     }
 
     .login-section form label {
@@ -3501,6 +3513,12 @@ card-details li.card-number {
         position: relative;
     }
 
+.forgot-password-section form .form-input small {
+    color: red;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
+
     .forgot-password-section form label {
         color: #626262;
         background-color: white;
@@ -3665,11 +3683,23 @@ card-details li.card-number {
         width: 100%;
     }
 
+.reset-password-section form .incorrect-input ul li {
+    list-style: none;
+    margin-block: 15px;
+    color: red;
+}
+
         .reset-password-section .reset-password form .form-input {
             display: flex;
             flex-direction: column;
             position: relative;
         }
+
+.reset-password-section form .form-input small {
+    color: red;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
 
         .reset-password-section .reset-password form label {
             color: #626262;
