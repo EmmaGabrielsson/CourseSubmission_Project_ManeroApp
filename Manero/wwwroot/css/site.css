@@ -246,7 +246,7 @@
 }
 
 .order-box {
-    margin-top: 150px;
+    margin-top: 70px;
     bottom: 0;
 }
 
@@ -2965,6 +2965,7 @@ p {
 
 .payment-flex-container{
     /*margin-left:10%;*/
+    height:25vh;
     margin-top:20px;
     display:flex;
     justify-content:center;
@@ -3110,6 +3111,7 @@ card-details li.card-number {
     display: flex;
     flex-direction: column;
     margin-bottom: 5%;
+    
 }
 
 .payment-option {
