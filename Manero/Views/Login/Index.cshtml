@@ -4,6 +4,10 @@
     Layout = "_LayoutNoNav";
 }
 
+<div class="hidden-top-nav">
+    <partial name="/Views/Partials/_NavigationTopPartial.cshtml" />
+</div>
+
 <div class="login-section">
     <header>
         <i class="fa-solid fa-angle-left" id="back-icon"></i>
@@ -22,7 +26,7 @@
         </div>
         <div class="form-input">
             <label asp-for="Password" class="form-label">PASSWORD</label>
-            <input asp-for="Password" class="input" id="password" /><br /><br />
+            <input asp-for="Password" class="input" id="password" type="password" /><br /><br />
             <small><span asp-validation-for="Password"></span></small>
         </div>
         <div class="user-actions">
@@ -35,12 +39,20 @@
 
         <button type="submit">SIGN IN</button>
     </form>
-    <span class="register-link">Don't have an account?<a asp-action="" asp-controller="">Sign up.</a></span>
+    <span class="register-link">Don't have an account?<a asp-action="index" asp-controller="register">Sign up.</a></span>
 
     <div class="extern-logins">
-        <a href="facebook.com"><i class="facebook-icon fa-brands fa-facebook-f"></i></a>
-        <a href="twitter.com"><i class="x-twitter-icon fa-brands fa-x-twitter"></i></a>
-        <a href="google.com"><i class="google-plus-icon fab fa-google-plus-g"></i></a>
+        <a href="https://www.facebook.com" target="_blank"><i class="facebook-icon fa-brands fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="x-twitter-icon fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.google.com" target="_blank"><i class="google-plus-icon fab fa-google-plus-g"></i></a>
     </div>
+
+
 </div>
 
+<div class="hidden-bottom-nav">
+    <partial name="/Views/Partials/_NavigationBottomPartial.cshtml" />
+</div>
+<div class="hidden-footer">
+    <partial name="/Views/Partials/_FooterBigScreenPartial.cshtml" />
+</div>
