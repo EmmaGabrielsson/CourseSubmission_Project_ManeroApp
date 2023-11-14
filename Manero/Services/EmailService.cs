@@ -10,7 +10,7 @@ public class EmailService
     {
         var message = new MimeMessage();
         message.From.Add(new MailboxAddress("Manero", "manero-brand@outlook.com"));
-        message.To.Add(new MailboxAddress("", "manero-brand@outlook.com"));
+        message.To.Add(new MailboxAddress("", userEmail));
         message.Subject = "Password Reset Link";
 
         var textPart = new TextPart("plain")

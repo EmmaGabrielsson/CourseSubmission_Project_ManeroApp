@@ -4,120 +4,131 @@
 }
 @if (!string.IsNullOrEmpty(message))
 {
-	<div class="alert profile-alert-info">
-		@if (message == "yes")
+<div class="alert profile-alert-info">
+    @if (message == "yes")
 		{
-			<p>Lyckat! Din profil har uppdaterats.</p>
+    <p>Lyckat! Din profil har uppdaterats.</p>
 		}
 		else if (message == "no")
 		{
-			<p>Fel! Det gick inte att uppdatera din profil.</p>
+    <p>Fel! Det gick inte att uppdatera din profil.</p>
 		}
-	</div>
+</div>
 }
+
+<div class="logout-popup">
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirm-logout-btn">SURE</button>
+            <button id="cancel-logout-btn">CANCEL</button>
+        </div>
+    </div>
+</div>
+
 <div class="container profile-section">
-	<div class="user-profile">
-		<div class="vertical-line"></div>
-		<div class="user-image">
-			<img class="user-profile-img" src="@Model.ProfileImageUrl" alt="@Model.FirstName" />
-			<a class="profile-edit">
-				<i class="fa-solid fa-pen"></i>
-			</a>
-		</div>
-		<div class="user-name">@(Char.ToUpper(Model.FirstName[0]) + Model.FirstName.Substring(1)) @(Char.ToUpper(Model.LastName[0]) + Model.LastName.Substring(1))</div>
-		<p>@Model.Email</p>
-	</div>
-	<div class="user-profile-nav-elements">
-		<a class="a-link">
-			<div class="user-profile-nav-element">
-				<div class="order-history-left">
-					<i class="fa-regular fa-calendar-days"></i>
-					<p>Order history</p>
-				</div>
-				<div class="order-history-right">
-					<i class="fa-solid fa-chevron-right"></i>
-				</div>
-			</div>
-		</a>
-		<a class="a-link">
-			<div class="user-profile-nav-element">
-				<div class="payment-method-left">
-					<i class="fa-regular fa-credit-card"></i>
-					<p>Payment method</p>
-				</div>
-				<div class="payment-method-right">
-					<i class="fa-solid fa-chevron-right"></i>
-				</div>
-			</div>
-		</a>
-		<a asp-controller="account" asp-action="address" class="a-link">
-			<div class="user-profile-nav-element">
-				<div class="my-address-left">
-					<i class="fa-solid fa-location-dot"></i>
-					<p>My address</p>
-				</div>
-				<div class="my-address-right">
-					<i class="fa-solid fa-chevron-right"></i>
-				</div>
-			</div>
-		</a>
-		<a class="a-link">
-			<div class="user-profile-nav-element">
-				<div class="my-promocodes-left">
-					<i class="fa-solid fa-gift"></i>
-					<p>My promocodes</p>
-				</div>
-				<div class="my-promocodes-right">
-					<i class="fa-solid fa-chevron-right"></i>
-				</div>
-			</div>
-		</a>
-		<a class="a-link">
-			<div class="user-profile-nav-element">
-				<div class="sign-out-left">
-					<i class="fa-solid fa-right-from-bracket"></i>
-					<p>Sign out</p>
-				</div>
-			</div>
-		</a>
-	</div>
+    <div class="user-profile">
+        <div class="vertical-line"></div>
+        <div class="user-image">
+            <img class="user-profile-img" src="@Model.ProfileImageUrl" alt="@Model.FirstName" />
+            <a class="profile-edit">
+                <i class="fa-solid fa-pen"></i>
+            </a>
+        </div>
+        <div class="user-name">@(Char.ToUpper(Model.FirstName[0]) + Model.FirstName.Substring(1)) @(Char.ToUpper(Model.LastName[0]) + Model.LastName.Substring(1))</div>
+        <p>@Model.Email</p>
+    </div>
+    <div class="user-profile-nav-elements">
+        <a class="a-link">
+            <div class="user-profile-nav-element">
+                <div class="order-history-left">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <p>Order history</p>
+                </div>
+                <div class="order-history-right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+        <a class="a-link">
+            <div class="user-profile-nav-element">
+                <div class="payment-method-left">
+                    <i class="fa-regular fa-credit-card"></i>
+                    <p>Payment method</p>
+                </div>
+                <div class="payment-method-right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+        <a asp-controller="account" asp-action="address" class="a-link">
+            <div class="user-profile-nav-element">
+                <div class="my-address-left">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>My address</p>
+                </div>
+                <div class="my-address-right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+        <a class="a-link">
+            <div class="user-profile-nav-element">
+                <div class="my-promocodes-left">
+                    <i class="fa-solid fa-gift"></i>
+                    <p>My promocodes</p>
+                </div>
+                <div class="my-promocodes-right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+        <a class="a-link" id="profile-logout-btn" asp-action="index" asp-controller="logout">
+            <div class="user-profile-nav-element">
+                <div class="sign-out-left">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Sign out</p>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
 <div class="container profile-edit-container">
-	<div class="profile-edit-heading">
-		<div class="profile-privus-page-icon"><a><i class="fa-solid fa-chevron-left"></i></a></div>
-		<div class="profile-edit-title">Edit Profile</div>
-	</div>
-	<form id="editProfileForm" class="profile-edit-form" action="Profile" method="post" enctype="multipart/form-data">
-		<div class="profile-edit-section container">
-			<div class="edit-user-profile">
-				<div class="vertical-line"></div>
-				<div class="edit-user-image">
-					<img class="edit-user-img" src="@Model.ProfileImageUrl" alt="@Model.FirstName" />
-					<input type="file" id="profileImageUpload" name="profileImage" style="display: none;" />
-					<a class="update-profile-emage" onclick="document.getElementById('profileImageUpload').click();">
-						<i class="fa-solid fa-camera"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="profile-label-input">
-			<label for="name">NAME</label>
-			<input type="text" id="name" name="name" value="@(Char.ToUpper(Model.FirstName[0]) + Model.FirstName.Substring(1)) @(Char.ToUpper(Model.LastName[0]) + Model.LastName.Substring(1))">
-		</div>
-		<div class="profile-label-input">
-			<label for="email">EMAIL</label>
-			<input type="email" id="email" name="email" value="@Model.Email">
-		</div>
-		<div class="profile-label-input">
-			<label for="phoneNumber">PHONE NUMBER</label>
-			<input type="text" id="phoneNumber" name="phoneNumber" value="@Model.PhoneNumber">
-		</div>
-		<div class="profile-label-input edit-location">
-			<label for="location">LOCATION</label>
-			<input type="text" id="location" name="location" value="@Model.Location">
-		</div>
-		<div id="formErrors" class="form-errors"></div>
-		<div class="profile-edit-btn"><button type="submit">SAVE CHANGES</button></div>
-	</form>
+    <div class="profile-edit-heading">
+        <div class="profile-privus-page-icon"><a><i class="fa-solid fa-chevron-left"></i></a></div>
+        <div class="profile-edit-title">Edit Profile</div>
+    </div>
+    <form id="editProfileForm" class="profile-edit-form" action="Profile" method="post" enctype="multipart/form-data">
+        <div class="profile-edit-section container">
+            <div class="edit-user-profile">
+                <div class="vertical-line"></div>
+                <div class="edit-user-image">
+                    <img class="edit-user-img" src="@Model.ProfileImageUrl" alt="@Model.FirstName" />
+                    <input type="file" id="profileImageUpload" name="profileImage" style="display: none;" />
+                    <a class="update-profile-emage" onclick="document.getElementById('profileImageUpload').click();">
+                        <i class="fa-solid fa-camera"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="profile-label-input">
+            <label for="name">NAME</label>
+            <input type="text" id="name" name="name" value="@(Char.ToUpper(Model.FirstName[0]) + Model.FirstName.Substring(1)) @(Char.ToUpper(Model.LastName[0]) + Model.LastName.Substring(1))">
+        </div>
+        <div class="profile-label-input">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" name="email" value="@Model.Email">
+        </div>
+        <div class="profile-label-input">
+            <label for="phoneNumber">PHONE NUMBER</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" value="@Model.PhoneNumber">
+        </div>
+        <div class="profile-label-input edit-location">
+            <label for="location">LOCATION</label>
+            <input type="text" id="location" name="location" value="@Model.Location">
+        </div>
+        <div id="formErrors" class="form-errors"></div>
+        <div class="profile-edit-btn"><button type="submit">SAVE CHANGES</button></div>
+    </form>
 </div>
 <script src="~/js/profileEdit.js"></script>

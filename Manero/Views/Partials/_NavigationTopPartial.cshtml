@@ -1,4 +1,4 @@
-﻿@inject Manero.Services.OrderService _orderService; 
+﻿@inject Manero.Services.OrderService _orderService;
 @{
     var order = await _orderService.GetOrderIfExistAsync();
 }
@@ -23,7 +23,7 @@
 
         <div class="toggle-header">
             <h5 class="main-header">M</h5>
-            
+
         </div>
         <div class="toggle-search">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -34,7 +34,7 @@
                 <i class="fa-solid fa-bag-shopping"></i>
                 @if (order != null)
                 {
-                    <p class="cart-count">@order.TotalQuantity</p>                        
+                <p class="cart-count">@order.TotalQuantity</p>
                 }
             </a>
         </div>
@@ -42,22 +42,26 @@
     </div>
     <div class="navigation-container">
         <div class="navigation-item">
-            
+
             <a class="manero-icon" asp-area="" asp-controller="Home" asp-action="Index">Manero</a>
-        </div>      
-        
+        </div>
+
         <div class="navigation-item">
 
             <a class="navigation-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 
+            @if (signInManager.IsSignedIn(User))
+            {
             <a class="navigation-link" asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>
+
+            }
 
             <a class="navigation-link" asp-area="" asp-controller="Product" asp-action="Wishlist">Wishlist</a>
 
             <a class="navigation-link" asp-area="" asp-controller="Product" asp-action="Categories">Categories</a>
 
-            <a class="navigation-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>                          
-            
+            <a class="navigation-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
         </div>
         <div class="navigation-item">
             <form class="search-bar">
@@ -65,22 +69,22 @@
                     <input class="" type="search" placeholder="Search Product" aria-label="Search">
                     <button class="" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </fieldset>
-                
+
             </form>
         </div>
 
         @if (signInManager.IsSignedIn(User))
         {
-            <div class="navigation-item">
-                <div>@User.Identity?.Name</div>
-                <a class="navigation-link" id="logout-button" asp-area=" " asp-controller="Logout" asp-action="Index">Logout</a>
-            </div>
+        <div class="navigation-item">
+            <div>@User.Identity?.Name</div>
+            <a class="navigation-link" id="logout-button" asp-area=" " asp-controller="Logout" asp-action="Index">Logout</a>
+        </div>
         }
         else
         {
-            <div class="navigation-item">
-                <a class="navigation-link" asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
-            </div>
+        <div class="navigation-item">
+            <a class="navigation-link" asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
+        </div>
         }
 
         <div class="navigation-item">
@@ -89,7 +93,7 @@
                     <i class="fa-solid fa-bag-shopping"></i>
                     @if (order != null)
                     {
-                        <p class="cart-count">@order.TotalQuantity</p>
+                    <p class="cart-count">@order.TotalQuantity</p>
                     }
                 </a>
             </div>
@@ -99,19 +103,19 @@
 </nav>
 <div>
     <aside>
-    <div class="overlay"></div>
+        <div class="overlay"></div>
         <div class="side-container">
             <div class="side-header">
                 <h4>Contact us</h4>
             </div>
-            
+
             <div class="side-item">
                 <div class="contact-items">
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div class="contact-items">
                     <p>27 Division St, New York, NY 10002, USA</p>
-                </div>                
+                </div>
             </div>
             <div class="side-item">
                 <div class="contact-items">
@@ -138,16 +142,16 @@
             <div class="order-box">
                 <p class="box-title">
                     Track your order
-                </p>               
+                </p>
                 <form class="input-group">
-                    
-                    <fieldset class="order-fieldset">  
+
+                    <fieldset class="order-fieldset">
                         <legend>order number</legend>
                         <input type="text" id="myInput" placeholder="order number">
                         <button class="trackorder-button" type="button" id="myButton" asp-area="" asp-controller="Account" asp-action="Order"><i class="fa-solid fa-arrow-right"></i></button>
-                        
+
                     </fieldset>
-                </form>                                           
+                </form>
             </div>
         </div>
     </aside>

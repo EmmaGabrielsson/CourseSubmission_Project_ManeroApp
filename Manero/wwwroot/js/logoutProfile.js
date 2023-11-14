@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-   
+
     const popup = document.querySelector(".logout-popup");
-    const logoutButton = document.getElementById("logout-button");
+    const logoutButton = document.getElementById("profile-logout-btn");
     const confirmButton = document.getElementById("confirm-logout-btn");
     const cancelButton = document.getElementById("cancel-logout-btn");
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle the logout action when the confirm button is clicked
     confirmButton.addEventListener("click", function () {
- 
+
         const logoutLink = document.createElement("a");
         logoutLink.href = "/Logout?area=";
         logoutLink.setAttribute("asp-action", "Index");
