@@ -1,5 +1,4 @@
 ﻿using Manero.Models.Dtos;
-using Manero.Models.Entities;
 using Manero.Repositories;
 using Manero.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +12,13 @@ namespace Manero.Controllers
 
         #region Private Fields & Constructors
         
-        private readonly ProductReviewRepository _productReviewRepo;     
         private readonly ProductRepository _productRepository;
         private readonly OrderService _orderService;
 
-        public ProductController(ProductRepository productRepository, OrderService orderService, ProductReviewRepository productReviewRepo)
+        public ProductController(ProductRepository productRepository, OrderService orderService)
         {
             _productRepository = productRepository;
             _orderService = orderService;
-            _productReviewRepo = productReviewRepo;
         }
 
         #endregion
@@ -65,8 +62,49 @@ namespace Manero.Controllers
             return View(_order);
 
         }
+
+        [HttpPost]
+        public IActionResult Cart(Order order)
+        {
+            ViewData["Title"] = "Your Cart";
+
+            if(order.ProceedToCheckout == true)
+            {
+                return RedirectToAction("Checkout", "Order");
+            }
+
+
+            return View(order);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveProduct(string productVariantId, string orderId)
+        {
+            
+            var result = await _orderService.RemoveOrderRowAsync(productVariantId, orderId);
+
+            if(result)
+                return Ok(new { success = true, message = "Product removed from the cart." });
+
+
+            return StatusCode(500, new { success = false, message = "Failed to remove the product from the cart." });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddPromocode(string promocodeId, string orderId)
+        {
+
+            var result = await _orderService.AddPromocodeIdAsync(promocodeId, orderId);
+
+            if (result)
+                return Ok(new { success = true, message = "Product removed from the cart." });
+
+
+            return StatusCode(500, new { success = false, message = "Failed to remove the product from the cart." });
+        }
         #endregion
-        
+
 
         public IActionResult Wishlist()
         {
@@ -75,7 +113,6 @@ namespace Manero.Controllers
 
         public async Task<IActionResult> Reviews(string id)
         {
-            //var reviews = _productReviewRepo.GetReviewsByProductArticleNumberAsync(id);
             var productWithReviews = await _productRepository.GetAsync(x => x.ArticleNumber == id);
             return View(productWithReviews);
         }
