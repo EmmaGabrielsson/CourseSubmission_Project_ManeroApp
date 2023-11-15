@@ -14,12 +14,14 @@ public class ProductService
     private readonly TagRepository _tagRepository;
     private readonly ProductRepository _productRepository;
     private readonly ImageRepository _imageRepository;
+    private readonly CategoryRepository _categoryRepository;
 
-    public ProductService(TagRepository tagRepository, ProductRepository productRepository, ImageRepository imageRepository)
+    public ProductService(TagRepository tagRepository, ProductRepository productRepository, ImageRepository imageRepository, CategoryRepository categoryRepository)
     {
         _tagRepository = tagRepository;
         _productRepository = productRepository;
         _imageRepository = imageRepository;
+        _categoryRepository = categoryRepository;
     }
 
     #endregion
@@ -176,6 +178,27 @@ public class ProductService
         }
         return null!;
         
+    }
+
+    public async Task<IEnumerable<ProductEntity>> GetAllProductsByCategoryName(string categoryName)
+    {
+        try
+        {
+            // Retrieve the products with the specified categoryname
+            var category = await _categoryRepository.GetAsync(x => x.CategoryName.ToLower() == categoryName.ToLower());
+
+            if (category != null)
+            {
+                var products = await _productRepository.GetAllAsync(x => x.Categories.Any(x => x.CategoryId == category.Id));
+
+                return products;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+        return null!;
     }
 
 }

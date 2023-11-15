@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Shop";
+}
+<div class="filter-sidebar">
+    <partial name="~/Views/Partials/_ProductFilter.cshtml" />
+</div>
+<div class="sorting-container">
+    <div class="filter-element"> <i class="fa-solid fa-filter"></i>Filters</div>
+    @if (ViewBag.ChosenCategory != null)
+    {
+        <h1>Shop</h1>
+    } else
+    {
+        <h1>Categories</h1>        
+    }
+    <div>Sorting by <i class="fa-solid fa-caret-down"></i></div>
+</div>
+<section class="category-section">
+    <div class="categories-div-top">
+        @if (ViewBag.ShopWithAllCategories != null)
+        {
+            @foreach (var item in ViewBag.ShopWithAllCategories)
+            {
+                if (ViewBag.ChosenCategory != null && ViewBag.ChosenCategory.ToLower() == item.CategoryName.ToLower())
+                {
+                    <a disabled id="chosen-category" >
+                        <span>@item.CategoryName</span>
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="home" asp-action="shop" asp-route-categoryName="@item.CategoryName">
+                        <span>@item.CategoryName</span>
+                    </a>                    
+                }
+            }
+        }
+    </div>
+    @if (ViewBag.CategoryProducts == null)
+    {
+        <div class="no-categories-chosen-div">
+            @if (ViewBag.ShopWithAllCategories != null)
+            {
+                @foreach (var item in ViewBag.ShopWithAllCategories)
+                {
+                    <a asp-controller="home" asp-action="shop" asp-route-categoryName="@item.CategoryName">
+                        <span>@item.CategoryName</span>
+                    </a>
+                }
+            }
+        </div>        
+    }
+    <section class="products-section">
+        <div class="container">
+            <div class="product-items">
+                @if (ViewBag.CategoryProducts != null)
+                {
+                    @foreach (var item in ViewBag.CategoryProducts)
+                    {
+                        <partial name="~/Views/Partials/_ProductItem.cshtml" model="item" />
+                    }
+                }
+            </div>
+        </div>
+    </section>
+</section>
+

@@ -144,6 +144,28 @@
     font-size: 30px
 }
 
+.bottom-icon-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    left: -12px;
+    background-color: #F4303C;
+    border-radius: 50%;
+    color: white;
+    padding: 1px 4px;
+    font-size: 14px;
+}
+
+@media (min-width: 1400px) {
+    .cart-count {
+        top: 10px;
+        left: -4px;        
+    }
+}
+
 /*Top navbar end section*/
 
 /*Sidebar contact*/
@@ -4545,3 +4567,84 @@ card-details li.card-number {
         cursor: pointer;
     }
 /********************************/
+
+
+
+/* start: shop/cetegories */
+.category-section {
+    margin-bottom: 4rem;
+}
+
+.categories-div-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-div-top a {
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    border-radius: 10px;
+    padding: 3px 8px;
+    margin: 8px;
+}
+
+.categories-div-top a:hover {
+    background-color: #DBE3F5;
+    color: black;
+}
+
+#chosen-category {
+    background-color: #DBE3F5;
+    color: black;
+    cursor: not-allowed;
+}
+
+.no-categories-chosen-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
+}
+
+.no-categories-chosen-div a {
+    padding: 1.5rem;
+    background-color: #8C93A7;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-size: 20px;
+    height: 180px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.no-categories-chosen-div a:hover {
+    background-color: #DBE3F5;
+    color: black;
+}
+
+.no-categories-chosen-div a span {
+    font-weight: bold;
+}
+
+@media (min-width: 900px) {
+    .category-section {
+        margin: 1rem 3rem;
+    }
+    .no-categories-chosen-div {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+
+/* end: shop/cetegories */
+
+
