@@ -55,6 +55,7 @@ builder.Services.AddScoped<PaymentService>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
