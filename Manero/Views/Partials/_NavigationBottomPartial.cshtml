@@ -23,11 +23,14 @@
     }
 
 </div>
-<script>
+<script>  
     const searchBar = document.querySelector('.toggle-search')
     const searchIcon = document.querySelector('.search-icon')
     const mainHeader = document.querySelector('.toggle-header')
         searchIcon.addEventListener('click', () => {
+        if (window.location.pathname.toLowerCase() != "/product/categories") {
+            window.location.href = '/product/categories';
+        }
         if (searchBar.style.display === 'none' || searchBar.style.display === '')  {
             searchBar.style.display = 'block';
             mainHeader.style.display = 'none';

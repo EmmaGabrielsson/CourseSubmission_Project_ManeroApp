@@ -1,5 +1,4 @@
 ﻿using Manero.Models;
-using Manero.Repositories;
 using Manero.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +7,10 @@ namespace Manero.Controllers;
 public class HomeController : Controller
 {
     private readonly ProductService _productService;
-    private readonly CategoryRepository _categoryRepository;
 
-    public HomeController(ProductService productService, CategoryRepository categoryRepository)
+    public HomeController(ProductService productService)
     {
         _productService = productService;
-        _categoryRepository = categoryRepository;
     }
     public async Task<IActionResult> Index()
     {
@@ -81,30 +78,5 @@ public class HomeController : Controller
         return View();
 
     }
-    public async Task<IActionResult> Shop(ProductFilterModel filter, string categoryName)
-    {
-        if (filter.Source == "Shop")
-        {
-            var filtredProducts = await _productService.GetFilteredProductsAsync(filter);
-            if (filtredProducts != null)
-                ViewBag.ShopWithAllCategories = filtredProducts;
-            return View();
-        }
-        var allCategories = await _categoryRepository.GetAllAsync();
-        if (allCategories != null)
-            ViewBag.ShopWithAllCategories = allCategories;
-
-        if (categoryName != null)
-        {
-            var products = await _productService.GetAllProductsByCategoryName(categoryName);
-            if (products != null)
-            {
-                ViewBag.CategoryProducts = products!;
-                ViewBag.ChosenCategory = categoryName;
-            }
-        }
-
-        return View();
-
-    }
+   
 }
