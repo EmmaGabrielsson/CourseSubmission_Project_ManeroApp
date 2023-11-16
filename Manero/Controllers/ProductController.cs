@@ -136,15 +136,9 @@ namespace Manero.Controllers
             return View(productWithReviews);
         }
 
-        public async Task<IActionResult> Categories(ProductFilterModel filter, string categoryName)
+        public async Task<IActionResult> Categories(string categoryName)
         {
-            if (filter.Source == "Categories")
-            {
-                var filtredProducts = await _productService.GetFilteredProductsAsync(filter);
-                if (filtredProducts != null)
-                    ViewBag.ShopWithAllCategories = filtredProducts;
-                return View();
-            }
+            
             var allCategories = await _categoryRepository.GetAllAsync();
             if (allCategories != null)
                 ViewBag.ShopWithAllCategories = allCategories;
@@ -157,6 +151,25 @@ namespace Manero.Controllers
                     ViewBag.CategoryProducts = products!;
                     ViewBag.ChosenCategory = categoryName;
                 }
+            }
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Categories(ProductFilterModel filter)
+        {
+            var allCategories = await _categoryRepository.GetAllAsync();
+            if (allCategories != null)
+                ViewBag.ShopWithAllCategories = allCategories;
+
+            if (filter.Source == "Categories")
+            {
+                var filtredProducts = await _productService.GetFilteredProductsAsync(filter);
+                if (filtredProducts != null)
+                    ViewBag.CategoryProducts = filtredProducts;
+                return View();
             }
 
             return View();

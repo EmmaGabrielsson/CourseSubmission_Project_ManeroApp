@@ -4655,21 +4655,16 @@ card-details li.card-number {
 
 @media (min-width: 900px) {
     .category-section {
-        margin: 0rem 3rem;
+        margin: 0rem 3rem 4rem 3rem;
+        align-items: stretch;
     }
+
     .no-categories-chosen-div {
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 1.5rem;
     }
-    .category-section {
-        align-items: stretch;
-    }
 }
 @media (min-width: 1400px) {
-    .category-section {
-        margin: 1rem 3rem;
-    }
-
     .no-categories-chosen-div {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }

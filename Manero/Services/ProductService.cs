@@ -146,6 +146,19 @@ public class ProductService
 
             }
 
+            if (filter.Source == "Categories")
+            {
+                if (filter.TagIds == null || filter.TagIds.Count == 0)
+                {
+                    expression = expression.And(x => x.Tags.Any(x => x.TagId == 2));
+                }
+                if (filter.TagIds != null && filter.TagIds.Count >= 1)
+                {
+                    expression = expression.And(x => x.Tags.Any(t => filter.TagIds.Contains(t.Tag.Id)));
+                }
+
+            }
+
             if (filter.Colors != null && filter.Colors.Any())
             {
                 expression = expression.And(x => x.ProductVariants.Any(v => filter.Colors.Contains(v.Color.Id)));
