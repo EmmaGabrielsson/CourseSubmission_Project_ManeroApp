@@ -1,4 +1,5 @@
-﻿using Manero.Models.Dtos;
+﻿using Manero.Models;
+using Manero.Models.Dtos;
 using Manero.Repositories;
 using Manero.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,15 @@ namespace Manero.Controllers
         
         private readonly ProductRepository _productRepository;
         private readonly OrderService _orderService;
+        private readonly ProductService _productService;
+        private readonly CategoryRepository _categoryRepository;
 
-        public ProductController(ProductRepository productRepository, OrderService orderService)
+        public ProductController(ProductRepository productRepository, OrderService orderService, ProductService productService, CategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _orderService = orderService;
+            _productService = productService;
+            _categoryRepository = categoryRepository;
         }
 
         #endregion
@@ -115,6 +120,33 @@ namespace Manero.Controllers
         {
             var productWithReviews = await _productRepository.GetAsync(x => x.ArticleNumber == id);
             return View(productWithReviews);
+        }
+
+        public async Task<IActionResult> Categories(ProductFilterModel filter, string categoryName)
+        {
+            if (filter.Source == "Categories")
+            {
+                var filtredProducts = await _productService.GetFilteredProductsAsync(filter);
+                if (filtredProducts != null)
+                    ViewBag.ShopWithAllCategories = filtredProducts;
+                return View();
+            }
+            var allCategories = await _categoryRepository.GetAllAsync();
+            if (allCategories != null)
+                ViewBag.ShopWithAllCategories = allCategories;
+
+            if (categoryName != null)
+            {
+                var products = await _productService.GetAllProductsByCategoryName(categoryName);
+                if (products != null)
+                {
+                    ViewBag.CategoryProducts = products!;
+                    ViewBag.ChosenCategory = categoryName;
+                }
+            }
+
+            return View();
+
         }
     }
 }
