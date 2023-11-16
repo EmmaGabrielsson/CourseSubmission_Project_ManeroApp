@@ -8,11 +8,11 @@ using Xunit;
 
 namespace Manero.Tests.PaymentTest;
 
-public class PaymentServiceTests : IDisposable
+public class DeleteUpdatePaymentTest : IDisposable
 {
     private readonly DataContext _context;
 
-    public PaymentServiceTests()
+    public DeleteUpdatePaymentTest()
     {
         // Setup your test environment, e.g., create an in-memory database
         var options = new DbContextOptionsBuilder<DataContext>()
@@ -26,43 +26,6 @@ public class PaymentServiceTests : IDisposable
     {
         // Clean up resources after tests
         _context.Dispose();
-    }
-
-    [Fact]
-    public void GetUserPaymentMethods_ShouldReturnPaymentMethods()
-    {
-        // Arrange
-        var userId = "testUserId";
-
-        var existingUserPaymentMethods = new List<UserPaymentMethodsEntity>
-            {
-                new UserPaymentMethodsEntity
-                {
-                    UserId = userId,
-                    PaymentMethod = new PaymentMethodEntity
-                    {
-                        CVV = "123",
-                        CardHolderName = "John Doe",
-                        CardNumber = "1234567890123456"
-                        // Add other relevant properties
-                    }
-                },
-                // Add more user payment methods if needed
-            };
-
-        _context.UserPaymentMethods.AddRange(existingUserPaymentMethods);
-        _context.SaveChanges();
-
-        var paymentService = new PaymentService(_context);
-
-        // Act
-        var result = paymentService.GetUserPaymentMethods(userId);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.NotEmpty(result);
-        Assert.Equal(existingUserPaymentMethods.Count, result.Count);
-
     }
 
 

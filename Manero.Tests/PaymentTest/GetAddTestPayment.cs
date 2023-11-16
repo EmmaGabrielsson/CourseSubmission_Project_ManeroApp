@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Manero.Tests.PaymentTest;
 
-public class IntegrationTestPayment
+public class GetAddTestPayment
 {
     [Fact]
     public async Task AddPaymentMethod_ShouldAddToDatabase()

@@ -15,10 +15,10 @@ using Xunit;
 
 namespace Manero.Tests.PaymentTest;
 
-public class PaymentControllerIntegrationTest : IDisposable
+public class PaymentControllerTest : IDisposable
 {
     private readonly DbContextOptions<DataContext> _dbContextOptions;
-    public PaymentControllerIntegrationTest()
+    public PaymentControllerTest()
     {
         _dbContextOptions = new DbContextOptionsBuilder<DataContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
@@ -87,57 +87,5 @@ public class PaymentControllerIntegrationTest : IDisposable
                                           // Verify that GetUserPaymentMethods was called with the correct user ID
         paymentServiceMock.Verify(provider => provider.GetUserPaymentMethods(It.IsAny<string>()), Times.Once);
     }
-
-
-    //[Fact]
-    //public async Task DeleteConfirmed_ShouldRedirectToListWhenDeleteIsSuccessful()
-    //{
-    //    // Arrange
-    //    var userManagerProviderMock = new Mock<IUserManagerProvider>();
-    //    var paymentServiceMock = new Mock<IPaymentService>();
-
-    //    // Mock user setup
-    //    var userEntity = new UserEntity();
-    //    userManagerProviderMock.Setup(ump => ump.GetUserAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync(userEntity);
-
-    //    // Create a mock UserManager using UserManagerMock from Microsoft.AspNetCore.Identity.UI
-    //    var userManagerMock = new Mock<UserManager<UserEntity>>(
-    //        Mock.Of<IUserStore<UserEntity>>(), null, null, null, null, null, null, null, null);
-
-    //    var controller = new PaymentController(paymentServiceMock.Object, userManagerMock.Object, userManagerProviderMock.Object);
-
-    //    // Mock successful deletion
-    //    paymentServiceMock.Verify(provider => provider.DeletePaymentMethodAsync(It.IsAny<Guid>(), It.IsAny<string>()), Times.Once);
-
-
-    //    // Act
-    //    var deleteResult = await controller.DeleteConfirmed(Guid.NewGuid());
-
-    //    // Assert
-    //    if (deleteResult is RedirectToActionResult redirectToActionResult)
-    //    {
-    //        // Success scenario - Check if it's a RedirectToActionResult
-    //        Assert.Equal("List", redirectToActionResult.ActionName);
-    //    }
-    //    else if (deleteResult is NotFoundResult notFoundResult)
-    //    {
-    //        // Handle the case when user is null (NotFound result)
-    //        Assert.IsType<NotFoundResult>(deleteResult);
-    //    }
-    //    else
-    //    {
-    //        // Handle unexpected result type
-    //        Assert.True(false, $"Unexpected result type: {deleteResult.GetType()}");
-    //    }
-
-    //    // Ensure that DeletePaymentMethodAsync was called with the correct parameters
-    //    paymentServiceMock.Verify(
-    //        provider => provider.DeletePaymentMethodAsync(It.IsAny<Guid>(), It.IsAny<string>()),
-    //        Times.Once,
-    //        "DeletePaymentMethodAsync should have been called once.");
-    //}
-
-
-
 
 }

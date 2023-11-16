@@ -28,27 +28,13 @@ public class PaymentService : IPaymentService
             .Select(upm => upm.PaymentMethod)
             .ToList();
     }
-    //public List<PaymentMethodEntity> GetUserPaymentMethods(string userId)
-    //{
-    //    return _context.UserPaymentMethods
-    //        .Where(upm => upm.UserId == userId)
-    //        .Select(upm => upm.PaymentMethod)
-    //        .ToList();
-    //}
-
-    //public void AddPaymentMethod(PaymentMethodEntity paymentMethod, string userId)
-    //{
-    //    var userPaymentMethod = new UserPaymentMethodsEntity
-    //    {
-    //        UserId = userId,
-    //        PaymentMethod = paymentMethod
-    //    };
-
-    //    _context.UserPaymentMethods.Add(userPaymentMethod);
-    //    _context.SaveChanges();
-    //}
     public async Task AddPaymentMethod(PaymentMethodEntity paymentMethod, string userId)
     {
+        if (!IsValidCVV(paymentMethod.CVV))
+        {
+            // You can throw an exception or handle the invalid CVV in a way that fits your requirements
+            throw new ArgumentException("Invalid CVV");
+        }
         var userPaymentMethod = new UserPaymentMethodsEntity
         {
             UserId = userId,
@@ -57,6 +43,12 @@ public class PaymentService : IPaymentService
 
         await _context.UserPaymentMethods.AddAsync(userPaymentMethod).ConfigureAwait(false);
         await _context.SaveChangesAsync().ConfigureAwait(false);
+    }
+    private bool IsValidCVV(string cvv)
+    {
+        // Add your CVV validation logic here
+        // For example, check if it has the expected length or meets specific criteria
+        return !string.IsNullOrWhiteSpace(cvv) && cvv.Length == 3; // Example: CVV should be a non-empty string with a length of 3
     }
     public PaymentMethodEntity GetPaymentMethod(Guid paymentMethodId, string userId)
     {
