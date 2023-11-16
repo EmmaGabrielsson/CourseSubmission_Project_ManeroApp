@@ -13,7 +13,7 @@ public class OrderServiceTests
 {
 
 	[Fact]
-	public async Task GetOrderIfExistAsync_ShouldReturnOrder_WhenOrderExists()
+	public async Task GetOrderIfExistAsync_ShouldReturnOrder_WhenOrderExists_AndAlthoughNoUpdateWasMade()
 	{
 		// Arrange
 		//------------------------------------------------------------------
@@ -21,12 +21,15 @@ public class OrderServiceTests
 		var mockOrderRowRepository = new Mock<IOrderRowRepository>();
 		var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
 		var mockRequestCookieCollection = new Mock<IRequestCookieCollection>();
+        var mockPromocodeRepository = new Mock<IPromocodeRepository>();
+		var mockOrderService = new Mock<OrderService>();
 
-		var order = new OrderEntity
+		var created = DateTime.UtcNow;
+        var order = new OrderEntity
 		{
 			Id = new Guid("b54f44c7-8236-4a25-a482-bf2148f8f5ff"),
 			UserId = "testUserId",
-			Created = DateTime.Now,
+			Created = created,
 			PromocodeId = null,
 			SubtotalPrice = 0,
 			DeliveryPrice = 0,
@@ -34,40 +37,36 @@ public class OrderServiceTests
 			TotalQuantity = 0,
 			OrderRows = new[]
 			{
-				new OrderRowEntity() { OrderId = new Guid("b54f44c7-8236-4a25-a482-bf2148f8f5ff"), ProductVariantId = new Guid("d7b106ff-c03b-482b-a76a-83a9f06ed154"), ProductArticleNumber = "TestProductOne", ProductPrice = (decimal)19.99, Discount = (decimal)15.99, Quantity = 2 },
-				new OrderRowEntity() { OrderId = new Guid("b54f44c7-8236-4a25-a482-bf2148f8f5ff"), ProductVariantId = new Guid("81d5d32f-fef7-45c5-96c3-f3a8c12c0f60"), ProductArticleNumber = "TestProductTwo", ProductPrice = (decimal)5.99, Quantity = 1 },
-				new OrderRowEntity() { OrderId = new Guid("b54f44c7-8236-4a25-a482-bf2148f8f5ff"), ProductVariantId = new Guid("e7644c67-3c69-478d-8117-7a5a5f39e0e1"), ProductArticleNumber = "TestProductThree", ProductPrice = (decimal)25.99, Discount = 20, Quantity = 4 }
+				new OrderRowEntity() { OrderId = new Guid("b54f44c7-8236-4a25-a482-bf2148f8f5ff"), ProductVariantId = new Guid("d7b106ff-c03b-482b-a76a-83a9f06ed154"), ProductArticleNumber = "TestProductOne", ProductPrice = (decimal)19.99, Discount = (decimal)15.99, Quantity = 1 },
 			}
 		};
 
 
-		mockRequestCookieCollection.Setup(x => x["OrderID"]).Returns(order.Id.ToString());
+        mockRequestCookieCollection.Setup(x => x["OrderID"]).Returns(order.Id.ToString());
+        var defaultHttpContext = new DefaultHttpContext { RequestServices = new ServiceCollection().BuildServiceProvider() };
+        defaultHttpContext.Request.Headers["Host"] = "localhost";
+        defaultHttpContext.Request.Scheme = "http";
+        defaultHttpContext.Request.Cookies = mockRequestCookieCollection.Object;
+        mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(defaultHttpContext);
 
-		var defaultHttpContext = new DefaultHttpContext { RequestServices = new ServiceCollection().BuildServiceProvider() };
-		defaultHttpContext.Request.Headers["Host"] = "localhost";
-		defaultHttpContext.Request.Scheme = "http";
-		defaultHttpContext.Request.Cookies = mockRequestCookieCollection.Object;
+        mockOrderRepository.Setup(x => x.GetAsync(It.IsAny<Expression<Func<OrderEntity, bool>>>()))
+                          .ReturnsAsync(order);
 
-		mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(defaultHttpContext);
+        var orderService = new OrderService(mockOrderRepository.Object, mockOrderRowRepository.Object, mockHttpContextAccessor.Object, mockPromocodeRepository.Object);
+        // Act
+        //------------------------------------------------------------------
+        var result = await orderService.GetOrderIfExistAsync();
 
-		mockOrderRepository.Setup(x => x.GetAsync(It.IsAny<Expression<Func<OrderEntity, bool>>>()))
-						  .ReturnsAsync(order);
+        // Assert
+        //------------------------------------------------------------------
+        Assert.NotNull(result);
+        Assert.Equal(order.Id, result.Id);
 
-		var orderService = new OrderService(mockOrderRepository.Object, mockOrderRowRepository.Object, mockHttpContextAccessor.Object);
+        mockOrderRepository.Verify(repo => repo.GetAsync(It.IsAny<Expression<Func<OrderEntity, bool>>>()), Times.Once);
 
-		// Act
-		//------------------------------------------------------------------
-		var result = await orderService.GetOrderIfExistAsync();
+    }
 
-		// Assert
-		//------------------------------------------------------------------
-		Assert.NotNull(result);
-		Assert.Equal(order.Id, result.Id);
-
-		mockOrderRepository.Verify(repo => repo.GetAsync(It.IsAny<Expression<Func<OrderEntity, bool>>>()), Times.Once);
-	}
-
-	[Fact]
+    [Fact]
 	public async Task GetOrderIfExistAsync_ShouldReturnNull_WhenOrderDoesNotExist()
 	{
 		// Arrange
@@ -75,19 +74,20 @@ public class OrderServiceTests
 		var mockOrderRepository = new Mock<IOrderRepository>();
 		var mockOrderRowRepository = new Mock<IOrderRowRepository>();
 		var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
+        var mockPromocodeRepository = new Mock<IPromocodeRepository>();
 
-		mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(new DefaultHttpContext());
+        mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(new DefaultHttpContext());
 
 		// Mock OrderRepository returning null (order does not exist)
 		var orderRepositoryMock = new Mock<IOrderRepository>();
 		orderRepositoryMock.Setup(x => x.GetAsync(It.IsAny<Expression<Func<OrderEntity, bool>>>()))
 						  .ReturnsAsync((OrderEntity)null!);
 
-		var orderService = new OrderService(mockOrderRepository.Object, mockOrderRowRepository.Object, mockHttpContextAccessor.Object);
+        var orderService = new OrderService(mockOrderRepository.Object, mockOrderRowRepository.Object, mockHttpContextAccessor.Object, mockPromocodeRepository.Object);
 
-		// Act
-		//------------------------------------------------------------------
-		var result = await orderService.GetOrderIfExistAsync();
+        // Act
+        //------------------------------------------------------------------
+        var result = await orderService.GetOrderIfExistAsync();
 
 		// Assert
 		//------------------------------------------------------------------
@@ -104,8 +104,9 @@ public class OrderServiceTests
 		var mockOrderRepository = new Mock<IOrderRepository>();
 		var mockOrderRowRepository = new Mock<IOrderRowRepository>();
 		var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
+        var mockPromocodeRepository = new Mock<IPromocodeRepository>();
 
-		var orderService = new OrderService(mockOrderRepository.Object, mockOrderRowRepository.Object, mockHttpContextAccessor.Object);
+        var orderService = new OrderService(mockOrderRepository.Object, mockOrderRowRepository.Object, mockHttpContextAccessor.Object, mockPromocodeRepository.Object);
 
 		// Mock data for the test
 		var order = new OrderEntity

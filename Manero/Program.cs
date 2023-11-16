@@ -43,7 +43,7 @@ builder.Services.AddScoped<ImageRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderRowRepository, OrderRowRepository>();
 builder.Services.AddScoped<CheckoutRepository>();
-builder.Services.AddScoped<PromocodeRepository>();
+builder.Services.AddScoped<IPromocodeRepository, PromocodeRepository>();
 builder.Services.AddScoped<UserPromocodeRepository>();
 builder.Services.AddScoped<UserPaymentMethodsRepository>();
 builder.Services.AddScoped<PaymentMethodRepository>();
@@ -56,6 +56,7 @@ builder.Services.AddScoped<IUserManagerProvider, UserService>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {

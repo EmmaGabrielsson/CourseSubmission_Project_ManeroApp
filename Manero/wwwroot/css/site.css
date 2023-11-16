@@ -144,6 +144,28 @@
     font-size: 30px
 }
 
+.bottom-icon-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    left: -12px;
+    background-color: #F4303C;
+    border-radius: 50%;
+    color: white;
+    padding: 1px 4px;
+    font-size: 14px;
+}
+
+@media (min-width: 1400px) {
+    .cart-count {
+        top: 10px;
+        left: -4px;        
+    }
+}
+
 /*Top navbar end section*/
 
 /*Sidebar contact*/
@@ -832,6 +854,7 @@ body .cart-item {
 .wishlist-section {
     max-width: 1320px;
     margin: 25px auto;
+    margin-bottom: 160px;
 }
 
 .shop-item-image {
@@ -938,7 +961,8 @@ body .cart-item {
 
 @media (min-width: 992px) {
     .wishlist-section .wishlist-items .wishlist-item .product-content .product-info .product-name {
-        height: 40px;
+        margin-left: -10px;
+        height: 50px;
         overflow: hidden;
     }
 }
@@ -1051,6 +1075,7 @@ body .cart-item {
     .footer-column a {
         text-decoration: none;
     }
+
     .footer-column h3 {
         margin-bottom: 20px;
     }
@@ -1752,14 +1777,56 @@ body .cart-item {
     font-size: 14px;
 }
 
+.cart-item-content > div p {
+    margin: 0;
+    padding: 4px 0;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
 .product-quantity-cart-item {
     display: flex;
     flex-direction: column;
 }
 
-    .product-quantity-cart-item input {
-        margin-left: 14px;
-    }
+.product-quantity-cart-item input {
+    margin-left: 14px;
+}
+
+.promocode-cart-input-container > p {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#promocode-label-span {
+    color: green;
+    font-weight: bold;
+    padding-left: 1rem;
+}
+
+.promocode-cart-input-container div button {
+    padding: 6px;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.promocode-cart-input-container> div button:hover {
+    background-color: #dbe3f5;
+    color: black;
+}
+
+.promocode-cart-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#promocode-input-cart {
+    width: 150px;
+}
 
 .cart-totalprice-container, .cart-totalprice {
     border-top: 2px solid #DBE3F5;
@@ -1782,12 +1849,42 @@ body .cart-item {
     margin-bottom: 1rem;
 }
 
+.promocode-cart-input-container input{
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
 .no-order-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.no-order-container h2 {
+    margin-bottom: 0;
+}
+
+.no-order-container img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px; 
+    margin-top: 2rem;
+}
+
+.no-order-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin: 1rem;
+}
+
+.no-order-container p {
+    width: 290px;
 }
 
 .cart-btn-container {
@@ -2414,6 +2511,7 @@ label {
     margin: 0 auto;
     border: 1px solid #DBE3F5;
 }
+
 .user-profile {
     display: grid;
     justify-content: center;
@@ -2504,26 +2602,26 @@ p {
         top: -25px;
     }
 
-.user-profile-nav-element div {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    color: #626262;
-}
+    .user-profile-nav-element div {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        color: #626262;
+    }
 
-.user-profile-nav-element div p {
-    margin: 0;
-}
+        .user-profile-nav-element div p {
+            margin: 0;
+        }
 
-.a-link{
+.a-link {
     text-decoration: none;
     color: black;
     cursor: pointer;
 }
 
-.a-link:hover {
-    background-color: #DBE3F5;
-}
+    .a-link:hover {
+        background-color: #DBE3F5;
+    }
 /*my profile end*/
 
 
@@ -2690,20 +2788,20 @@ p {
     padding-bottom: 5rem;
 }
 
-.my-adress-section h3 {
-    text-align: center;
-    margin: 1rem;
-    font-weight: bold;
-}
+    .my-adress-section h3 {
+        text-align: center;
+        margin: 1rem;
+        font-weight: bold;
+    }
 
-.my-adress-section>div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 3rem;
-}
+    .my-adress-section > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
 
 .my-address-container {
     padding: 1rem 2rem;
@@ -2715,33 +2813,33 @@ p {
     border-bottom: 2px solid #DBE3F5;
 }
 
-.my-address-container div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
+    .my-address-container div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
-.my-address-container div div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
+        .my-address-container div div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-.my-address-container div div i{
-    margin-right: 1rem;
-}
+            .my-address-container div div i {
+                margin-right: 1rem;
+            }
 
-.my-address-container div div h5 {
-    text-transform: capitalize;
-    font-size: 16px;
-    font-weight: bold;
-}
+            .my-address-container div div h5 {
+                text-transform: capitalize;
+                font-size: 16px;
+                font-weight: bold;
+            }
 
-.my-address-container div div p {
-    text-transform: capitalize;
-    font-size: 14px;
-    padding: 0;
-}
+            .my-address-container div div p {
+                text-transform: capitalize;
+                font-size: 14px;
+                padding: 0;
+            }
 
 .no-address {
     text-align: center;
@@ -2754,7 +2852,7 @@ p {
     position: absolute;
     top: 0.8rem;
     right: 1.2rem;
-    font-size:18px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -2768,15 +2866,15 @@ p {
     margin-left: 1rem;
 }
 
-.edit-address-button span {
-    position: absolute;
-    top: 5px;
-    left: 13px;
-}
+    .edit-address-button span {
+        position: absolute;
+        top: 5px;
+        left: 13px;
+    }
 
-.edit-address-button:hover {
-    background-color: #DBE3F5;
-}
+    .edit-address-button:hover {
+        background-color: #DBE3F5;
+    }
 
 .add-address-btn {
     display: flex;
@@ -2791,14 +2889,14 @@ p {
     margin: 2rem;
 }
 
-.add-address-btn span {
-    font-size: 30px;
-}
+    .add-address-btn span {
+        font-size: 30px;
+    }
 
-.add-address-btn p:hover {
-    text-decoration: underline;
-    color: black;
-}
+    .add-address-btn p:hover {
+        text-decoration: underline;
+        color: black;
+    }
 
 .add-address-form {
     display: flex;
@@ -2809,57 +2907,57 @@ p {
     padding: 0 2rem 5rem 2rem;
 }
 
-.add-address-form div {
-    width: 100%;
-    position: relative;
-    margin-bottom: 1rem;
-}
+    .add-address-form div {
+        width: 100%;
+        position: relative;
+        margin-bottom: 1rem;
+    }
 
-.add-address-form div label {
-    width: auto;
-    background-color: white;
-    color: black;
-    position: absolute;
-    top: -8px;
-    left: 15px;
-    font-size: 12px;
-    padding: 3px 7px;
-}
+        .add-address-form div label {
+            width: auto;
+            background-color: white;
+            color: black;
+            position: absolute;
+            top: -8px;
+            left: 15px;
+            font-size: 12px;
+            padding: 3px 7px;
+        }
 
-.add-address-form div input {
-    width: 100%;
-    height: 50px;
-    border: 1px solid #DBE3F5;
-    border-radius: 50px;
-    background-color: white;
-    color: black;
-    font-size: 16px;
-    padding: 0 15px;
-}
+        .add-address-form div input {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #DBE3F5;
+            border-radius: 50px;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            padding: 0 15px;
+        }
 
 .current-location-container {
     display: flex;
     align-items: center;
 }
 
-.current-location-container input[type="checkbox"] {
-    content: "";
-    display: inline-flex;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #dbe3f5;
-    background-color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-}
+    .current-location-container input[type="checkbox"] {
+        content: "";
+        display: inline-flex;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #dbe3f5;
+        background-color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
 
-.current-location-container label {
-    font-size: 14px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-}
+    .current-location-container label {
+        font-size: 14px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+    }
 
 .save-address-btn {
     display: flex;
@@ -2876,11 +2974,11 @@ p {
     margin: 1rem 0;
 }
 
-.save-address-btn:hover {
-    background-color: #DBE3F5;
-    text-decoration: underline;
-    color: black;
-}
+    .save-address-btn:hover {
+        background-color: #DBE3F5;
+        text-decoration: underline;
+        color: black;
+    }
 
 #address-map {
     width: 100%;
@@ -2909,14 +3007,13 @@ p {
         width: 900px;
     }
 
-    .add-address-form>div {
-        margin-top: 1rem;
-    }
+        .add-address-form > div {
+            margin-top: 1rem;
+        }
 
     #address-map {
         margin-top: 0;
     }
-
 }
 
 /* end: Profile - My Adress, Add Adress */
@@ -2928,16 +3025,18 @@ p {
     display: inline-block;
     width: 275px;
     height: 175px;
-    overflow: hidden;  
+    overflow: hidden;
 }
 
 .no-underline {
     text-decoration: none;
 }
-.plus-icon-option{
-    color:black;
-    font-size:20px;
+
+.plus-icon-option {
+    color: black;
+    font-size: 20px;
 }
+
 .card-image {
     position: absolute;
     width: 100%;
@@ -2948,7 +3047,7 @@ p {
 /* Adjust the credit card and card image styles for the carousel */
 .slick-slide .credit-card {
     width: 275px; /* Adjust the width as needed */
-    margin:0;
+    margin: 0;
 }
 
 .slick-slide .card-image {
@@ -2957,13 +3056,14 @@ p {
     height: 100%;
     z-index: -1;
 }
+
 .slick-slide .card-front {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.payment-flex-container{
+.payment-flex-container {
     /*margin-left:10%;*/
     height:25vh;
     margin-top:20px;
@@ -2973,9 +3073,9 @@ p {
     margin-bottom:20px;
     
 }
-.card-front {
-    position:relative;
 
+.card-front {
+    position: relative;
     width: 100%; /* Ensure the card content takes up the entire container */
     height: 100%; /* Ensure the card content takes up the entire container */
 }
@@ -2990,25 +3090,23 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
     padding: 10px;
     box-sizing: border-box;
 }
 
     .card-details li {
-        
         margin: 5px 5px;
         color: silver;
         font-size: 12px;
-
     }
 /* Media query for screens with a viewport width greater than or equal to 768px */
 @media (min-width: 768px) {
     .card-details li {
         margin: 10px 10px; /* Adjust the margins as needed */
-        /*font-size: 3.5vh; *//* Adjust the font size as needed */
+        /*font-size: 3.5vh; */ /* Adjust the font size as needed */
     }
 }
+
 card-details li.card-number {
     text-align: center; /* Center horizontally */
     display: flex;
@@ -3023,15 +3121,15 @@ card-details li.card-number {
     position: absolute;
     top: 10px;
     left: 10px;
-    
 }
 /* Styling for the text on the card image */
 .card-front h1 {
     font-size: 10px;
     margin: 0;
 }
+
 .split-columns {
-    margin-top:40px;
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -3048,56 +3146,61 @@ card-details li.card-number {
 }
 
 
-.payment-a{
-    text-decoration:none;
+.payment-a {
+    text-decoration: none;
 }
 
 
 .payment-method-header {
     display: flex;
-    
     align-items: center;
-    padding:20px;
+    padding: 20px;
 }
+
 .centered-text {
     flex: 1; /* Allow the text to take up remaining space and center it */
     margin: 0; /* Remove default margin */
     text-align: center; /* Center text horizontally */
 }
+
 .add-button {
     display: flex;
     text-decoration: none;
     align-items: center;
 }
-.margin-text{
-    margin:10px;
+
+.margin-text {
+    margin: 10px;
 }
+
 .link-lightgrey {
-    
     margin-top: auto;
     margin-bottom: auto;
     font-size: 15px;
     color: #626262;
 }
+
 .back-button {
-    margin-left:10px;
-    color:black;
+    margin-left: 10px;
+    color: black;
     font-size: 35px;
     margin-right: 10px; /* Add some margin for spacing */
     text-decoration: none;
 }
+
 .plus-sign {
-    margin-right:10px;
-    color:black;
+    margin-right: 10px;
+    color: black;
     font-size: 35px; /* Adjust the size as needed */
     margin-left: 5px; /* Add spacing between text and the plus sign */
 }
+
 .payment-container {
-    
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
 }
+
     .payment-container h5 {
         margin: 0;
     }
@@ -3107,6 +3210,7 @@ card-details li.card-number {
     text-align: center;
     margin: 0; /* Remove default margin */
 }
+
 .payment-options {
     display: flex;
     flex-direction: column;
@@ -3119,9 +3223,8 @@ card-details li.card-number {
     justify-content: space-between;
     align-items: center;
     margin: 5px 5px;
-    padding:10px 0px;
+    padding: 10px 0px;
     border-bottom: 1px solid #d1d1d1; /* Add a border at the bottom to simulate a box shadow line */
-    
 }
 
 .payment-option-text {
@@ -3184,11 +3287,11 @@ card-details li.card-number {
 
 
 .split-columns-add {
-    
     display: flex;
-    justify-content:center;
+    justify-content: center;
     width: 100%;
 }
+
 @media (max-width: 768px) {
     .split-columns-add {
         display: flex;
@@ -3196,12 +3299,11 @@ card-details li.card-number {
         width: 100%;
     }
 }
+
 .button-container-card {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    
-    
 }
 
 .btn-add-card {
@@ -3221,6 +3323,18 @@ card-details li.card-number {
 
 /*end of payment*/
 
+/* hidden-nav, hidden-footer start */
+.hidden-top-nav, .hidden-bottom-nav, .hidden-footer {
+    display: none;
+}
+
+@media (min-width: 1400px) {
+    .hidden-top-nav, .hidden-bottom-nav, .hidden-footer {
+        display: block;
+    }
+}
+/* hidden-nav, hidden-footer end */
+
 
 /* login-section start */
 .login-section {
@@ -3230,167 +3344,203 @@ card-details li.card-number {
     margin: 20px;
 }
 
+@media (min-width: 992px) {
+    .login-section {
+        margin-inline: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .login-section {
+        margin-inline: 400px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .login-section {
+        margin-bottom: 120px;
+    }
+}
+
+.login-section header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+@media (min-width: 1400px) {
     .login-section header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        width: 100%;
+        display: none;
+    }
+}
+
+.login-section header #back-icon {
+    position: absolute;
+    left: 0;
+}
+
+.login-section header h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.login-section h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 60px;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+    .login-section h2:before {
+        content: "";
+        width: 2px;
+        height: 30px;
+        background-color: #111111;
+        display: inline-block;
+        margin: 0 auto;
+        margin-bottom: 30px;
     }
 
-        .login-section header #back-icon {
-            position: absolute;
-            left: 0;
+.login-section p {
+    color: #626262;
+    margin-bottom: 35px;
+}
+
+.login-section form {
+    width: 100%;
+}
+
+        .login-section form .incorrect-input ul li {
+            list-style: none;
+            margin-block: 15px;
+            color: red;
         }
 
-        .login-section header h1 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-    .login-section h2 {
+    .login-section form .form-input {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        margin-top: 60px;
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 15px;
+        position: relative;
     }
 
-        .login-section h2:before {
-            content: "";
-            width: 2px;
-            height: 30px;
-            background-color: #111111;
-            display: inline-block;
-            margin: 0 auto;
-            margin-bottom: 30px;
-        }
+    .login-section form .form-input small {
+        color: red;
+        margin-top: -30px;
+        margin-bottom: 20px;
+    }
 
-    .login-section p {
+    .login-section form label {
         color: #626262;
-        margin-bottom: 35px;
+        background-color: white;
+        font-size: 12px;
+        font-weight: 600;
     }
 
-    .login-section form {
-        width: 100%;
+    .login-section form .form-label {
+        position: absolute;
+        left: 30px;
+        top: -6px;
+        padding-left: 10px;
+        padding-right: 15px;
     }
 
-        .login-section form .form-input {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
+    .login-section form .input {
+        height: 50px;
+        border-radius: 50px;
+        border: 1px solid #DBE3F5;
+        padding-inline: 30px;
+    }
 
-        .login-section form label {
-            color: #626262;
-            background-color: white;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .login-section form .form-label {
-            position: absolute;
-            left: 30px;
-            top: -6px;
-            padding-left: 10px;
-            padding-right: 15px;
-        }
-
-        .login-section form .input {
-            height: 50px;
-            border-radius: 50px;
-            border: 1px solid #DBE3F5;
-            padding-inline: 30px;
-        }
-
-        .login-section form .user-actions {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-
-            .login-section form .user-actions #remember {
-                margin-right: 15px;
-            }
-
-            .login-section form .user-actions #remember-me {
-                font-size: 16px;
-                font-weight: 400;
-            }
-
-            .login-section form .user-actions #forgot-password {
-                color: #111111;
-                text-decoration: none;
-            }
-
-                .login-section form .user-actions #forgot-password:hover {
-                    color: #626262;
-                }
-
-        .login-section form button {
-            color: #FFFFFF;
-            font-size: 14px;
-            font-weight: 600;
-            background-color: #111111;
-            width: 100%;
-            border: 1px solid #111111;
-            padding: 15px;
-            border-radius: 25px;
-            margin-bottom: 20px;
-        }
-
-            .login-section form button:hover {
-                color: #111111;
-                background-color: #FFFFFF;
-                cursor: pointer;
-            }
-
-    .login-section .register-link {
+    .login-section form .user-actions {
         display: flex;
-        align-self: flex-start;
-        color: #626262;
-        margin-bottom: 60px;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 30px;
     }
 
-        .login-section .register-link a {
+        .login-section form .user-actions #remember {
+            margin-right: 15px;
+        }
+
+        .login-section form .user-actions #remember-me {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .login-section form .user-actions #forgot-password {
             color: #111111;
             text-decoration: none;
-            margin-left: 5px;
         }
 
-            .login-section .register-link a:hover {
+            .login-section form .user-actions #forgot-password:hover {
                 color: #626262;
             }
 
-    .login-section .extern-logins a {
-        border: 1px solid #DBE3F5;
-        padding: 20px;
-        border-radius: 50px;
-        margin-right: 8px;
-        font-size: 20px;
+    .login-section form button {
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        background-color: #111111;
+        width: 100%;
+        border: 1px solid #111111;
+        padding: 15px;
+        border-radius: 25px;
+        margin-bottom: 20px;
     }
 
-        .login-section .extern-logins a:hover {
-            background-color: #DBE3F5;
+        .login-section form button:hover {
+            color: #111111;
+            background-color: #FFFFFF;
+            cursor: pointer;
         }
 
-    .login-section .extern-logins .facebook-icon {
-        color: #3B5999;
-        padding-inline: 5px;
-    }
+.login-section .register-link {
+    display: flex;
+    align-self: flex-start;
+    color: #626262;
+    margin-bottom: 60px;
+}
 
-    .login-section .extern-logins .x-twitter-icon {
+    .login-section .register-link a {
         color: #111111;
-        padding-inline: 2px;
+        text-decoration: none;
+        margin-left: 5px;
     }
 
-    .login-section .extern-logins .google-plus-icon {
-        color: #DD4B39;
+        .login-section .register-link a:hover {
+            color: #626262;
+        }
+
+.login-section .extern-logins a {
+    border: 1px solid #DBE3F5;
+    padding: 20px;
+    border-radius: 50px;
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+    .login-section .extern-logins a:hover {
+        background-color: #DBE3F5;
     }
+
+.login-section .extern-logins .facebook-icon {
+    color: #3B5999;
+    padding-inline: 5px;
+}
+
+.login-section .extern-logins .x-twitter-icon {
+    color: #111111;
+    padding-inline: 2px;
+}
+
+.login-section .extern-logins .google-plus-icon {
+    color: #DD4B39;
+}
 /* login-section end */
 
 /* forgot-password-section start */
@@ -3401,49 +3551,261 @@ card-details li.card-number {
     margin: 20px;
 }
 
+@media (min-width: 992px) {
+    .forgot-password-section {
+        margin-inline: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .forgot-password-section {
+        margin-inline: 400px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .forgot-password-section {
+        margin-block: 100px;
+    }
+}
+
+.forgot-password-section header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 1400px) {
     .forgot-password-section header {
+        display: none;
+    }
+}
+
+.forgot-password-section header #back-icon {
+    position: absolute;
+    left: 0;
+}
+
+.forgot-password-section header h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.forgot-password-section p {
+    color: #626262;
+    margin-bottom: 35px;
+}
+
+.forgot-password-section form {
+    width: 100%;
+}
+
+    .forgot-password-section form .form-input {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
         position: relative;
-        width: 100%;
-        margin-bottom: 40px;
     }
 
-        .forgot-password-section header #back-icon {
-            position: absolute;
-            left: 0;
-        }
+.forgot-password-section form .form-input small {
+    color: red;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
 
-        .forgot-password-section header h1 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-    .forgot-password-section p {
+    .forgot-password-section form label {
         color: #626262;
-        margin-bottom: 35px;
+        background-color: white;
+        font-size: 12px;
+        font-weight: 600;
     }
 
-    .forgot-password-section form {
+    .forgot-password-section form .form-label {
+        position: absolute;
+        left: 30px;
+        top: -6px;
+        padding-left: 10px;
+        padding-right: 15px;
+    }
+
+    .forgot-password-section form .input {
+        height: 50px;
+        border-radius: 50px;
+        border: 1px solid #DBE3F5;
+        padding-inline: 30px;
+    }
+
+    .forgot-password-section form button {
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        background-color: #111111;
+        width: 100%;
+        border: 1px solid #111111;
+        padding: 15px;
+        border-radius: 25px;
+        margin-bottom: 20px;
+    }
+
+        .forgot-password-section form button:hover {
+            color: #111111;
+            background-color: #FFFFFF;
+            cursor: pointer;
+        }
+/* forgot-password-section end */
+
+/* mail-confirmation-section start */
+.mail-confirmation-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+@media (min-width: 992px) {
+    .mail-confirmation-section {
+        margin-inline: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .mail-confirmation-section {
+        margin-inline: 400px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .mail-confirmation-section {
+        margin-top: 100px;
+        margin-bottom: 150px;
+    }
+}
+
+.mail-confirmation-section header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 1400px) {
+    .mail-confirmation-section header {
+        display: none;
+    }
+}
+
+.mail-confirmation-section header #back-icon {
+    position: absolute;
+    left: 0;
+}
+
+.mail-confirmation-section header h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.mail-confirmation-section p {
+    color: #626262;
+    margin-bottom: 35px;
+}
+/* mail-confirmation-section end */
+
+/* reset-password-section start */
+.reset-password-section {
+    margin: 20px;
+}
+
+@media (min-width: 992px) {
+    .reset-password-section {
+        margin-inline: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .reset-password-section {
+        margin-inline: 400px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .reset-password-section {
+        margin-block: 100px;
+    }
+}
+
+.reset-password-section header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+@media (min-width: 1400px) {
+    .reset-password-section header {
+        display: none;
+    }
+}
+
+.reset-password-section header #back-icon {
+    position: absolute;
+    left: 0;
+}
+
+.reset-password-section header h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.reset-password-section p {
+    color: #626262;
+    margin-bottom: 35px;
+}
+
+.reset-password-section .reset-password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .reset-password-section .reset-password form {
         width: 100%;
     }
 
-        .forgot-password-section form .form-input {
+.reset-password-section form .incorrect-input ul li {
+    list-style: none;
+    margin-block: 15px;
+    color: red;
+}
+
+        .reset-password-section .reset-password form .form-input {
             display: flex;
             flex-direction: column;
             position: relative;
         }
 
-        .forgot-password-section form label {
+.reset-password-section form .form-input small {
+    color: red;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
+
+        .reset-password-section .reset-password form label {
             color: #626262;
             background-color: white;
             font-size: 12px;
             font-weight: 600;
         }
 
-        .forgot-password-section form .form-label {
+        .reset-password-section .reset-password form .form-label {
             position: absolute;
             left: 30px;
             top: -6px;
@@ -3451,14 +3813,14 @@ card-details li.card-number {
             padding-right: 15px;
         }
 
-        .forgot-password-section form .input {
+        .reset-password-section .reset-password form .input {
             height: 50px;
             border-radius: 50px;
             border: 1px solid #DBE3F5;
             padding-inline: 30px;
         }
 
-        .forgot-password-section form button {
+        .reset-password-section .reset-password form button {
             color: #FFFFFF;
             font-size: 14px;
             font-weight: 600;
@@ -3470,132 +3832,11 @@ card-details li.card-number {
             margin-bottom: 20px;
         }
 
-            .forgot-password-section form button:hover {
+            .reset-password-section .reset-password form button:hover {
                 color: #111111;
                 background-color: #FFFFFF;
                 cursor: pointer;
             }
-/* forgot-password-section end */
-
-/* mail-confirmation-section start */
-.mail-confirmation-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-}
-
-    .mail-confirmation-section header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        width: 100%;
-        margin-bottom: 40px;
-    }
-
-        .mail-confirmation-section header #back-icon {
-            position: absolute;
-            left: 0;
-        }
-
-        .mail-confirmation-section header h1 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-    .mail-confirmation-section p {
-        color: #626262;
-        margin-bottom: 35px;
-    }
-/* mail-confirmation-section end */
-
-/* reset-password-section start */
-.reset-password-section {
-    margin: 20px;
-}
-
-    .reset-password-section header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        width: 100%;
-        margin-bottom: 50px;
-    }
-
-        .reset-password-section header #back-icon {
-            position: absolute;
-            left: 0;
-        }
-
-        .reset-password-section header h1 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-    .reset-password-section p {
-        color: #626262;
-        margin-bottom: 35px;
-    }
-
-    .reset-password-section .reset-password {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-        .reset-password-section .reset-password form {
-            width: 100%;
-        }
-
-            .reset-password-section .reset-password form .form-input {
-                display: flex;
-                flex-direction: column;
-                position: relative;
-            }
-
-            .reset-password-section .reset-password form label {
-                color: #626262;
-                background-color: white;
-                font-size: 12px;
-                font-weight: 600;
-            }
-
-            .reset-password-section .reset-password form .form-label {
-                position: absolute;
-                left: 30px;
-                top: -6px;
-                padding-left: 10px;
-                padding-right: 15px;
-            }
-
-            .reset-password-section .reset-password form .input {
-                height: 50px;
-                border-radius: 50px;
-                border: 1px solid #DBE3F5;
-                padding-inline: 30px;
-            }
-
-            .reset-password-section .reset-password form button {
-                color: #FFFFFF;
-                font-size: 14px;
-                font-weight: 600;
-                background-color: #111111;
-                width: 100%;
-                border: 1px solid #111111;
-                padding: 15px;
-                border-radius: 25px;
-                margin-bottom: 20px;
-            }
-
-                .reset-password-section .reset-password form button:hover {
-                    color: #111111;
-                    background-color: #FFFFFF;
-                    cursor: pointer;
-                }
 /* reset-password-section end */
 
 /* forgot-password-confirmation-section start */
@@ -3607,73 +3848,97 @@ card-details li.card-number {
     text-align: center;
 }
 
-    .forgot-password-confirmation header h2 {
-        font-size: 16px;
-        font-weight: 700;
-        margin-bottom: 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+@media (min-width: 992px) {
+    .forgot-password-confirmation {
+        margin-inline: 200px;
     }
+}
 
-        .forgot-password-confirmation header h2:before {
-            content: "";
-            width: 10px;
-            height: 3px;
-            background-color: #111111;
-            display: inline-block;
-            margin: 0 auto;
-            border-radius: 100px;
-        }
-
-    .forgot-password-confirmation img {
-        margin-bottom: 20px;
+@media (min-width: 1200px) {
+    .forgot-password-confirmation {
+        margin-inline: 400px;
     }
+}
 
-    .forgot-password-confirmation h1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 70%;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 20px;
+@media (min-width: 1400px) {
+    .forgot-password-confirmation {
+        margin-block: 100px;
     }
+}
 
-        .forgot-password-confirmation h1:before {
-            content: "";
-            width: 2px;
-            height: 30px;
-            background-color: #111111;
-            display: inline-block;
-            margin: 0 auto;
-            margin-bottom: 20px;
-        }
-
-    .forgot-password-confirmation p {
-        width: 80%;
-        color: #626262;
-        margin-bottom: 35px;
+@media (min-width: 1400px) {
+    .forgot-password-confirmation header {
+        display: none;
     }
+}
 
-    .forgot-password-confirmation a {
-        color: #FFFFFF;
-        font-size: 14px;
-        font-weight: 600;
+.forgot-password-confirmation header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .forgot-password-confirmation header h2:before {
+        content: "";
+        width: 10px;
+        height: 3px;
         background-color: #111111;
-        width: 100%;
-        border: 1px solid #111111;
-        padding: 15px;
-        border-radius: 25px;
-        margin-bottom: 20px;
-        text-decoration: none;
+        display: inline-block;
+        margin: 0 auto;
+        border-radius: 100px;
     }
 
-        .forgot-password-confirmation a:hover {
-            color: #111111;
-            background-color: #FFFFFF;
-            cursor: pointer;
-        }
+.forgot-password-confirmation img {
+    margin-bottom: 20px;
+}
+
+.forgot-password-confirmation h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+    .forgot-password-confirmation h1:before {
+        content: "";
+        width: 2px;
+        height: 30px;
+        background-color: #111111;
+        display: inline-block;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+.forgot-password-confirmation p {
+    width: 80%;
+    color: #626262;
+    margin-bottom: 35px;
+}
+
+.forgot-password-confirmation a {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #111111;
+    width: 100%;
+    border: 1px solid #111111;
+    padding: 15px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+    .forgot-password-confirmation a:hover {
+        color: #111111;
+        background-color: #FFFFFF;
+        cursor: pointer;
+    }
 /* forgot-password-confirmation-section end */
 
 /* logout-popup start */
@@ -3689,40 +3954,40 @@ card-details li.card-number {
     text-align: center;
 }
 
-.logout-popup .popup {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    padding: 25px;
-    width: 290px;
-    height: 290px;
-}
+    .logout-popup .popup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        padding: 25px;
+        width: 290px;
+        height: 290px;
+    }
 
-.logout-popup .popup p {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
+        .logout-popup .popup p {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
 
-.logout-popup .popup p:before {
-    content: "";
-    width: 2px;
-    height: 30px;
-    background-color: #111111;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 25px;
-    margin-top: 30px;
-}
+            .logout-popup .popup p:before {
+                content: "";
+                width: 2px;
+                height: 30px;
+                background-color: #111111;
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 25px;
+                margin-top: 10px;
+            }
 
     .logout-popup #confirm-logout-btn {
         color: #FFFFFF;
@@ -3947,11 +4212,11 @@ card-details li.card-number {
     margin-bottom: 80px;
 }
 
-.order-history h1 {
-    text-align: center;
-    font-weight: 500;
-    font-size: 30px;
-}
+    .order-history h1 {
+        text-align: center;
+        font-weight: 500;
+        font-size: 30px;
+    }
 
 @media (max-width: 768px) {
     .order-history h1 {
@@ -3968,77 +4233,77 @@ card-details li.card-number {
     padding: 0;
 }
 
-.order-history .order-box .order-status {
-    display: flex;
-    justify-content: space-between;
-}
+    .order-history .order-box .order-status {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.order-history .order-box .order-status .order-id {
-    color: #111111;
-    font-size: 16px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
+        .order-history .order-box .order-status .order-id {
+            color: #111111;
+            font-size: 16px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
 
-.order-history .order-box .order-status .order-shipping {
-    color: #FFBE00;
-    font-size: 14px;
-    white-space: nowrap;
-}
+        .order-history .order-box .order-status .order-shipping {
+            color: #FFBE00;
+            font-size: 14px;
+            white-space: nowrap;
+        }
 
-.order-history .order-box .order-status .order-delivered {
-    color: #00824B;
-    font-size: 14px;
-    white-space: nowrap;
-}
+        .order-history .order-box .order-status .order-delivered {
+            color: #00824B;
+            font-size: 14px;
+            white-space: nowrap;
+        }
 
-.order-history .order-box .order-status .order-canceled {
-    color: #F4303C;
-    font-size: 14px;
-    white-space: nowrap;
-}
+        .order-history .order-box .order-status .order-canceled {
+            color: #F4303C;
+            font-size: 14px;
+            white-space: nowrap;
+        }
 
-.order-history .order-box .order-status .order-default {
-    color: #626262;
-    font-size: 14px;
-    white-space: nowrap;
-}
+        .order-history .order-box .order-status .order-default {
+            color: #626262;
+            font-size: 14px;
+            white-space: nowrap;
+        }
 
-.order-history .order-box .order-info {
-    display: flex;
-    justify-content: space-between;
-}
+    .order-history .order-box .order-info {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.order-history .order-box .order-info .order-time {
-    color: #626262;
-    font-size: 12px;
-}
+        .order-history .order-box .order-info .order-time {
+            color: #626262;
+            font-size: 12px;
+        }
 
-.order-history .order-box .order-info .order-price {
-    color: #111111;
-    font-size: 12px;
-    font-weight: 700;
-}
+        .order-history .order-box .order-info .order-price {
+            color: #111111;
+            font-size: 12px;
+            font-weight: 700;
+        }
 
-.order-history .order-box .order-list .order-products {
-    display: flex;
-    justify-content: space-between;
-    color: #626262;
-    font-size: 14px;
-}
+    .order-history .order-box .order-list .order-products {
+        display: flex;
+        justify-content: space-between;
+        color: #626262;
+        font-size: 14px;
+    }
 
-.order-history .order-box .order-list .order-repeat-review {
-    display: flex;
-    justify-content: space-between;
-}
+    .order-history .order-box .order-list .order-repeat-review {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.order-history .order-box .order-list .order-repeat-review a {
-    text-decoration: none;
-    color: #111111;
-    font-size: 14px;
-    padding: 20px;
-}
+        .order-history .order-box .order-list .order-repeat-review a {
+            text-decoration: none;
+            color: #111111;
+            font-size: 14px;
+            padding: 20px;
+        }
 
 /* Order History End */
 
@@ -4053,61 +4318,61 @@ card-details li.card-number {
     text-align: center;
 }
 
-.track-your-order .track-your-order-container .pin-icon {
-    font-size: 50px;
-    border: 2px solid #DBE3F5;
-    border-radius: 100%;
-    padding: 50px;
-}
+    .track-your-order .track-your-order-container .pin-icon {
+        font-size: 50px;
+        border: 2px solid #DBE3F5;
+        border-radius: 100%;
+        padding: 50px;
+    }
 
-.track-your-order .track-your-order-container .line {
-    border-right: 1px solid #111111;
-    height: 30px;
-    margin-top: 20px;
-    margin-bottom: 14px;
-}
+    .track-your-order .track-your-order-container .line {
+        border-right: 1px solid #111111;
+        height: 30px;
+        margin-top: 20px;
+        margin-bottom: 14px;
+    }
 
-.track-your-order .track-your-order-container h3 {
-    color: #111111;
-    font-size: 22px;
-    font-weight: 700;
-}
+    .track-your-order .track-your-order-container h3 {
+        color: #111111;
+        font-size: 22px;
+        font-weight: 700;
+    }
 
-.track-your-order .track-your-order-container p {
-    font-size: 16px;
-    color: #626262;
-}
+    .track-your-order .track-your-order-container p {
+        font-size: 16px;
+        color: #626262;
+    }
 
-.track-your-order .track-your-order-container .tracking {
-    margin-top: 45px;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-}
+    .track-your-order .track-your-order-container .tracking {
+        margin-top: 45px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
 
-.track-your-order .track-your-order-container .tracking .item {
-    display: flex;
-    gap: 10px;
-}
+        .track-your-order .track-your-order-container .tracking .item {
+            display: flex;
+            gap: 10px;
+        }
 
-.track-your-order .track-your-order-container .tracking .item .circle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+            .track-your-order .track-your-order-container .tracking .item .circle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
 
-.track-your-order .track-your-order-container .tracking .item .circle i {
-    border: 2px solid #DBE3F5;
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-}
+                .track-your-order .track-your-order-container .tracking .item .circle i {
+                    border: 2px solid #DBE3F5;
+                    border-radius: 100%;
+                    width: 30px;
+                    height: 30px;
+                }
 
-.track-your-order .track-your-order-container .tracking .item .line-vertical {
-    border-left: 2px solid #ccc;
-    height: 100%;
-}
+            .track-your-order .track-your-order-container .tracking .item .line-vertical {
+                border-left: 2px solid #ccc;
+                height: 100%;
+            }
 
 /* Track Your Order End */
 
@@ -4123,9 +4388,9 @@ card-details li.card-number {
 .register-form {
     display: flex;
     flex-direction: column;
-    
     align-items: center;
 }
+
 .register-form-header {
     text-align: center;
 }
@@ -4230,10 +4495,12 @@ card-details li.card-number {
         color: #626262;
         font-weight: 500;
     }
+
 .register-form-signin-link:hover {
     color: #313131;
     font-weight: bold;
 }
+
 .register-form-social-media {
     margin-top: 2.2rem;
     margin-bottom: 2.2rem;
@@ -4303,4 +4570,116 @@ card-details li.card-number {
         cursor: pointer;
     }
 /********************************/
+
+
+
+/* start: shop/cetegories */
+.category-section {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.categories-div-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-div-top a {
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    border-radius: 10px;
+    padding: 3px 8px;
+    margin: 8px;
+}
+
+.categories-div-top a:hover {
+    background-color: #DBE3F5;
+    color: black;
+}
+
+#chosen-category {
+    background-color: #DBE3F5;
+    color: black;
+    cursor: not-allowed;
+}
+
+.no-categories-chosen-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
+}
+
+.no-categories-chosen-div a {
+    position: relative;
+    background-color: #8C93A7;
+    border: 1px solid white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    color: white;
+    align-items: center;
+}
+
+.no-categories-chosen-div a:hover {
+    background-color: #DBE3F5;
+    color: black;
+}
+
+.no-categories-chosen-div a span {
+    position: absolute;
+    text-transform: capitalize;
+    bottom: 10px;
+    left: 10px;
+    font-weight: bold;
+}
+
+.no-categories-chosen-div a video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+@media (min-width: 900px) {
+    .category-section {
+        margin: 0rem 3rem;
+    }
+    .no-categories-chosen-div {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1.5rem;
+    }
+    .category-section {
+        align-items: stretch;
+    }
+}
+@media (min-width: 1400px) {
+    .category-section {
+        margin: 1rem 3rem;
+    }
+
+    .no-categories-chosen-div {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .categories-div-top a {
+        font-size: 18px;
+    }
+
+}
+
+/* end: shop/cetegories */
+
 

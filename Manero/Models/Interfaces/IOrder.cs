@@ -13,6 +13,6 @@ public interface IOrder
 	public decimal? SubtotalPrice { get; set; }
 	public decimal? DeliveryPrice { get; set; }
 	public decimal? TotalPrice { get; set; }
-	public ICollection<OrderRowEntity> OrderRows { get; set; }
+    public ICollection<OrderRowEntity> OrderRows { get; set; }
 
 }

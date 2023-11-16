@@ -16,7 +16,7 @@
 <body>
     <header>
         <partial name="/Views/Partials/_NavigationTopPartial.cshtml" />
-        
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -24,16 +24,16 @@
         </main>
     </div>
 
-    
+
     <partial name="/Views/Partials/_NavigationBottomPartial.cshtml" />
     <partial name="/Views/Partials/_FooterBigScreenPartial.cshtml" />
 
     <script src="https://kit.fontawesome.com/82c9645b6d.js" crossorigin="anonymous"></script>
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/heartIcon.js"></script>
     <script src="~/js/addToCart.js"></script>
-    <script src="~/js/logout.js"></script>
+    <script src="~/js/logoutTopNav.js"></script>
+    <script src="~/js/logoutProfile.js"></script>
     <script src="~/js/productFilter.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

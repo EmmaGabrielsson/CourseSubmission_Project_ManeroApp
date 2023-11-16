@@ -1,5 +1,6 @@
 ﻿@model Order
 @inject Manero.Services.ProductService _productService;
+@inject Manero.Services.OrderService _orderService;
 
 <section class="cart-section">
     @if (Model != null)
@@ -31,16 +32,28 @@
                             <p>Color: @row.ProductVariant.Color.ColorName</p>
                         </div>
                         <div class="product-quantity-cart-item">
-                            <button class="quantity-button" id="decrement">-</button>
-                            <input type="number" id="quantity" name="quantity" value="@row.Quantity">
-                            <button class="quantity-button" id="increment">+</button>
+                            <button class="quantity-button quantity-button-decrement" id="decrement">-</button>
+                            <input type="number" class="quantity-input" data-order-id="@Model.Id" data-variant-id="@row.ProductVariantId" id="quantity" name="quantity" value="@row.Quantity">
+                            <button class="quantity-button quantity-button-increment" id="increment" max="@row.ProductVariant.Quantity">+</button>
                         </div>
                     </div>
                 </div>
             }
 
             <div class="cart-totalprice-container">
-                <div>Promocode </div>
+                <div class="promocode-cart-input-container">
+                    @if(Model.PromocodeId == null)
+                    {
+                        <p>Promocode</p>
+                        <div>
+                            <input id="promocode-input-cart" data-order-id="@Model.Id" placeholder="enter code here.."/>
+                            <button id="add-promocode-button" type="button" >add promocode</button>
+                        </div>
+                    } else
+                    {
+                        <p>Promocode applied<span id="promocode-label-span">✔</span></p>
+                    }
+                </div>
                 <div class="cart-price-container">
                     <span class="bold">Subtotal </span>
                     <span class="bold"> $@(((decimal)Model.SubtotalPrice!).ToString(Model.SubtotalPrice % 1 == 0 ? "F0" : "F2"))</span>
@@ -75,16 +88,31 @@
                 </div>
             </div>
             <div class="cart-btn-container">
-                <button class="proceed-to-checkout-btn">proceed to checkout</button>
+                <form method="post" asp-action="cart" novalidate>
+                    <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+                    <input type="hidden" asp-for="@Model.TotalQuantity" value="@Model.TotalQuantity" />
+                    <input type="hidden" asp-for="@Model.SubtotalPrice" value="@Model.SubtotalPrice" />
+                    <input type="hidden" asp-for="@Model.DeliveryPrice" value="@Model.DeliveryPrice" />
+                    <input type="hidden" asp-for="@Model.TotalPrice" value="@Model.TotalPrice" />
+                    <input type="hidden" asp-for="@Model.PromocodeId" value="@Model.PromocodeId" />
+                    <input type="hidden" asp-for="@Model.OrderRows" value="@Model.OrderRows" />
+                    <input type="hidden" asp-for="@Model.Created" value="@Model.Created" />
+                    <input type="hidden" asp-for="@Model.UserId" value="@Model.UserId" />
+                    <input type="hidden" asp-for="@Model.ProceedToCheckout" value="@true" />
+                    <button type="submit" class="proceed-to-checkout-btn">proceed to checkout</button>
+                </form>
             </div>
         </div>
     }
     else
     {
         <div class="no-order-container">
+            <img src="~/images/cart/empty-cart-img.png" alt="empty cart icon"/>
+            <div>|</div>
             <h2 class="cart-title">Your cart is empty!</h2>
             <p>Looks like you haven't made your order yet.</p>
-            <a class="cart-shop-now-btn" href="#">shop now</a>
+            <a class="cart-shop-now-btn" asp-controller="product" asp-action="categories">shop now</a>
         </div>
     }
 </section>
+<script src="~/js/handleCart.js"></script>
