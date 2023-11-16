@@ -16,7 +16,18 @@
                     </div>
                     <div class="cart-item-content">
                         <div>
-                            <p>@row.ProductVariant.Product.ProductName</p>
+                            <p class="product-name-paragraph" data-fullname="@row.ProductVariant.Product.ProductName">
+                                @{
+                                    var productName = row.ProductVariant.Product.ProductName;
+
+                                    if (productName.Length > 30)
+                                    {
+                                        productName = productName.Substring(0, 30) + "..";
+                                    }
+                                }
+                                @productName
+                            </p>
+
                             <div class="product-price">
                                 @if (row.Discount != decimal.Zero)
                                 {
