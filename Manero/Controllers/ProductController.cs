@@ -57,7 +57,7 @@ namespace Manero.Controllers
 
         #endregion
         
-        #region Cart (https://domain.com/product/cart)
+        #region Handle Cart (https://domain.com/product/cart)
         public async Task<IActionResult> Cart()
         {
             ViewData["Title"] = "Your Cart";
@@ -103,10 +103,24 @@ namespace Manero.Controllers
             var result = await _orderService.AddPromocodeIdAsync(promocodeId, orderId);
 
             if (result)
-                return Ok(new { success = true, message = "Product removed from the cart." });
+                return Ok(new { success = true, message = "Promocode added to the cart." });
 
 
-            return StatusCode(500, new { success = false, message = "Failed to remove the product from the cart." });
+            return StatusCode(500, new { success = false, message = "Failed to add the promocode to cart." });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateQuantity(string productVariantId, string orderId, int qty)
+        {
+
+            var result = await _orderService.UpdateQuantityOfProductInCartAsync(productVariantId, orderId, qty);
+
+            if (result)
+                return Ok(new { success = true, message = "Quantity updated." });
+
+
+            return StatusCode(500, new { success = false, message = "Failed to update quantity of product." });
         }
         #endregion
 
