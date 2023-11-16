@@ -314,4 +314,26 @@ public class OrderService : IOrderService
 
         return false;
     }
+
+    public async Task<bool> UpdateQuantityOfProductInCartAsync(string productVariantId, string orderId, int qty)
+    {
+        try
+        {
+            OrderRowEntity orderRow = await _orderRowRepository.GetAsync(x => x.OrderId == Guid.Parse(orderId) && x.ProductVariantId == Guid.Parse(productVariantId));
+
+            if (orderRow != null)
+            {
+                orderRow.Quantity = qty;
+                var result = await _orderRowRepository.UpdateAsync(orderRow);
+                if (result != null)
+                    return true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+
+        return false;
+    }
 }

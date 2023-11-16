@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if ((currentQuantity + change) <= maxQuantity) {
                 quantityInput.value = currentQuantity + change;
+
+                // Delay added before sending the update request
+                setTimeout(() => {
+                    updateQuantityInputOnProduct(quantityInput.dataset.variantId, quantityInput.dataset.orderId, quantityInput.value);
+                }, 1000);
             } else {
                 // Handle reaching maximum quantity
                 alert(`Products stock is no more then ${maxQuantity}.`);
@@ -39,6 +44,11 @@ document.addEventListener('DOMContentLoaded', function () {
             // Decrement action
             if ((currentQuantity + change) > 0) {
                 quantityInput.value = currentQuantity + change;
+
+                // Delay added before sending the update request
+                setTimeout(() => {
+                    updateQuantityInputOnProduct(quantityInput.dataset.variantId, quantityInput.dataset.orderId, quantityInput.value);
+                }, 1000);
             } else {
                 if (confirm("Do you want to remove the product from the cart?")) {
                     let productVariantId = quantityInput.dataset.variantId;
@@ -50,6 +60,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function updateQuantityInputOnProduct(productVariantId, orderId, qty) {
+        // Send an AJAX request to the server to update quantity of the product in order
+        fetch(`/Product/UpdateQuantity?productVariantId=${productVariantId}&orderId=${orderId}&qty=${qty}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({})
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    console.error('Failed to update quantity. Server returned:', response);
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
+    }
 
     function removeProductFromCart(productVariantId, orderId) {
         // Send an AJAX request to the server to remove the product
