@@ -1,21 +1,19 @@
-﻿@model MyProfileViewModel
-@{
-	var message = ViewBag.Message as string;
+﻿@{
+    var message = ViewBag.Message as string;
 }
 @if (!string.IsNullOrEmpty(message))
 {
-<div class="alert profile-alert-info">
-    @if (message == "yes")
-		{
-    <p>Lyckat! Din profil har uppdaterats.</p>
-		}
-		else if (message == "no")
-		{
-    <p>Fel! Det gick inte att uppdatera din profil.</p>
-		}
-</div>
+    <div class="alert profile-alert-info">
+        @if (message == "yes")
+        {
+            <p>Success! Your profile has been updated.</p>
+        }
+        else if (message == "no")
+        {
+            <p>Error! Unable to update your profile.</p>
+        }
+    </div>
 }
-
 <div class="logout-popup">
     <div class="popup-overlay" id="popup">
         <div class="popup">
