@@ -32,7 +32,7 @@
         <div class="icon-container">
             <a asp-controller="Product" asp-action="Cart" class="bottom-icon-link">
                 <i class="fa-solid fa-bag-shopping"></i>
-                @if (order != null)
+                @if (order != null && order.TotalQuantity > 0)
                 {
                 <p class="cart-count">@order.TotalQuantity</p>
                 }
