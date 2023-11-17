@@ -1,4 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Manero.Models.Entities;
+using Manero.Models.Interfaces;
+using Manero.Services;
+using Manero.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Moq;
+using System.Linq.Expressions;
+using System.Security.Claims;
+using Xunit;
 
 namespace Manero.Tests;
 
