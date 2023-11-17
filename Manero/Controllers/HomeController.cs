@@ -1,4 +1,5 @@
 ﻿using Manero.Models;
+using Manero.Models.Interfaces;
 using Manero.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,12 +7,13 @@ namespace Manero.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ProductService _productService;
+    private readonly IProductService _productService;
 
-    public HomeController(ProductService productService)
+    public HomeController(IProductService productService)
     {
         _productService = productService;
     }
+
     public async Task<IActionResult> Index()
     {
         ViewData["Title"] = "Home";

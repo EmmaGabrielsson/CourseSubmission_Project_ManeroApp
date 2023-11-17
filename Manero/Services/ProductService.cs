@@ -4,10 +4,11 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using LinqKit;
 using Manero.Models;
+using Manero.Models.Interfaces;
 
 namespace Manero.Services;
 
-public class ProductService
+public class ProductService : IProductService
 {
     #region Private Fields and Constructors
 
