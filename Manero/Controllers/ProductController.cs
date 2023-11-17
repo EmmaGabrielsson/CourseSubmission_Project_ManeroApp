@@ -17,9 +17,9 @@ namespace Manero.Controllers
         private readonly IProductRepository _productRepository;
         private readonly OrderService _orderService;
         private readonly ProductService _productService;
-        private readonly CategoryRepository _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public ProductController(IProductRepository productRepository, OrderService orderService, ProductService productService, CategoryRepository categoryRepository)
+        public ProductController(IProductRepository productRepository, OrderService orderService, ProductService productService, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _orderService = orderService;
