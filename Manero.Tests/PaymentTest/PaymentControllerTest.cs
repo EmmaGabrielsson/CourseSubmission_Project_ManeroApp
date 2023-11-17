@@ -38,7 +38,7 @@ public class PaymentControllerTest : IDisposable
     public void List_ShouldRedirectToAddWhenNoPaymentMethods()
     {
         // Arrange
-        var userManagerProviderMock = new Mock<IUserManagerProvider>();
+        var userManagerProviderMock = new Mock<IUserService>();
         var paymentServiceMock = new Mock<IPaymentService>();
 
         // Mock user setup
@@ -64,7 +64,7 @@ public class PaymentControllerTest : IDisposable
     public void List_ShouldRedirectToListWhenUserHasPaymentMethod()
     {
         // Arrange
-        var userManagerProviderMock = new Mock<IUserManagerProvider>();
+        var userManagerProviderMock = new Mock<IUserService>();
 
         // Mock user setup
         var userEntity = new UserEntity(); // Create a user entity

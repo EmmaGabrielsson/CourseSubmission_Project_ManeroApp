@@ -17,15 +17,15 @@ namespace Manero.Controllers
 
         private readonly IPaymentService _paymentService;
         private readonly UserManager<UserEntity> _userManager;
-        readonly IUserManagerProvider _userManagerProvider;
+        readonly IUserService _userService;
 
-        public IUserManagerProvider UserManagerProvider => _userManagerProvider;
+        public IUserService UserService => _userService;
 
-        public PaymentController(IPaymentService paymentService, UserManager<UserEntity> userManager, IUserManagerProvider userManagerProvider)
+        public PaymentController(IPaymentService paymentService, UserManager<UserEntity> userManager, IUserService userService)
         {
             _paymentService = paymentService;
             _userManager = userManager;
-            _userManagerProvider = userManagerProvider;
+            _userService = userService;
         }
 
         public IActionResult List()
