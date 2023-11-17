@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Manero.Services;
+using Manero.Models.Interfaces;
 
 namespace Manero.Controllers;
 
@@ -20,129 +21,67 @@ public class AccountController : Controller
 	private readonly EmailService _emailService;
 	private readonly AddressService _addressService;
 	private readonly IWebHostEnvironment _hostEnvironment;
-	private readonly DataContext _context;
+    private readonly UserService _userService;
+    private readonly OrderHistoryService _orderHistoryService;
 
-	public AccountController(DataContext context, UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IWebHostEnvironment hostEnvironment, ILogger<AccountController> logger, EmailService emailService, AddressService addressService)
-	{
-		_context = context;
-		_userManager = userManager;
-		_signInManager = signInManager;
-		_logger = logger;
-		_emailService = emailService;
-		_addressService = addressService;
-		_hostEnvironment = hostEnvironment;
-	}
+    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IWebHostEnvironment hostEnvironment, ILogger<AccountController> logger, EmailService emailService, AddressService addressService, UserService userService, OrderHistoryService orderHistoryService)
+    {
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _logger = logger;
+        _emailService = emailService;
+        _addressService = addressService;
+        _hostEnvironment = hostEnvironment;
+        _userService = userService;
+        _orderHistoryService = orderHistoryService;
+    }
 
-	#endregion
+    #endregion
 
+    #region view profile and edit profile
+    [Authorize]
+    public async Task<IActionResult> Profile(string update)
+    {
+        var user = await _userManager.GetUserAsync(User);
 
-	[Authorize]
-	public async Task<IActionResult> Profile(string update)
-	{
-		var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+        {
+            return RedirectToAction("Index", "Login");
+        }
 
-		if (user == null)
-		{
-			return NotFound();
-		}
+        if (update != null)
+        {
+            if (update == "updated")
+            {
+                ViewBag.Message = "yes";
+            }
+            else if (update == "wrong")
+            {
+                ViewBag.Message = "no";
+            }
+        }
+        return View(user);
+    }
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> Profile(MyProfileEditViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            var updateResult = await _userService.UpdateUserProfile(viewModel, User);
 
-		var viewModel = new MyProfileViewModel
-		{
-			FirstName = user.FirstName,
-			LastName = user.LastName,
-			Email = user.Email!,
-			ProfileImageUrl = user.ProfileImageUrl,
-			Location = user.Location,
-			PhoneNumber = user.PhoneNumber,
-			Id = user.Id,
-		};
-		if (update != null) {
-			if (update == "updated")
-			{
-				ViewBag.Message = "yes";
-			}
-			else if (update == "wrong")
-			{
-				ViewBag.Message = "no";
-			}
-		}
-		return View(viewModel);
-	}
+            if (updateResult)
+            {
+                return RedirectToAction(nameof(Profile), new { update = "updated" });
+            }
+        }
 
-	[HttpPost]
-	[Authorize]
-	public async Task<IActionResult> Profile(MyProfileEditViewModel viewModel)
-	{
-		if (ModelState.IsValid)
-		{
+        return RedirectToAction(nameof(Profile), new { update = "wrong" });
+    }
+    #endregion
 
-			var user = await _userManager.GetUserAsync(User);
-			if (user == null)
-			{
-				return NotFound();
-			}
-			if (viewModel.ProfileImage != null && viewModel.ProfileImage.Length > 0)
-			{
-				var fileName = Path.GetFileNameWithoutExtension(viewModel.ProfileImage.FileName);
-				var extension = Path.GetExtension(viewModel.ProfileImage.FileName);
-				var fileNewName = $"{Guid.NewGuid()}_{DateTime.Now:yyyyMMddHHmmss}{extension}";
-
-				var filePath = Path.Combine(_hostEnvironment.WebRootPath, "images", "profiles", fileNewName).Replace("\\", "/");
-
-				// Kontrollera om det finns en befintlig bild och ta bort den
-				if (!string.IsNullOrWhiteSpace(user.ProfileImageUrl))
-				{
-					var existingFilePath = _hostEnvironment.WebRootPath + user.ProfileImageUrl;
-					if (System.IO.File.Exists(existingFilePath))
-					{
-						System.IO.File.Delete(existingFilePath);
-					}
-				}
-
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
-				{
-					await viewModel.ProfileImage.CopyToAsync(fileStream);
-				}
-				user.ProfileImageUrl = "/" + Path.Combine("images", "profiles", fileNewName);
-			}
-
-			// Dela upp namnet i förnamn och efternamn
-			var names = viewModel.Name?.Split(new[] { ' ' }, 2);
-			if (names?.Length == 2)
-			{
-				user.FirstName = names[0];
-				user.LastName = names[1];
-			}
-
-			if (!string.IsNullOrWhiteSpace(viewModel.Email))
-			{
-				user.Email = viewModel.Email;
-			}
-
-			if (!string.IsNullOrWhiteSpace(viewModel.PhoneNumber))
-			{
-				user.PhoneNumber = viewModel.PhoneNumber;
-			}
-
-			if (!string.IsNullOrWhiteSpace(viewModel.Location))
-			{
-				user.Location = viewModel.Location;
-			}
-
-			// Spara ändringarna i databasen
-			var result = await _userManager.UpdateAsync(user);
-			if (result.Succeeded)
-			{
-				return RedirectToAction(nameof(Profile), new { update = "updated" });
-			}
-		}
-
-		return RedirectToAction(nameof(Profile), new { update = "wrong" });
-	}
-
-
-	#region My Address (https://domain.com/account/address)
-	[Authorize]
+    #region My Address (https://domain.com/account/address)
+    [Authorize]
 	public async Task<IActionResult> Address()
 	{
 		ViewData["Title"] = "My adress";
@@ -288,35 +227,17 @@ public class AccountController : Controller
 		return View(viewModel);
 	}
 
- public async Task<IActionResult> Orders()
+    public async Task<IActionResult> Orders()
+    {
+		ViewData["Title"] = "Orders";
+
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return Challenge();
-            }
-
-            var orders = await _context.CheckoutEntities
-                                       .Where(x => x.Order.UserId == user.Id)
-                                       .Include(x => x.StatusCode)
-                                       .Include(x => x.Order)
-                                       .Select(x => new OrderViewModel
-                                       {
-                                           Id = x.OrderId,
-                                           Created = x.Order.Created.HasValue ? x.Order.Created.Value : default,
-                                           Status = x.StatusCode.StatusName,
-                                           UpdateStatusDate = x.UpdateStatusDate,
-                                           TotalPrice = x.Order.TotalPrice,
-                                           Products = x.Order.OrderRows.Select(x => new OrderProductViewModel
-                                           {
-                                                ProductArticleNumber = x.ProductArticleNumber,
-                                                Quantity = x.Quantity,
-                                                ProductPrice = x.ProductPrice,
-                                           }).ToList()
-                                       })
-                                       .ToListAsync();
-
-            return View(orders);
+            return Challenge();
         }
-    }
 
+        var orders = await _orderHistoryService.GetOrdersAsync(user.Id);
+        return View(orders);
+    }
+}

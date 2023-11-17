@@ -22,21 +22,29 @@ slides.forEach((slide, index) => {
     slide.style.left = slideWidth * index + 'px';
 });
 
-const moveToSlide = (targetIndex) => {
-    track.style.transform = 'translateX(-' + (targetIndex * slideWidth) + 'px';
+const moveToSlide = (targetIndex = currentSlideIndex) => {
+    if (slides[currentSlideIndex]) {
+        slides[currentSlideIndex].classList.remove('current-slide');
+    }
 
-    slides[currentSlideIndex].classList.remove('current-slide');
-
-    slides[targetIndex].classList.add('current-slide');
+    if (slides[targetIndex]) {
+        slides[targetIndex].classList.add('current-slide');
+    }
 
     currentSlideIndex = targetIndex;
+
+    track.style.transform = 'translateX(-' + (targetIndex * slideWidth) + 'px';
 };
 
 const updateDots = () => {
-    const currentDot = dotsNav.querySelector('.current-slide');
-    currentDot.classList.remove('current-slide');
+    if (currentSlideIndex >= 0 && currentSlideIndex < dots.length) {
+        const currentDot = dotsNav.querySelector('.current-slide');
+        if (currentDot) {
+            currentDot.classList.remove('current-slide');
+        }
 
-    dots[currentSlideIndex].classList.add('current-slide');
+        dots[currentSlideIndex].classList.add('current-slide');
+    }
 };
 
 nextButton.addEventListener('click', () => {

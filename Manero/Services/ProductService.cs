@@ -1,25 +1,27 @@
 ﻿using Manero.Models.Entities;
-using Manero.Repositories;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using LinqKit;
 using Manero.Models;
+using Manero.Models.Interfaces;
 
 namespace Manero.Services;
 
-public class ProductService
+public class ProductService : IProductService
 {
     #region Private Fields and Constructors
+    
+    private readonly ITagRepository _tagRepository;
+    private readonly IProductRepository _productRepository;
+    private readonly IImageRepository _imageRepository;
+    private readonly ICategoryRepository _categoryRepository;
 
-    private readonly TagRepository _tagRepository;
-    private readonly ProductRepository _productRepository;
-    private readonly ImageRepository _imageRepository;
-
-    public ProductService(TagRepository tagRepository, ProductRepository productRepository, ImageRepository imageRepository)
+    public ProductService(ITagRepository tagRepository, IProductRepository productRepository, IImageRepository imageRepository, ICategoryRepository categoryRepository)
     {
         _tagRepository = tagRepository;
         _productRepository = productRepository;
         _imageRepository = imageRepository;
+        _categoryRepository = categoryRepository;
     }
 
     #endregion
@@ -144,6 +146,19 @@ public class ProductService
 
             }
 
+            if (filter.Source == "Categories")
+            {
+                if (filter.TagIds == null || filter.TagIds.Count == 0)
+                {
+                    expression = expression.And(x => x.Tags.Any(x => x.TagId == 2));
+                }
+                if (filter.TagIds != null && filter.TagIds.Count >= 1)
+                {
+                    expression = expression.And(x => x.Tags.Any(t => filter.TagIds.Contains(t.Tag.Id)));
+                }
+
+            }
+
             if (filter.Colors != null && filter.Colors.Any())
             {
                 expression = expression.And(x => x.ProductVariants.Any(v => filter.Colors.Contains(v.Color.Id)));
@@ -176,6 +191,27 @@ public class ProductService
         }
         return null!;
         
+    }
+
+    public async Task<IEnumerable<ProductEntity>> GetAllProductsByCategoryName(string categoryName)
+    {
+        try
+        {
+            // Retrieve the products with the specified categoryname
+            var category = await _categoryRepository.GetAsync(x => x.CategoryName.ToLower() == categoryName.ToLower());
+
+            if (category != null)
+            {
+                var products = await _productRepository.GetAllAsync(x => x.Categories.Any(x => x.CategoryId == category.Id));
+
+                return products;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+        return null!;
     }
 
 }

@@ -9,4 +9,7 @@ public interface IOrderService
 	Task<OrderEntity> GetOrCreateOrderAsync(Product productViewModel);
 	Task<bool> AddOrderRowAsync(Guid orderId, Product addProduct);
 	Task<OrderEntity> UpdateOrderWithRowsAsync(OrderEntity order);
+	Task<OrderEntity> UpdateOrderWithPromocodeIdAsync(Order order);
+
+    Task<bool> RemoveOrderRowAsync(string productVariantId, string orderId);
 }

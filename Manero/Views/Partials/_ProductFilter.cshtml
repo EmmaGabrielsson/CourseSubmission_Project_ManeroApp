@@ -1,21 +1,20 @@
-﻿
-@{
-    var pageName = ViewContext.ActionDescriptor.RouteValues.Values.FirstOrDefault();
-}
-@inject Manero.Repositories.ProductRepository _productRepo;
 @inject Manero.Repositories.ColorRepository _colorRepo;
 @inject Manero.Repositories.SizeRepository _sizeRepo;
-@inject Manero.Repositories.CategoryRepository _categoryRepo;
-@inject Manero.Repositories.TagRepository _tagRepo;
+@inject Manero.Models.Interfaces.ITagRepository _tagRepo
+@inject Manero.Models.Interfaces.IProductRepository _productRepo
+@inject Manero.Models.Interfaces.ICategoryRepository _categoryRepo
 
 @{
+    var actionName = ViewContext.ActionDescriptor.RouteValues["action"];
+    var controllerName = ViewContext.ActionDescriptor.RouteValues["controller"];
+
     var colors = await _colorRepo.GetAllAsync();
     var sizes = await _sizeRepo.GetAllAsync();
     var categories = await _categoryRepo.GetAllAsync();
     var tags = await _tagRepo.GetAllAsync();
 }
 
-<form asp-controller="Home" asp-route-source="@pageName" asp-action="@pageName" method="post" class="filter-form">
+<form asp-controller="@controllerName" asp-route-source="@actionName" asp-action="@actionName" method="post" class="filter-form">
     <div class="filter-heading">
         <a class="filter-icon"><i class="fa-solid fa-chevron-left"></i></a>
         <div class="filter-title">Filter</div>

@@ -1,0 +1,14 @@
+﻿
+
+<section style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; flex-direction:column;">
+    <h2>Checkout</h2>
+    <div style="display: flex; align-items: center; margin: 2rem; flex-direction:column;">
+        <div style="width: 100%; display: flex; align-items: center; justify-content: space-between; flex-direction: row;">
+            <h4>My order</h4>
+            <p>
+                <span class="bold"> $@(((decimal)Model.TotalPrice!).ToString(Model.TotalPrice % 1 == 0 ? "F0" : "F2"))</span>
+            </p>
+        </div>
+        <p style="color: #DFC70B; margin: 0; padding: 0;">This site is under construction, so there is nothing more to view here right now..</p>
+    </div>
+</section>

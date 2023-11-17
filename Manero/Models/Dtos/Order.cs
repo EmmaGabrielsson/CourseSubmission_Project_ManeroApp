@@ -16,7 +16,7 @@ public class Order : IOrder
     public decimal? DeliveryPrice { get; set; }
     public decimal? TotalPrice { get; set; }
     public ICollection<OrderRowEntity> OrderRows { get; set; } = new HashSet<OrderRowEntity>();
-
+    public bool ProceedToCheckout { get; set; } = false;
 
     public static implicit operator Order(OrderEntity entity)
     {

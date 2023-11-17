@@ -27,11 +27,11 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 
 
 // Add Repositories (eg. builder.Services.AddScoped<CategoryRepository>(); )
-builder.Services.AddScoped<ProductRepository>();
-builder.Services.AddScoped<ProductTagRepository>();
-builder.Services.AddScoped<TagRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductTagRepository, ProductTagRepository>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<ProductCategoryRepository>();
-builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ProductReviewRepository>();
 builder.Services.AddScoped<ProductVariantRepository>();
 builder.Services.AddScoped<ColorRepository>();
@@ -39,11 +39,11 @@ builder.Services.AddScoped<SizeRepository>();
 builder.Services.AddScoped<IAdressRepository, AdressRepository>();
 builder.Services.AddScoped<IUserAdressRepository, UserAdressRepository>();
 builder.Services.AddScoped<ProductImageRepository>();
-builder.Services.AddScoped<ImageRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderRowRepository, OrderRowRepository>();
 builder.Services.AddScoped<CheckoutRepository>();
-builder.Services.AddScoped<PromocodeRepository>();
+builder.Services.AddScoped<IPromocodeRepository, PromocodeRepository>();
 builder.Services.AddScoped<UserPromocodeRepository>();
 builder.Services.AddScoped<UserPaymentMethodsRepository>();
 builder.Services.AddScoped<PaymentMethodRepository>();
@@ -51,10 +51,14 @@ builder.Services.AddScoped<PaymentMethodRepository>();
 
 // Add Services
 builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPaymentService ,PaymentService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<OrderHistoryService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
