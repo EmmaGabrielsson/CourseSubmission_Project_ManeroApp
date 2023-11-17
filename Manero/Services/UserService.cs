@@ -2,9 +2,10 @@
 using Manero.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Manero.Models.Interfaces;
 
 namespace Manero.Services;
-public class UserService
+public class UserService : IUserService
 {
 	private readonly UserManager<UserEntity> _userManager;
 	private readonly IWebHostEnvironment _hostEnvironment;
@@ -19,6 +20,7 @@ public class UserService
 	{
 		// Retrieve the user based on the ClaimsPrincipal
 		var user = await _userManager.GetUserAsync(userClaimsPrincipal);
+		//var result = await _userManager.UpdateAsync(user);
 
 		// Check if the user is not found
 		if (user == null)

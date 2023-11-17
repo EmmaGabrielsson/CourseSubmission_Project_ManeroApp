@@ -1,12 +1,13 @@
 ﻿using Manero.Contexts;
 using Manero.Models.Entities;
+using Manero.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Manero.Repositories;
 
-public class ProductRepository : Repo<ProductEntity>
+public class ProductRepository : Repo<ProductEntity>, IProductRepository
 {
     private readonly DataContext _dataContext;
     public ProductRepository(DataContext dataContext) : base(dataContext)
