@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Manero.Services;
+using Manero.Models.Interfaces;
 
 namespace Manero.Controllers;
 
@@ -20,12 +21,11 @@ public class AccountController : Controller
 	private readonly EmailService _emailService;
 	private readonly AddressService _addressService;
 	private readonly IWebHostEnvironment _hostEnvironment;
-	private readonly DataContext _context;
     private readonly UserService _userService;
+    private readonly OrderHistoryService _orderHistoryService;
 
-    public AccountController(DataContext context, UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IWebHostEnvironment hostEnvironment, ILogger<AccountController> logger, EmailService emailService, AddressService addressService, UserService userService)
+    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IWebHostEnvironment hostEnvironment, ILogger<AccountController> logger, EmailService emailService, AddressService addressService, UserService userService, OrderHistoryService orderHistoryService)
     {
-        _context = context;
         _userManager = userManager;
         _signInManager = signInManager;
         _logger = logger;
@@ -33,6 +33,7 @@ public class AccountController : Controller
         _addressService = addressService;
         _hostEnvironment = hostEnvironment;
         _userService = userService;
+        _orderHistoryService = orderHistoryService;
     }
 
     #endregion
@@ -226,35 +227,17 @@ public class AccountController : Controller
 		return View(viewModel);
 	}
 
- public async Task<IActionResult> Orders()
+    public async Task<IActionResult> Orders()
+    {
+		ViewData["Title"] = "Orders";
+
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return Challenge();
-            }
-
-            var orders = await _context.CheckoutEntities
-                                       .Where(x => x.Order.UserId == user.Id)
-                                       .Include(x => x.StatusCode)
-                                       .Include(x => x.Order)
-                                       .Select(x => new OrderViewModel
-                                       {
-                                           Id = x.OrderId,
-                                           Created = x.Order.Created.HasValue ? x.Order.Created.Value : default,
-                                           Status = x.StatusCode.StatusName,
-                                           UpdateStatusDate = x.UpdateStatusDate,
-                                           TotalPrice = x.Order.TotalPrice,
-                                           Products = x.Order.OrderRows.Select(x => new OrderProductViewModel
-                                           {
-                                                ProductArticleNumber = x.ProductArticleNumber,
-                                                Quantity = x.Quantity,
-                                                ProductPrice = x.ProductPrice,
-                                           }).ToList()
-                                       })
-                                       .ToListAsync();
-
-            return View(orders);
+            return Challenge();
         }
-    }
 
+        var orders = await _orderHistoryService.GetOrdersAsync(user.Id);
+        return View(orders);
+    }
+}
