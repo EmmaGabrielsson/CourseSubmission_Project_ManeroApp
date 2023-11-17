@@ -11,16 +11,18 @@ namespace Manero.Services;
 public class ProductService : IProductService
 {
     #region Private Fields and Constructors
-
+    
     private readonly ITagRepository _tagRepository;
     private readonly IProductRepository _productRepository;
     private readonly IImageRepository _imageRepository;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public ProductService(ITagRepository tagRepository, IProductRepository productRepository, IImageRepository imageRepository)
+    public ProductService(ITagRepository tagRepository, IProductRepository productRepository, IImageRepository imageRepository, ICategoryRepository categoryRepository)
     {
         _tagRepository = tagRepository;
         _productRepository = productRepository;
         _imageRepository = imageRepository;
+        _categoryRepository = categoryRepository;
     }
 
     #endregion
@@ -145,6 +147,19 @@ public class ProductService : IProductService
 
             }
 
+            if (filter.Source == "Categories")
+            {
+                if (filter.TagIds == null || filter.TagIds.Count == 0)
+                {
+                    expression = expression.And(x => x.Tags.Any(x => x.TagId == 2));
+                }
+                if (filter.TagIds != null && filter.TagIds.Count >= 1)
+                {
+                    expression = expression.And(x => x.Tags.Any(t => filter.TagIds.Contains(t.Tag.Id)));
+                }
+
+            }
+
             if (filter.Colors != null && filter.Colors.Any())
             {
                 expression = expression.And(x => x.ProductVariants.Any(v => filter.Colors.Contains(v.Color.Id)));
@@ -177,6 +192,27 @@ public class ProductService : IProductService
         }
         return null!;
         
+    }
+
+    public async Task<IEnumerable<ProductEntity>> GetAllProductsByCategoryName(string categoryName)
+    {
+        try
+        {
+            // Retrieve the products with the specified categoryname
+            var category = await _categoryRepository.GetAsync(x => x.CategoryName.ToLower() == categoryName.ToLower());
+
+            if (category != null)
+            {
+                var products = await _productRepository.GetAllAsync(x => x.Categories.Any(x => x.CategoryId == category.Id));
+
+                return products;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+        return null!;
     }
 
 }

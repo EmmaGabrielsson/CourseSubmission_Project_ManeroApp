@@ -16,7 +16,18 @@
                     </div>
                     <div class="cart-item-content">
                         <div>
-                            <p>@row.ProductVariant.Product.ProductName</p>
+                            <p class="product-name-paragraph" data-fullname="@row.ProductVariant.Product.ProductName">
+                                @{
+                                    var productName = row.ProductVariant.Product.ProductName;
+
+                                    if (productName.Length > 30)
+                                    {
+                                        productName = productName.Substring(0, 30) + "..";
+                                    }
+                                }
+                                @productName
+                            </p>
+
                             <div class="product-price">
                                 @if (row.Discount != decimal.Zero)
                                 {
@@ -111,7 +122,7 @@
             <div>|</div>
             <h2 class="cart-title">Your cart is empty!</h2>
             <p>Looks like you haven't made your order yet.</p>
-            <a class="cart-shop-now-btn" href="#">shop now</a>
+            <a class="cart-shop-now-btn" asp-controller="product" asp-action="categories">shop now</a>
         </div>
     }
 </section>

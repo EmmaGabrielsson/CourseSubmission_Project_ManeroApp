@@ -1,17 +1,13 @@
-﻿
-@{
-    var actionName = ViewContext.ActionDescriptor.RouteValues["action"];
-    var controllerName = ViewContext.ActionDescriptor.RouteValues["controller"];
-
-}
 @inject Manero.Repositories.ColorRepository _colorRepo;
 @inject Manero.Repositories.SizeRepository _sizeRepo;
 @inject Manero.Repositories.CategoryRepository _categoryRepo;
 @inject Manero.Models.Interfaces.ITagRepository _tagRepo
 @inject Manero.Models.Interfaces.IProductRepository _productRepo
 
-
 @{
+    var actionName = ViewContext.ActionDescriptor.RouteValues["action"];
+    var controllerName = ViewContext.ActionDescriptor.RouteValues["controller"];
+
     var colors = await _colorRepo.GetAllAsync();
     var sizes = await _sizeRepo.GetAllAsync();
     var categories = await _categoryRepo.GetAllAsync();

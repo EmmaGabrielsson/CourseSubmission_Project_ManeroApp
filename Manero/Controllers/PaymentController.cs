@@ -1,4 +1,5 @@
 ﻿using Manero.Models.Entities;
+using Manero.Models.Interfaces;
 using Manero.Services;
 using Manero.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -13,13 +14,18 @@ namespace Manero.Controllers
     [Authorize] // Apply authorization to secure these actions
     public class PaymentController : Controller
     {
-        private readonly PaymentService _paymentService;
-        private readonly UserManager<UserEntity> _userManager;
 
-        public PaymentController(PaymentService paymentService, UserManager<UserEntity> userManager)
+        private readonly IPaymentService _paymentService;
+        private readonly UserManager<UserEntity> _userManager;
+        readonly IUserManagerProvider _userManagerProvider;
+
+        public IUserManagerProvider UserManagerProvider => _userManagerProvider;
+
+        public PaymentController(IPaymentService paymentService, UserManager<UserEntity> userManager, IUserManagerProvider userManagerProvider)
         {
             _paymentService = paymentService;
             _userManager = userManager;
+            _userManagerProvider = userManagerProvider;
         }
 
         public IActionResult List()
@@ -32,6 +38,11 @@ namespace Manero.Controllers
             }
 
             var paymentMethods = _paymentService.GetUserPaymentMethods(user.Id);
+            if (paymentMethods == null || !paymentMethods.Any())
+            {
+                // You might want to log or handle this case appropriately
+                return RedirectToAction("Add");
+            }
 
             var viewModel = new PaymentMethodsViewModel
             {
@@ -85,14 +96,14 @@ namespace Manero.Controllers
                 var userId = await _userManager.GetUserIdAsync(user);
 
                 // Call the service to add the payment method
-                _paymentService.AddPaymentMethod(entity, userId);
+                await _paymentService.AddPaymentMethod(entity, userId);
 
                 return RedirectToAction("List");
             }
 
             return View(paymentMethod);
         }
-        
+
 
 
 
@@ -116,7 +127,7 @@ namespace Manero.Controllers
             return View(paymentMethod);
         }
 
-        
+
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -168,7 +179,7 @@ namespace Manero.Controllers
 
             var viewModel = new PaymentMethodViewModel
             {
-                
+
                 PaymentMethodId = paymentMethod.Id,
                 CardHolderName = paymentMethod.CardHolderName,
                 CardNumber = paymentMethod.CardNumber,
