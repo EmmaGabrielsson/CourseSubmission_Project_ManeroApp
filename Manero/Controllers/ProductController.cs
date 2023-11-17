@@ -1,5 +1,6 @@
+﻿using Manero.Models.Dtos;
+using Manero.Models.Interfaces;
 ﻿using Manero.Models;
-using Manero.Models.Dtos;
 using Manero.Repositories;
 using Manero.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,12 @@ namespace Manero.Controllers
 
         #region Private Fields & Constructors
         
-        private readonly ProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
         private readonly OrderService _orderService;
         private readonly ProductService _productService;
         private readonly CategoryRepository _categoryRepository;
 
-        public ProductController(ProductRepository productRepository, OrderService orderService, ProductService productService, CategoryRepository categoryRepository)
+        public ProductController(IProductRepository productRepository, OrderService orderService, ProductService productService, CategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _orderService = orderService;
