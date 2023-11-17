@@ -3,7 +3,6 @@ using Manero.Controllers;
 using Manero.Models.Entities;
 using Manero.Services;
 using Manero.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -91,6 +90,46 @@ public class OrderHistoryServiceTests
     }
 
     [Fact]
+    public async Task GetOrdersAsync_ReturnsAllOrders_ForUserWithMultipleOrders()
+    {
+        // Arrange
+        var userId = "testUserIdWithMultipleOrders";
+        var options = new DbContextOptionsBuilder<DataContext>()
+            .UseInMemoryDatabase(databaseName: "TestDatabaseForMultipleOrders")
+            .Options;
+
+        using (var context = new DataContext(options))
+        {
+            context.CheckoutEntities.AddRange(
+                new CheckoutEntity
+                {
+                    Order = new OrderEntity { UserId = userId, TotalPrice = (decimal)9.99 },
+                    StatusCode = new StatusCodeEntity { StatusName = "Delivered" }
+                },
+                new CheckoutEntity
+                {
+                    Order = new OrderEntity { UserId = userId, TotalPrice = (decimal)19.99 },
+                    StatusCode = new StatusCodeEntity { StatusName = "Shipping" }
+                }
+
+            );
+            context.SaveChanges();
+        }
+
+        using (var context = new DataContext(options))
+        {
+            var service = new OrderHistoryService(null!, context);
+
+            // Act
+            var result = await service.GetOrdersAsync(userId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+        }
+    }
+
+    [Fact]
     public void OrderHistoryViewModel_SetsPropertiesCorrectly()
     {
         // Arrange
@@ -126,45 +165,5 @@ public class OrderHistoryServiceTests
         Assert.Equal(expectedProductArticleNumber, viewModel.ProductArticleNumber);
         Assert.Equal(expectedQuantity, viewModel.Quantity);
         Assert.Equal(expectedProductPrice, viewModel.ProductPrice);
-    }
-
-    [Fact]
-    public async Task GetOrdersAsync_ReturnsAllOrders_ForUserWithMultipleOrders()
-    {
-        // Arrange
-        var userId = "testUserIdWithMultipleOrders";
-        var options = new DbContextOptionsBuilder<DataContext>()
-            .UseInMemoryDatabase(databaseName: "TestDatabaseForMultipleOrders")
-            .Options;
-
-        using (var context = new DataContext(options))
-        {
-            context.CheckoutEntities.AddRange(
-                new CheckoutEntity
-                {
-                    Order = new OrderEntity { UserId = userId, TotalPrice = 100.00m },
-                    StatusCode = new StatusCodeEntity { StatusName = "Delivered" }
-                },
-                new CheckoutEntity
-                {
-                    Order = new OrderEntity { UserId = userId, TotalPrice = 200.00m },
-                    StatusCode = new StatusCodeEntity { StatusName = "Shipped" }
-                }
-
-            );
-            context.SaveChanges();
-        }
-
-        using (var context = new DataContext(options))
-        {
-            var service = new OrderHistoryService(null!, context);
-
-            // Act
-            var result = await service.GetOrdersAsync(userId);
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(2, result.Count);
-        }
     }
 }
