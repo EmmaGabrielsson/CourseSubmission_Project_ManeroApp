@@ -1,12 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Manero.Models.Entities;
-using Manero.Models.Interfaces;
-using Manero.Services;
-using Manero.ViewModels;
-using Microsoft.AspNetCore.Http;
-using Moq;
-using System.Linq.Expressions;
-using System.Security.Claims;
+﻿using System;
+using System.Text.RegularExpressions;
 using Xunit;
 
 namespace Manero.Tests;
@@ -15,17 +8,20 @@ namespace Manero.Tests;
 
 public class CarouselTest
 {
-    public async Task MainPage_Should_Load_JsFile()
+    private const string ViewPath = "C:\\Users\\tommy\\source\\repos\\CourseSubmission_Project_ManeroApp\\Manero\\Views\\Partials\\_CarouselPartial.cshtml"; // Replace with the actual path to your view
+
+    [Fact]
+    public void Test_Correct_Js_File_Is_Loaded()
     {
-        string baseUrl = "https://localhost:7073/";
-        string jsFileUrl = $"{baseUrl}~/js/carousel.js";
+        string expectedJsFileName = "carousel.js";
 
-        using (HttpClient client = new HttpClient())
-        {
-            HttpResponseMessage response = await client.GetAsync(baseUrl);
-            string content = await response.Content.ReadAsStringAsync();
+        string viewContent = File.ReadAllText(ViewPath);
 
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(content.Contains(jsFileUrl), "JS file is not loaded on the main page.");
-        }
+        Assert.True(ContainsJsFile(viewContent, expectedJsFileName));
+    }
+    private bool ContainsJsFile(string content, string jsFileName)
+    {
+        string pattern = $"<script\\s+.*src\\s*=\\s*['\"](.*/{jsFileName})['\"].*></script>";
+        return Regex.IsMatch(content, pattern, RegexOptions.IgnoreCase);
     }
 }

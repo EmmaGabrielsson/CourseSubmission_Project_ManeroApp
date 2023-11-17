@@ -9,10 +9,10 @@ namespace Manero.Tests;
 
 public class FooterTest
 {
-    private const string CssFilePath = "C:\\Users\\tommy\\source\\repos\\CourseSubmission_Project_ManeroApp\\Manero\\wwwroot\\css\\site.css";
+    private const string CssFilePath = "C:\\Users\\tommy\\source\\repos\\CourseSubmission_Project_ManeroApp\\Manero\\wwwroot\\css\\site.css"; // Replace with the actual path to your css file
 
     [Fact]
-    public void Test_Text_Should_Be_In_Css_File()
+    public void Footer_Should_Be_Shown_Only_On_Big_Screen()
     {
         // Arrange
         string expectedText = "@media (max-width: 1400px) {\r\n    .footer-big {\r\n        display: none;\r\n    }\r\n}";
