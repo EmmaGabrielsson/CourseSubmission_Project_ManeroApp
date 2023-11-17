@@ -1,6 +1,5 @@
 ﻿using Manero.Models.Entities;
 using Manero.Models;
-using Manero.Repositories;
 using Manero.Services;
 using Moq;
 using System.Linq.Expressions;
@@ -17,8 +16,9 @@ public class FilterServiceTests
         var mockTagRepo = new Mock<ITagRepository>();
         var mockProductRepo = new Mock<IProductRepository>();
         var mockImageRepo = new Mock<IImageRepository>();
+        var mockCategoryRepo = new Mock<ICategoryRepository>();
 
-        var service = new ProductService(mockTagRepo.Object, mockProductRepo.Object, mockImageRepo.Object);
+        var service = new ProductService(mockTagRepo.Object, mockProductRepo.Object, mockImageRepo.Object, mockCategoryRepo.Object);
 
         var filter = new ProductFilterModel
         {
@@ -70,7 +70,9 @@ public class FilterServiceTests
         var mockTagRepo = new Mock<ITagRepository>();
         var mockProductRepo = new Mock<IProductRepository>();
         var mockImageRepo = new Mock<IImageRepository>();
-        var service = new ProductService(mockTagRepo.Object, mockProductRepo.Object, mockImageRepo.Object);
+        var mockCategoryRepo = new Mock<ICategoryRepository>();
+
+        var service = new ProductService(mockTagRepo.Object, mockProductRepo.Object, mockImageRepo.Object, mockCategoryRepo.Object);
 
         var filter = new ProductFilterModel
         {
