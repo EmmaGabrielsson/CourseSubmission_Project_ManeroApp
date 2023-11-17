@@ -1,5 +1,6 @@
+﻿using Manero.Models.Dtos;
+using Manero.Models.Interfaces;
 ﻿using Manero.Models;
-using Manero.Models.Dtos;
 using Manero.Repositories;
 using Manero.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,12 @@ namespace Manero.Controllers
 
         #region Private Fields & Constructors
         
-        private readonly ProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
         private readonly OrderService _orderService;
         private readonly ProductService _productService;
         private readonly CategoryRepository _categoryRepository;
 
-        public ProductController(ProductRepository productRepository, OrderService orderService, ProductService productService, CategoryRepository categoryRepository)
+        public ProductController(IProductRepository productRepository, OrderService orderService, ProductService productService, CategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _orderService = orderService;
@@ -136,15 +137,9 @@ namespace Manero.Controllers
             return View(productWithReviews);
         }
 
-        public async Task<IActionResult> Categories(ProductFilterModel filter, string categoryName)
+        public async Task<IActionResult> Categories(string categoryName)
         {
-            if (filter.Source == "Categories")
-            {
-                var filtredProducts = await _productService.GetFilteredProductsAsync(filter);
-                if (filtredProducts != null)
-                    ViewBag.ShopWithAllCategories = filtredProducts;
-                return View();
-            }
+            
             var allCategories = await _categoryRepository.GetAllAsync();
             if (allCategories != null)
                 ViewBag.ShopWithAllCategories = allCategories;
@@ -157,6 +152,25 @@ namespace Manero.Controllers
                     ViewBag.CategoryProducts = products!;
                     ViewBag.ChosenCategory = categoryName;
                 }
+            }
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Categories(ProductFilterModel filter)
+        {
+            var allCategories = await _categoryRepository.GetAllAsync();
+            if (allCategories != null)
+                ViewBag.ShopWithAllCategories = allCategories;
+
+            if (filter.Source == "Categories")
+            {
+                var filtredProducts = await _productService.GetFilteredProductsAsync(filter);
+                if (filtredProducts != null)
+                    ViewBag.CategoryProducts = filtredProducts;
+                return View();
             }
 
             return View();

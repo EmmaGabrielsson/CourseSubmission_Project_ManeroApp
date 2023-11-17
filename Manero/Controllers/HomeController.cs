@@ -49,6 +49,7 @@ public class HomeController : Controller
     }
     public async Task<IActionResult> BestSeller(ProductFilterModel filter)
     {
+
         if (filter.Source == "BestSeller")
         {
             var filtredProducts = await _productService.GetFilteredProductsAsync(filter);
@@ -66,6 +67,7 @@ public class HomeController : Controller
     }
     public async Task<IActionResult> FeatuerdProduct(ProductFilterModel filter)
     {
+
         if (filter.Source == "FeatuerdProduct")
         {
             var filtredProducts = await _productService.GetFilteredProductsAsync(filter);

@@ -1,5 +1,4 @@
 ﻿using Manero.Models.Entities;
-using Manero.Repositories;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using LinqKit;
@@ -11,13 +10,13 @@ namespace Manero.Services;
 public class ProductService : IProductService
 {
     #region Private Fields and Constructors
+    
+    private readonly ITagRepository _tagRepository;
+    private readonly IProductRepository _productRepository;
+    private readonly IImageRepository _imageRepository;
+    private readonly ICategoryRepository _categoryRepository;
 
-    private readonly TagRepository _tagRepository;
-    private readonly ProductRepository _productRepository;
-    private readonly ImageRepository _imageRepository;
-    private readonly CategoryRepository _categoryRepository;
-
-    public ProductService(TagRepository tagRepository, ProductRepository productRepository, ImageRepository imageRepository, CategoryRepository categoryRepository)
+    public ProductService(ITagRepository tagRepository, IProductRepository productRepository, IImageRepository imageRepository, ICategoryRepository categoryRepository)
     {
         _tagRepository = tagRepository;
         _productRepository = productRepository;
@@ -135,6 +134,19 @@ public class ProductService : IProductService
                 }
             }
             if (filter.Source == "FeatuerdProduct")
+            {
+                if (filter.TagIds == null || filter.TagIds.Count == 0)
+                {
+                    expression = expression.And(x => x.Tags.Any(x => x.TagId == 2));
+                }
+                if (filter.TagIds != null && filter.TagIds.Count >= 1)
+                {
+                    expression = expression.And(x => x.Tags.Any(t => filter.TagIds.Contains(t.Tag.Id)));
+                }
+
+            }
+
+            if (filter.Source == "Categories")
             {
                 if (filter.TagIds == null || filter.TagIds.Count == 0)
                 {
