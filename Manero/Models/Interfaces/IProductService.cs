@@ -1,15 +1,17 @@
-﻿using Manero.Models.Entities;
+using Manero.Models.Entities;
 using Manero.Repositories;
 using System.Diagnostics;
 using System.Linq.Expressions;
 
-namespace Manero.Models.Interfaces;
-
-public interface IProductService
+namespace Manero.Models.Interfaces
 {
-    Task<IEnumerable<ProductEntity>> GetProductsByTagAsync(string tagName);
-    Task<IEnumerable<ProductEntity>> GetBestSellingProductsAsync();
-    Task<IEnumerable<ProductEntity>> GetSaleProductsAsync();
-    Task<ImageEntity> GetProductsFirstViewImageAsync(string articleNumber);
-    Task<IEnumerable<ProductEntity>> GetFilteredProductsAsync(ProductFilterModel filter);
+    public interface IProductService
+    {
+        Task<IEnumerable<ProductEntity>> GetProductsByTagAsync(string tagName);
+        Task<IEnumerable<ProductEntity>> GetBestSellingProductsAsync();
+        Task<IEnumerable<ProductEntity>> GetSaleProductsAsync();
+        Task<ImageEntity> GetProductsFirstViewImageAsync(string articleNumber);
+        Task<IEnumerable<ProductEntity>> GetFilteredProductsAsync(ProductFilterModel filter);
+        Task<IEnumerable<ProductEntity>> GetAllProductsByCategoryName(string categoryName);
+    }
 }
