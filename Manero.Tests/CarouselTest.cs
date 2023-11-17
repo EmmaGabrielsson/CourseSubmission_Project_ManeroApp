@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace Manero.Tests;
 
@@ -8,29 +6,17 @@ namespace Manero.Tests;
 
 public class CarouselTest
 {
-    private IWebDriver? _driver;
-
-    [Fact]
-    public void TestInitialize()
+    public async Task MainPage_Should_Load_JsFile()
     {
-        _driver = new ChromeDriver();
-    }
-    [Fact]
-    public void Carousel_Script_Should_Load()
-    {
-        _driver.Navigate().GoToUrl("https://localhost:7073/");
+        string baseUrl = "https://localhost:7073/";
+        string jsFileUrl = $"{baseUrl}~/js/carousel.js";
 
-        // Replace "your-app-url" with the actual URL of your application.
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.GetAsync(baseUrl);
+            string content = await response.Content.ReadAsStringAsync();
 
-        // Perform assertions
-        IWebElement jsFile = _driver.FindElement(By.CssSelector("script[src*='carousel.js']"));
-
-        Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsNotNull(jsFile, "JS file is not loaded on the main page.");
-    }
-
-    [Fact]
-    public void TestCleanup()
-    {
-        _driver.Quit();
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(content.Contains(jsFileUrl), "JS file is not loaded on the main page.");
+        }
     }
 }
