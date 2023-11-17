@@ -229,6 +229,8 @@ public class AccountController : Controller
 
     public async Task<IActionResult> Orders()
     {
+		ViewData["Title"] = "Orders";
+
         var user = await _userManager.GetUserAsync(User);
         if (user == null)
         {
