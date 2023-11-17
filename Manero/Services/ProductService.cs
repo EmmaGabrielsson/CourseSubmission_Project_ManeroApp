@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using LinqKit;
 using Manero.Models;
+using Manero.ViewModels;
+using Manero.Contexts;
+using Manero.Models.Dtos;
 
 namespace Manero.Services;
 
@@ -213,5 +216,99 @@ public class ProductService
         }
         return null!;
     }
+
+
+
+
+    //public async Task<IEnumerable<ProductEntity>> SearchProductsAsync(ProductSearchViewModel searchModel)
+    //{
+    //    try
+    //    {
+    //        Expression<Func<ProductEntity, bool>> predicate = PredicateBuilder.New<ProductEntity>(true);
+
+
+    //        if (!string.IsNullOrEmpty(searchModel.SearchTerm))
+    //        {
+    //            predicate = predicate.And(x => x.ProductName.Contains(searchModel.SearchTerm));
+    //        }
+    //        if (!string.IsNullOrEmpty(searchModel.Category))
+    //        {
+    //            predicate = predicate.And(x => x.Categories.Any(c => c.Category.CategoryName == searchModel.Category));
+    //        }
+
+    //        if (!string.IsNullOrEmpty(searchModel.Color))
+    //        {
+    //            predicate = predicate.And(x => x.ProductVariants.Any(v => v.Color.ColorName == searchModel.Color));
+    //        }
+
+    //        if (!string.IsNullOrEmpty(searchModel.Size))
+    //        {
+    //            var trimmedSize = searchModel.Size.Trim();
+    //            predicate = predicate.And(x => x.ProductVariants.Any(v => v.Size.SizeName.Equals(trimmedSize, StringComparison.OrdinalIgnoreCase)));
+    //        }
+
+
+
+    //        if (searchModel.Tags != null && searchModel.Tags.Any())
+    //        {
+    //            predicate = predicate.And(x => x.Tags.Any(t => searchModel.Tags.Contains(t.Tag.TagName)));
+    //        }
+    //        // Add more conditions based on other properties of searchModel
+
+    //        var products = await _productRepository.SearchAsync(predicate);
+    //        Debug.WriteLine($"SearchSize: {searchModel.Size}, Count: {products?.Count() ?? 0}");
+
+    //        Debug.WriteLine($"SearchTerm: {searchModel.SearchTerm}, Count: {products?.Count() ?? 0}");
+    //        return products ?? Enumerable.Empty<ProductEntity>();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Debug.WriteLine(ex.Message);
+    //        return Enumerable.Empty<ProductEntity>(); // Return an empty collection or handle the exception as needed
+    //    }
+    //}
+    public async Task<IEnumerable<ProductEntity>> SearchProductsAsync(ProductSearchViewModel searchModel)
+    {
+        try
+        {
+            Expression<Func<ProductEntity, bool>> predicate = PredicateBuilder.New<ProductEntity>(true);
+
+            if (!string.IsNullOrEmpty(searchModel.SearchTerm))
+            {
+                predicate = predicate.And(x => x.ProductName.Contains(searchModel.SearchTerm));
+            }
+            if (!string.IsNullOrEmpty(searchModel.Category))
+            {
+                predicate = predicate.And(x => x.Categories.Any(c => c.Category.CategoryName == searchModel.Category));
+            }
+
+            if (!string.IsNullOrEmpty(searchModel.Color))
+            {
+                predicate = predicate.And(x => x.ProductVariants.Any(v => v.Color.ColorName == searchModel.Color));
+            }
+
+            if (!string.IsNullOrEmpty(searchModel.Size))
+            {
+                // Navigate through ProductVariants to find the correct size
+                predicate = predicate.And(x => x.ProductVariants.Any(v => v.Size.SizeName.Equals(searchModel.Size, StringComparison.OrdinalIgnoreCase)));
+            }
+
+            if (searchModel.Tags != null && searchModel.Tags.Any())
+            {
+                predicate = predicate.And(x => x.Tags.Any(t => searchModel.Tags.Contains(t.Tag.TagName)));
+            }
+
+            var products = await _productRepository.SearchAsync(predicate);
+
+            Debug.WriteLine($"SearchTerm: {searchModel.SearchTerm}, SearchSize: {searchModel.Size}, Count: {products?.Count() ?? 0}");
+            return products ?? Enumerable.Empty<ProductEntity>();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return Enumerable.Empty<ProductEntity>();
+        }
+    }
+
 
 }

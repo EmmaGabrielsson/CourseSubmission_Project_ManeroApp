@@ -2,6 +2,7 @@
 using Manero.Models.Dtos;
 using Manero.Repositories;
 using Manero.Services;
+using Manero.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -124,7 +125,16 @@ namespace Manero.Controllers
         }
         #endregion
 
+        // Assuming this is your search action method
+        [HttpGet]
+        public async Task<IActionResult> Search(ProductSearchViewModel searchModel)
+        {
+            // Use the properties of the search model to filter products
+            searchModel.SearchResults = (await _productService.SearchProductsAsync(searchModel)).ToList();
 
+            // Pass the filtered products to your view
+            return View(searchModel);
+        }
         public IActionResult Wishlist()
         {
             return View();

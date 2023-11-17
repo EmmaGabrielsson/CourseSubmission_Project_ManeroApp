@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace Manero.Models.Interfaces
 {
-    public interface IUserManagerProvider
+    public interface IUserService
     {
         Task<UserEntity> GetUserAsync(ClaimsPrincipal claimsPrincipal);
         Task<string> GetUserIdAsync(UserEntity user);

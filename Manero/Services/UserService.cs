@@ -6,7 +6,7 @@ using System.Security.Claims;
 namespace Manero.Services;
 
 
-public class UserService : IUserManagerProvider
+public class UserService : IUserService
 {
 	private readonly UserManager<UserEntity> _userManager;
 	private readonly IWebHostEnvironment _hostEnvironment;

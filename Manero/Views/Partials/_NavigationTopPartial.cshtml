@@ -25,10 +25,14 @@
             <h5 class="main-header">M</h5>
 
         </div>
-        <div class="toggle-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search Product">
-        </div>
+        <form asp-controller="Product" asp-action="Search" method="get">
+            <div class="toggle-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search Product">
+                <button type="submit">Search</button>
+            </div>
+            
+        </form>
         <div class="icon-container">
             <a asp-controller="Product" asp-action="Cart" class="bottom-icon-link">
                 <i class="fa-solid fa-bag-shopping"></i>
@@ -64,9 +68,9 @@
 
         </div>
         <div class="navigation-item">
-            <form class="search-bar">
+            <form class="search-bar" asp-action="Search" asp-controller="Product" method="get">
                 <fieldset>
-                    <input class="" type="search" placeholder="Search Product" aria-label="Search">
+                    <input class="" name="searchTerm" type="search" placeholder="Search Product" aria-label="Search">
                     <button class="" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </fieldset>
 

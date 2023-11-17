@@ -1,0 +1,33 @@
+﻿@model ProductSearchViewModel
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search Results</h2>
+
+
+@if (Model.SearchResults != null && Model.SearchResults.Any())
+{
+    <h3>Found Products:</h3>
+    
+    @foreach (var product in Model.SearchResults)
+    {
+        <div class="best-sellers">
+            <div class="container">
+                <div class="product-item">
+                    <partial name="~/Views/Partials/_ProductItem.cshtml" model="product" />
+                </div>
+            </div>
+        </div>
+        
+        
+            
+        <!-- Display other product information as needed -->
+    }
+    
+}
+else
+{
+    <p>No products found.</p>
+}
