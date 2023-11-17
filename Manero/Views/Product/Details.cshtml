@@ -71,7 +71,7 @@
                 <h5>Category:</h5>
                     @foreach (var category in Model.Categories)
                     {
-                        <a asp-action="products" asp-controller="category" asp-route-id="@category.CategoryId">@category.Category.CategoryName</a>
+                        <a asp-controller="product" asp-action="categories" asp-route-categoryName="@category.Category.CategoryName">@category.Category.CategoryName</a>
                     }
                 </div>               
             }
