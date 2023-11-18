@@ -2,9 +2,6 @@
 using Manero.Models.Entities;
 using Manero.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Manero.Services;
 
@@ -12,10 +9,11 @@ public class PaymentService : IPaymentService
 {
     private readonly DataContext _context;
 
-    public PaymentService(DataContext dataContext)
+    public PaymentService(DataContext context)
     {
-        _context = dataContext;
+        _context = context;
     }
+
     public IQueryable<UserPaymentMethodsEntity> GetUserPaymentMethodsQuery(string userId)
     {
         return _context.UserPaymentMethods.Where(upm => upm.UserId == userId);
@@ -44,7 +42,7 @@ public class PaymentService : IPaymentService
         await _context.UserPaymentMethods.AddAsync(userPaymentMethod).ConfigureAwait(false);
         await _context.SaveChangesAsync().ConfigureAwait(false);
     }
-    private bool IsValidCVV(string cvv)
+    private static bool IsValidCVV(string cvv)
     {
         // Add your CVV validation logic here
         // For example, check if it has the expected length or meets specific criteria
@@ -106,10 +104,6 @@ public class PaymentService : IPaymentService
             await _context.SaveChangesAsync(); // Await the changes
         }
     }
-
-
-
-
 
 
 }
