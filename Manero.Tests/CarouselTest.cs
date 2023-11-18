@@ -27,8 +27,6 @@ namespace Manero.Tests
             string pattern = $"<script\\s+.*src\\s*=\\s*['\"](.*/{jsFileName})['\"].*></script>";
             return Regex.IsMatch(content, pattern, RegexOptions.IgnoreCase);
         }
-
-        // Helper method to get the project path
         private string GetProjectPath()
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "Manero");
