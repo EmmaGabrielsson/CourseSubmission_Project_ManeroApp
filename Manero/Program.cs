@@ -59,6 +59,7 @@ builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<OrderHistoryService>();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
