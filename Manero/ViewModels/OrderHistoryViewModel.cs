@@ -1,6 +1,6 @@
 ﻿namespace Manero.ViewModels
 {
-    public class OrderViewModel
+    public class OrderHistoryViewModel
     {
         public Guid Id { get; set; }
         public DateTime Created { get; set; }

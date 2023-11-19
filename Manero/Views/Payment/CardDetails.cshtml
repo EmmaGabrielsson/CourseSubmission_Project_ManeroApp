@@ -10,31 +10,19 @@
     <div class="credit-card">
         <div class="card-front">
             <div class="card-image">
-                @* <img src="~/images/payment/creditcard.png" alt="Credit Card" /> *@
                 <img src="~/images/payment/card.png" alt="Credit Card" />
             </div>
-            <ul class="card-details">
-                
-
+            <ul class="card-details">              
                 <li><strong>Card Number:</strong> @Model.CardNumber</li>
                 <form asp-route-id="@Model.PaymentMethodId" asp-action="Edit" asp-controller="Payment" method="post" id="editCardForm">
                     <input type="text" id="cardNumberInput" name="newCardNumber" value="@Model.CardNumber" />
                     <button type="submit" class="edit-button">Edit Card</button>
                 </form>
-
-
-
-
-
                 <li><strong>CVV:</strong> @Model.CVV</li>
                 <li><strong>Expiry:</strong> @Model.ExpiryMonth / @Model.ExpiryYear</li>
                 <li><strong>Name:</strong> @Model.CardHolderName</li>
-                
-                
+                               
             </ul>
-
-
-
         </div>
     </div>
 </div>

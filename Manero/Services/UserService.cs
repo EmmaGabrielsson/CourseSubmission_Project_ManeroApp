@@ -3,20 +3,22 @@ using Manero.ViewModels;
 using Manero.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+
 namespace Manero.Services;
 
-
-public class UserService : IUserManagerProvider
+public class UserService : IUserService
 {
 	private readonly UserManager<UserEntity> _userManager;
 	private readonly IWebHostEnvironment _hostEnvironment;
+    private readonly IFileService _fileService;
 
-	public UserService(UserManager<UserEntity> userManager, IWebHostEnvironment hostEnvironment)
-	{
-		_userManager = userManager;
-		_hostEnvironment = hostEnvironment;
-	}
-  public async Task<UserEntity> GetUserAsync(ClaimsPrincipal claimsPrincipal)
+    public UserService(UserManager<UserEntity> userManager, IWebHostEnvironment hostEnvironment, IFileService fileService)
+    {
+        _userManager = userManager;
+        _hostEnvironment = hostEnvironment;
+        _fileService = fileService;
+    }
+    public async Task<UserEntity> GetUserAsync(ClaimsPrincipal claimsPrincipal)
   {
       // Implement the logic to get the user from claimsPrincipal using _userManager
       if (_userManager == null)
@@ -36,46 +38,35 @@ public class UserService : IUserManagerProvider
 	{
 		// Retrieve the user based on the ClaimsPrincipal
 		var user = await _userManager.GetUserAsync(userClaimsPrincipal);
+		//var result = await _userManager.UpdateAsync(user);
 
 		// Check if the user is not found
 		if (user == null)
 		{
 			return false; // Return false to indicate failure
 		}
+        if (viewModel.ProfileImage != null && viewModel.ProfileImage.Length > 0)
+        {
+            // Attempt to save the new image and retrieve its path
+            var newImageUrl = await _fileService.SaveFileAsync(viewModel.ProfileImage, "images/profiles");
 
-		// Handle profile image update if a new image is provided
-		if (viewModel.ProfileImage != null && viewModel.ProfileImage.Length > 0)
-		{
-			// Generate a unique file name for the new profile image
-			var fileName = Path.GetFileNameWithoutExtension(viewModel.ProfileImage.FileName);
-			var extension = Path.GetExtension(viewModel.ProfileImage.FileName);
-			var fileNewName = $"{Guid.NewGuid()}_{DateTime.Now:yyyyMMddHHmmss}{fileName}{extension}";
+            // Check if the new image has been successfully saved
+            if (!string.IsNullOrWhiteSpace(newImageUrl))
+            {
+                // If there is an old image, delete it
+                if (!string.IsNullOrWhiteSpace(user.ProfileImageUrl))
+                {
+                    var existingFilePath = _hostEnvironment.WebRootPath + user.ProfileImageUrl;
+                    _fileService.DeleteFile(existingFilePath);
+                }
 
-			// Define the file path for the new profile image
-			var filePath = Path.Combine(_hostEnvironment.WebRootPath, "images", "profiles", fileNewName).Replace("\\", "/");
+                // Update the user's profile image URL
+                user.ProfileImageUrl = newImageUrl;
+            }
+        }
 
-			// Check if there's an existing profile image and delete it
-			if (!string.IsNullOrWhiteSpace(user.ProfileImageUrl))
-			{
-				var existingFilePath = _hostEnvironment.WebRootPath + user.ProfileImageUrl;
-				if (System.IO.File.Exists(existingFilePath))
-				{
-					System.IO.File.Delete(existingFilePath);
-				}
-			}
-
-			// Copy the new profile image to the specified file path
-			using (var fileStream = new FileStream(filePath, FileMode.Create))
-			{
-				await viewModel.ProfileImage.CopyToAsync(fileStream);
-			}
-
-			// Update the user's profile image URL
-			user.ProfileImageUrl = "/" + Path.Combine("images", "profiles", fileNewName);
-		}
-
-		// Split the full name into first name and last name
-		var names = viewModel.Name?.Split(new[] { ' ' }, 2);
+        // Split the full name into first name and last name
+        var names = viewModel.Name?.Split(new[] { ' ' }, 2);
 		if (names?.Length == 2)
 		{
 			user.FirstName = names[0];
