@@ -18,6 +18,12 @@
 
             // Act
             string cssContent = File.ReadAllText(_cssFilePath);
+            // Normalize line endings and remove white spaces
+            cssContent = cssContent.Replace("\r", "").Trim();
+
+            // Normalize expected text
+            expectedText = expectedText.Replace("\r", "").Trim();
+
 
             // Assert
             if (!(cssContent.Contains(expectedText) || cssContent.Contains(expectedText2)))
