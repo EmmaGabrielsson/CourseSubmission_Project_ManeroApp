@@ -1456,7 +1456,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("a7ef79fb-4a19-46f3-8300-8b17a9715b0d"),
                             Comment = "This product is a true gem. The quality is exceptional, and it has quickly become a favorite in my wardrobe. The attention to detail in the craftsmanship is evident, and it's incredibly comfortable to wear. I can confidently say that I would recommend it to anyone seeking a versatile and high-quality addition to their collection. The value you get from this item is unmatched, making it a fantastic investment.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7742),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7409),
                             ProductArticleNumber = "BEIGEPANTS017",
                             Rating = 5,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1465,7 +1465,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("6d0a69eb-51a7-4c21-bba6-780de40bc3ca"),
                             Comment = "This item is fantastic!",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7809),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7459),
                             ProductArticleNumber = "BEIGEPANTS017",
                             Rating = 5,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1474,7 +1474,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("f7e0ecf2-0da4-49a2-980a-9b8a703b34cb"),
                             Comment = "These kids' clothes are perfect for playdates and parties. They are stylish and practical, allowing children to look their best while having fun. While they may have minor room for improvement, they're a solid choice.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7812),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7462),
                             ProductArticleNumber = "KIDBLUEDRESS021",
                             Rating = 4,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1483,7 +1483,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("0ce7d3f6-0c8e-46a2-8e70-7a9a86e2a00d"),
                             Comment = "Kids' fashion should be fun and functional, and these clothes deliver on both fronts. The designs are playful and appealing to children, while the quality ensures they last through playdates and adventures. A must-have for young fashionistas!",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7814),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7464),
                             ProductArticleNumber = "KIDBLUEDRESS021",
                             Rating = 5,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1492,7 +1492,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("e499542e-83e5-4a11-b1c3-184c3be4a8a4"),
                             Comment = "Shopping for kids' clothes can be a joy when you find items like these. The designs are adorable, and the durability is a big plus. These clothes can withstand the wear and tear of active little ones while keeping them looking stylish.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7816),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7467),
                             ProductArticleNumber = "KIDBLUEDRESS021",
                             Rating = 5,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1501,7 +1501,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("d78a5d59-3d22-4d24-9a72-9a0c5d64e962"),
                             Comment = "I had high hopes for these kids' clothes, but they fell short of my expectations. The quality is disappointing, and they didn't hold up well to regular use. I wouldn't recommend them.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7818),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7469),
                             ProductArticleNumber = "KIDBLUEDRESS021",
                             Rating = 2,
                             UserId = "8c5b75a1-6c17-4c7b-a5d7-562eaf1c3284"
@@ -1510,7 +1510,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("ccedf9cd-4fb4-4a07-98f6-853d165a85cd"),
                             Comment = "I recently bought a pair of green kids' shoes for my child, and they've proven to be a fun and practical choice. The green color is eye-catching and adds a playful touch to their outfits. These shoes are well-constructed and offer good support for little feet. They are suitable for both outdoor play and casual outings. While they're not perfect, they strike a good balance between style and functionality, making them a solid option for active kids.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7820),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7471),
                             ProductArticleNumber = "GREENKIDSSHOES027",
                             Rating = 4,
                             UserId = "7d75c0ea-3c5e-443b-b29b-6c3e9ecbc2d3"
@@ -1519,7 +1519,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("e99881b5-90e6-4a15-91ec-2c1c3a685c0e"),
                             Comment = "They are rather average in terms of design and quality. The green color is nice, and they do serve their purpose as everyday shoes. However, they lack the standout features or exceptional comfort that I was hoping for. If you're looking for basic green shoes for your child, these might fit the bill, but don't expect anything extraordinary.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7822),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7477),
                             ProductArticleNumber = "GREENKIDSSHOES027",
                             Rating = 3,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1528,7 +1528,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("48c3f19f-2eeb-4e15-8f75-6d1e2dd408c9"),
                             Comment = "I couldn't be happier with my choice. The vibrant green color immediately caught my eye, and it's just as stylish in person. These shoes are not only fashionable but also incredibly comfortable for my little one to wear all day long. The quality is top-notch, and I appreciate the attention to detail in their design. These green shoes have quickly become a favorite in our child's wardrobe. I highly recommend them to parents looking for both style and comfort in kids' footwear.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7826),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7480),
                             ProductArticleNumber = "GREENKIDSSHOES027",
                             Rating = 5,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1537,7 +1537,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("2b17df60-c61d-4fb3-9f2b-27132d57d2d3"),
                             Comment = "These green kids' shoes are stylish and comfy",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7828),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7482),
                             ProductArticleNumber = "GREENKIDSSHOES027",
                             Rating = 4,
                             UserId = "8c5b75a1-6c17-4c7b-a5d7-562eaf1c3284"
@@ -1546,7 +1546,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("7a9a4502-3f42-4c0e-95e3-774fe9d1a96c"),
                             Comment = "Overall, this product is good. It serves its purpose and offers good value for the price.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7831),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7485),
                             ProductArticleNumber = "GREENKIDSSHOES027",
                             Rating = 3,
                             UserId = "0a43d58a-cb53-4c60-b4f3-8b88e84dd26d"
@@ -1555,7 +1555,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("0ad7551d-9a60-43ce-b475-7a19e0e1d18a"),
                             Comment = "This product is dependable and stylish. It fulfills its purpose effectively and features an appealing design. While it's not without minor flaws, it's a solid choice for those seeking reliability and style.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7833),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7487),
                             ProductArticleNumber = "BROWNHANDBAG022",
                             Rating = 4,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1564,7 +1564,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("d7d8b2ef-e7dd-45c5-9a77-9d5695d2b6f1"),
                             Comment = "I highly recommend this product. It's a standout choice and is worth every penny.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7835),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7489),
                             ProductArticleNumber = "JEANS002",
                             Rating = 5,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1573,7 +1573,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("e4f2f0ff-85a6-40c9-8c14-962d2a28ff75"),
                             Comment = "I'm not impressed. It didn't live up to my expectations, and there were some issues.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7837),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7492),
                             ProductArticleNumber = "JEANS002",
                             Rating = 2,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1582,7 +1582,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("f4242cc7-7dd3-4b7d-91f3-85d6cfe24222"),
                             Comment = "It's a solid pick. It's reliable and serves its purpose effectively. There are some areas for improvement, but it's a good choice.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7840),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7494),
                             ProductArticleNumber = "JEANS002",
                             Rating = 4,
                             UserId = "0a43d58a-cb53-4c60-b4f3-8b88e84dd26d"
@@ -1591,7 +1591,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("18a2a186-631f-475a-8d83-190c16f9c525"),
                             Comment = "I'm very impressed with this purchase. It exceeded my expectations.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7844),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7496),
                             ProductArticleNumber = "JEANS002",
                             Rating = 4,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1600,7 +1600,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("34f7c62e-d7d9-4bd3-98ad-8c6c3b16839f"),
                             Comment = "The quality is decent for the price. It serves its purpose.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7847),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7498),
                             ProductArticleNumber = "VANSSHOES012",
                             Rating = 3,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1609,7 +1609,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("631a44dd-7f0e-44e9-9fa6-08e2c4ee8ecb"),
                             Comment = "This product offers great value. It's a must-buy.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7849),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7502),
                             ProductArticleNumber = "VANSSHOES012",
                             Rating = 5,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1618,7 +1618,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("15d775e1-6ed2-487a-81d4-d7ca9e6f4e9a"),
                             Comment = "A good product overall. It's worth considering",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7851),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7504),
                             ProductArticleNumber = "SNEAKERS009",
                             Rating = 4,
                             UserId = "0a43d58a-cb53-4c60-b4f3-8b88e84dd26d"
@@ -1627,7 +1627,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("a15e3c6a-691d-443e-82b6-cffce1dc3dc3"),
                             Comment = "This is an average purchase. It's neither exceptional nor disappointing.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7853),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7507),
                             ProductArticleNumber = "MENSWHITETEE015",
                             Rating = 3,
                             UserId = "7d75c0ea-3c5e-443b-b29b-6c3e9ecbc2d3"
@@ -1636,7 +1636,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("4f8c9c3c-ae0d-44e9-82c9-899cead3e8c8"),
                             Comment = "I'm delighted with this purchase. It's a great product considering the price. The quality is good, and it serves its intended purpose well. While there's room for improvement, it's still a solid choice for those looking for a reliable and budget-friendly option.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7855),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7509),
                             ProductArticleNumber = "MENSWHITETEE015",
                             Rating = 4,
                             UserId = "0a43d58a-cb53-4c60-b4f3-8b88e84dd26d"
@@ -1645,7 +1645,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("c7b8c9ae-2a8f-4c11-9f5d-8f95e9728ff1"),
                             Comment = "I'm not satisfied with this item. It didn't meet my expectations, and I've encountered several problems. The quality is disappointing, and I would caution against purchasing it.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7857),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7512),
                             ProductArticleNumber = "DENIMSHORTS026",
                             Rating = 2,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1654,7 +1654,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("b2e4f8ec-1e88-47b3-9f43-850b9ad37e1f"),
                             Comment = "I'm delighted with this purchase. It's a great product considering the price. The quality is good, and it serves its intended purpose well. While there's room for improvement, it's still a solid choice for those looking for a reliable and budget-friendly option.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7858),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7514),
                             ProductArticleNumber = "DENIMSHORTS026",
                             Rating = 4,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1663,7 +1663,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("7cc7cf7a-e8a7-46ef-9e17-c4ac3b74a9bc"),
                             Comment = "This product is absolutely amazing. The quality, design, and overall performance exceed all expectations. It's a versatile addition to any collection and offers exceptional value for its price. I highly recommend it to anyone seeking a top-tier product.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7860),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7533),
                             ProductArticleNumber = "STRIPEDSHIRT010",
                             Rating = 5,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1672,7 +1672,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("6e6a4be1-0b08-4c18-ae90-3ec1d2cf30cb"),
                             Comment = "A good product overall. It's worth considering.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7862),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7536),
                             ProductArticleNumber = "STRIPEDSHIRT010",
                             Rating = 4,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1681,7 +1681,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("6f9a4c8f-6cc3-49db-9a79-c6fe3a29fc3d"),
                             Comment = "This is an average purchase. It's neither exceptional nor disappointing.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7865),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7539),
                             ProductArticleNumber = "STRIPEDSHIRT010",
                             Rating = 3,
                             UserId = "0a43d58a-cb53-4c60-b4f3-8b88e84dd26d"
@@ -1690,7 +1690,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("f3ecfaec-8eb5-4e60-af1b-7f2a4d3d08ca"),
                             Comment = "This product falls in the 'acceptable' range for me. It serves its purpose decently, but I believe there is room for improvement. The quality is average, and while it gets the job done, it doesn't particularly stand out. If you're seeking a basic, budget-friendly option, this might work for you. However, I'd be more inclined to explore other alternatives for a more satisfactory experience.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7866),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7541),
                             ProductArticleNumber = "WHITETEE014",
                             Rating = 3,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1699,7 +1699,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("218e882b-ae56-4a9a-8fc0-1f5da0f7f2c5"),
                             Comment = "Overall, this product is good. It serves its purpose and offers good value for the price.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7868),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7543),
                             ProductArticleNumber = "BLACKWARMHAT020",
                             Rating = 4,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1708,7 +1708,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("4a9c16d5-3e61-4a07-bffe-c24f21a2aabb"),
                             Comment = "It's a solid pick. It's reliable and serves its purpose effectively. There are some areas for improvement, but it's a good choice.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7871),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7546),
                             ProductArticleNumber = "BLACKWARMHAT020",
                             Rating = 4,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1717,7 +1717,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("7b9d3e7c-c4ed-44d2-8dcd-d5a0c3b4f7ed"),
                             Comment = "This product is simply outstanding.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7873),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7548),
                             ProductArticleNumber = "SUMMERDRESS011",
                             Rating = 5,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1726,7 +1726,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("0e9eddba-88db-480f-8a12-2e8ebaf9bde8"),
                             Comment = "This product is rather ordinary. It doesn't have any standout features but gets the job done. The quality is average, and it's suitable for everyday use.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7875),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7551),
                             ProductArticleNumber = "KIDSBODYSUIT013",
                             Rating = 3,
                             UserId = "0a43d58a-cb53-4c60-b4f3-8b88e84dd26d"
@@ -1735,7 +1735,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("3bce2f0d-1d42-4b11-af2a-8d59ac6b87f7"),
                             Comment = "This product is reliable and affordable. It's a good choice for those seeking a budget-friendly option.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7877),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7553),
                             ProductArticleNumber = "KIDSBODYSUIT013",
                             Rating = 4,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1744,7 +1744,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("c2b1bf4a-8cc4-4a59-9361-710c4eef7b45"),
                             Comment = "These kids' clothes strike a great balance between affordability and trendiness. They allow your children to stay fashionable without breaking the bank. The quality is good, making them suitable for everyday wear.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7879),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7556),
                             ProductArticleNumber = "KIDSBODYSUIT013",
                             Rating = 4,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1753,7 +1753,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("1cb6f65d-1f22-4c14-9c6b-3fc7a4f9b8ed"),
                             Comment = "I wholeheartedly recommend this product. It's an outstanding addition to any wardrobe. The craftsmanship is top-notch, and it's incredibly comfortable to wear, even for extended periods. The attention to detail in the design is commendable, and the versatility of this item is unparalleled. It's worth every penny, and the value you receive far exceeds the price. If you're searching for a product that consistently delivers excellence, look no further.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7881),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7558),
                             ProductArticleNumber = "HANDBAG008",
                             Rating = 5,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1762,7 +1762,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("0c2bd56c-2ec9-4a27-8b25-c51ca5e6f6db"),
                             Comment = "Highly recommended! It's a worthwhile addition to your collection.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7882),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7560),
                             ProductArticleNumber = "HANDBAG008",
                             Rating = 5,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1771,7 +1771,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("3b4b3c38-5eb6-4e36-8a23-1bba8ed82f3d"),
                             Comment = "Kids' fashion should be fun and functional, and these clothes deliver on both fronts. The designs are playful and appealing to children, while the quality ensures they last through playdates and adventures. A must-have for young fashionistas!",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7884),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7563),
                             ProductArticleNumber = "OWLHAT007",
                             Rating = 5,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1780,7 +1780,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("b20cd82f-8f11-4a13-b0fc-d71dd9f4b9eb"),
                             Comment = "This product is dependable and stylish. It fulfills its purpose effectively and features an appealing design. While it's not without minor flaws, it's a solid choice for those seeking reliability and style.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7886),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7565),
                             ProductArticleNumber = "HAT001",
                             Rating = 4,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1789,7 +1789,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("7d8c89db-4ea3-4e3f-8a47-3e2ea1b6e4bc"),
                             Comment = "These kids' clothes are perfect for playdates and parties. They are stylish and practical, allowing children to look their best while having fun. While they may have minor room for improvement, they're a solid choice.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7888),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7568),
                             ProductArticleNumber = "KIDPANTS006",
                             Rating = 4,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -1798,7 +1798,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("d3dd10e3-8f3d-49ea-92ec-8f7cd2b5b0cd"),
                             Comment = "Highly recommended! It's a worthwhile addition to your collection.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7890),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7570),
                             ProductArticleNumber = "GREYWOMENSTEE028",
                             Rating = 5,
                             UserId = "3b21a87a-aa26-4c90-9a2d-4c81205a0721"
@@ -1807,7 +1807,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("e8cf3f5c-1c7d-45ed-9ea6-cac3c4db07e1"),
                             Comment = "This product is a true gem. The quality is exceptional, and it has quickly become a favorite in my wardrobe. The attention to detail in the craftsmanship is evident, and it's incredibly comfortable to wear. I can confidently say that I would recommend it to anyone seeking a versatile and high-quality addition to their collection. The value you get from this item is unmatched, making it a fantastic investment.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7892),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7572),
                             ProductArticleNumber = "GREYWOMENSTEE028",
                             Rating = 5,
                             UserId = "1f75883b-125b-49b9-a3f1-931b83d05199"
@@ -1816,7 +1816,7 @@ namespace Manero.Migrations
                         {
                             Id = new Guid("1edf8dc8-07ea-41e4-8c1f-8a1f7ff0e0d7"),
                             Comment = "This product offers great value. It's a must-buy.",
-                            Created = new DateTime(2023, 11, 13, 13, 17, 36, 67, DateTimeKind.Local).AddTicks(7893),
+                            Created = new DateTime(2023, 11, 17, 9, 44, 12, 428, DateTimeKind.Local).AddTicks(7574),
                             ProductArticleNumber = "GREYWOMENSTEE028",
                             Rating = 5,
                             UserId = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984"
@@ -3019,7 +3019,7 @@ namespace Manero.Migrations
                         {
                             Id = "f1a46d0e-07a1-4e31-8cc3-4f2e28e4f984",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb8aa037-fb24-4f06-a69e-7706a48d1a95",
+                            ConcurrencyStamp = "cdd0fa00-4cd2-4909-b1ae-9fcc527d528d",
                             Email = "annette@example.com",
                             EmailConfirmed = true,
                             FirstName = "Annette",
@@ -3027,11 +3027,11 @@ namespace Manero.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "ANNETTE@EXAMPLE.COM",
                             NormalizedUserName = "ANNETTEHILL",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB9UI0BgnhUihwAha8AMt3dZKTUd34wUuazsHvL0ETiWCA94qbryesPZzmnD9h5UsA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJegvb8nwRfv9+IRA6Q9brEX63Rwd4kB5LEhSQMLbLpo45ClKmSxrt0jcCu8qJk4EQ==",
                             PhoneNumber = "0704567890",
                             PhoneNumberConfirmed = false,
                             ProfileImageUrl = "/images/profiles/annette-hill.jpg",
-                            SecurityStamp = "8d854789-ebd1-4926-87fc-2ea0637dc6d4",
+                            SecurityStamp = "495b8b7d-8da0-432f-a8ca-49d0648a1676",
                             TwoFactorEnabled = false,
                             UserName = "annettehill"
                         },
@@ -3039,7 +3039,7 @@ namespace Manero.Migrations
                         {
                             Id = "8c5b75a1-6c17-4c7b-a5d7-562eaf1c3284",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e48e8961-101a-4b94-8299-c1640a72af72",
+                            ConcurrencyStamp = "a965429c-a368-4abc-8f62-a9022a691a2d",
                             Email = "cameron@example.com",
                             EmailConfirmed = true,
                             FirstName = "Cameron",
@@ -3047,11 +3047,11 @@ namespace Manero.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "CAMERON@EXAMPLE.COM",
                             NormalizedUserName = "CAMERONWILLIAMSON",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB9UI0BgnhUihwAha8AMt3dZKTUd34wUuazsHvL0ETiWCA94qbryesPZzmnD9h5UsA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJegvb8nwRfv9+IRA6Q9brEX63Rwd4kB5LEhSQMLbLpo45ClKmSxrt0jcCu8qJk4EQ==",
                             PhoneNumber = "0705678901",
                             PhoneNumberConfirmed = false,
                             ProfileImageUrl = "/images/profiles/cameron-williamson.jpg",
-                            SecurityStamp = "9e521546-f054-42b9-b505-bc5d8b43e744",
+                            SecurityStamp = "06e8e1c6-3c37-4f75-9e7b-ae6e21a86dff",
                             TwoFactorEnabled = false,
                             UserName = "cameronwilliamson"
                         },
@@ -3059,7 +3059,7 @@ namespace Manero.Migrations
                         {
                             Id = "0a43d58a-cb53-4c60-b4f3-8b88e84dd26d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ba50391-1bae-4304-92e1-183b69c16624",
+                            ConcurrencyStamp = "cf08796a-4591-49f3-8dca-0960eedd1fbc",
                             Email = "jacob@example.com",
                             EmailConfirmed = true,
                             FirstName = "Jacob",
@@ -3067,11 +3067,11 @@ namespace Manero.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "JACOB@EXAMPLE.COM",
                             NormalizedUserName = "JACOBJONES",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB9UI0BgnhUihwAha8AMt3dZKTUd34wUuazsHvL0ETiWCA94qbryesPZzmnD9h5UsA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJegvb8nwRfv9+IRA6Q9brEX63Rwd4kB5LEhSQMLbLpo45ClKmSxrt0jcCu8qJk4EQ==",
                             PhoneNumber = "0706789012",
                             PhoneNumberConfirmed = false,
                             ProfileImageUrl = "/images/profiles/jacob-jones.jpg",
-                            SecurityStamp = "81fa12e1-b9f1-4fa2-819d-d478a5a01eb8",
+                            SecurityStamp = "4ec65812-9355-4e75-a27d-f8842bd87327",
                             TwoFactorEnabled = false,
                             UserName = "jacobjones"
                         },
@@ -3079,7 +3079,7 @@ namespace Manero.Migrations
                         {
                             Id = "1f75883b-125b-49b9-a3f1-931b83d05199",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "65de4279-0f13-4d45-8116-395bcb628eee",
+                            ConcurrencyStamp = "4347dc99-0a54-4b71-9746-c19b06f05683",
                             Email = "jenny@example.com",
                             EmailConfirmed = true,
                             FirstName = "Jenny",
@@ -3087,11 +3087,11 @@ namespace Manero.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "JENNY@EXAMPLE.COM",
                             NormalizedUserName = "JENNYWILSON",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB9UI0BgnhUihwAha8AMt3dZKTUd34wUuazsHvL0ETiWCA94qbryesPZzmnD9h5UsA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJegvb8nwRfv9+IRA6Q9brEX63Rwd4kB5LEhSQMLbLpo45ClKmSxrt0jcCu8qJk4EQ==",
                             PhoneNumber = "0707890123",
                             PhoneNumberConfirmed = false,
                             ProfileImageUrl = "/images/profiles/jenny-wilson.jpg",
-                            SecurityStamp = "06c058ab-9366-4be7-bcc0-dcf7b0a94e79",
+                            SecurityStamp = "df8e8647-e76e-4dc8-9a0a-5b2a36e8153a",
                             TwoFactorEnabled = false,
                             UserName = "jennywilson"
                         },
@@ -3099,7 +3099,7 @@ namespace Manero.Migrations
                         {
                             Id = "7d75c0ea-3c5e-443b-b29b-6c3e9ecbc2d3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1be50a10-03b0-42f9-a51d-3fc09245771f",
+                            ConcurrencyStamp = "6c0953b8-2111-4bb5-b60d-41cc6cc0bf69",
                             Email = "marvin@example.com",
                             EmailConfirmed = true,
                             FirstName = "Marvin",
@@ -3107,11 +3107,11 @@ namespace Manero.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "MARVIN@EXAMPLE.COM",
                             NormalizedUserName = "MARVINMCKINNEY",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB9UI0BgnhUihwAha8AMt3dZKTUd34wUuazsHvL0ETiWCA94qbryesPZzmnD9h5UsA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJegvb8nwRfv9+IRA6Q9brEX63Rwd4kB5LEhSQMLbLpo45ClKmSxrt0jcCu8qJk4EQ==",
                             PhoneNumber = "0708901234",
                             PhoneNumberConfirmed = false,
                             ProfileImageUrl = "/images/profiles/marvin-mckinney.jpg",
-                            SecurityStamp = "e90372cf-6ede-4296-847a-dbc55fd8eb6d",
+                            SecurityStamp = "2e3e59dd-decb-4df8-b94b-dfb5c1d7eb4f",
                             TwoFactorEnabled = false,
                             UserName = "marvinmckinney"
                         },
@@ -3119,7 +3119,7 @@ namespace Manero.Migrations
                         {
                             Id = "3b21a87a-aa26-4c90-9a2d-4c81205a0721",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "46b34db9-151f-43c3-af0d-2a63a90b57ab",
+                            ConcurrencyStamp = "c8ffdddf-5f7e-4e18-9f94-e7c4ad2d05be",
                             Email = "theresa@example.com",
                             EmailConfirmed = true,
                             FirstName = "Theresa",
@@ -3127,11 +3127,11 @@ namespace Manero.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "THERESA@EXAMPLE.COM",
                             NormalizedUserName = "THERESAWEBB",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB9UI0BgnhUihwAha8AMt3dZKTUd34wUuazsHvL0ETiWCA94qbryesPZzmnD9h5UsA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJegvb8nwRfv9+IRA6Q9brEX63Rwd4kB5LEhSQMLbLpo45ClKmSxrt0jcCu8qJk4EQ==",
                             PhoneNumber = "0709012345",
                             PhoneNumberConfirmed = false,
                             ProfileImageUrl = "/images/profiles/theresa-webb.jpg",
-                            SecurityStamp = "09b7f820-6d5f-4005-8b70-b23962dadc5d",
+                            SecurityStamp = "30b50286-3bbd-48af-b4d1-ab98e1e2c3d3",
                             TwoFactorEnabled = false,
                             UserName = "theresawebb"
                         });
